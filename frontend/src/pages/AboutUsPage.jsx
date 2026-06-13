@@ -1,197 +1,279 @@
 import React from 'react';
-import { FaUsers, FaChartLine, FaShieldAlt, FaBookOpen, FaHandshake } from 'react-icons/fa';
+import { motion } from 'framer-motion';
+import CountUpModule from 'react-countup';
+import { Shield, Target, Users, BookOpen, Handshake, ChevronRight, Sparkles, Globe, Briefcase, GraduationCap } from 'lucide-react';
+
+const CountUp = CountUpModule.default || CountUpModule;
 
 const AboutUsPage = () => {
+  const coreValues = [
+    { icon: Users, label: 'Unity', desc: 'Building unbreakable bonds across the globe' },
+    { icon: Target, label: 'Growth', desc: 'Fostering collective economic prosperity' },
+    { icon: Shield, label: 'Leadership', desc: 'Guiding the next generation of visionaries' },
+    { icon: BookOpen, label: 'Education', desc: 'Empowering minds through knowledge' },
+    { icon: Handshake, label: 'Collaboration', desc: 'Creating synergistic opportunities' },
+  ];
+
   return (
-    <div className="w-full bg-white font-sans">
+    <div className="w-full bg-slate-50 font-sans min-h-screen">
+      {/* 1. Immersive Hero Section */}
+      <section className="relative w-full h-[600px] flex items-center justify-center overflow-hidden bg-[#0A1435]">
+        {/* Background Image with Deep Overlay */}
+        <div className="absolute inset-0 z-0">
+          <img src="/about.png" alt="About SCO Network" className="w-full h-full object-cover" />
+          <div className="absolute inset-0 bg-gradient-to-br from-[#0A1435]/90 via-[#112255]/80 to-[#0A1435]/90"></div>
+        </div>
 
-      {/* 1. Hero Section */}
-      <section className="relative w-full h-[400px] md:h-[500px] flex items-center justify-center bg-[#1c2e4a] overflow-hidden">
-        {/* Placeholder image layer for building */}
-        <div className="absolute inset-0 opacity-20 bg-cover bg-center" style={{ backgroundImage: "url('/about.png')" }}></div>
-        <div className="relative z-10 text-center px-4 max-w-4xl mx-auto flex flex-col items-center mt-12">
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white mb-6 tracking-tight drop-shadow-lg">
-            Shaping the Future Together
-          </h1>
-          <p className="text-[#FFC107] text-sm md:text-base font-bold max-w-2xl tracking-wide drop-shadow">
-            Join International Trade Organisation: A global community of visionary entrepreneurs and professionals.
-          </p>
+        {/* Animated Background Elements */}
+        <div className="absolute inset-0 opacity-40 z-0 pointer-events-none">
+          <motion.div 
+            animate={{ scale: [1, 1.2, 1], rotate: [0, 90, 0] }} 
+            transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+            className="absolute top-[-10%] left-[-10%] w-96 h-96 bg-[#FFC107] rounded-full mix-blend-multiply filter blur-[100px] opacity-30"
+          />
+          <motion.div 
+            animate={{ scale: [1, 1.5, 1], rotate: [0, -90, 0] }} 
+            transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
+            className="absolute bottom-[-10%] right-[-10%] w-[500px] h-[500px] bg-blue-500 rounded-full mix-blend-multiply filter blur-[120px] opacity-20"
+          />
+        </div>
+
+        <div className="relative z-10 text-center px-4 max-w-5xl mx-auto flex flex-col items-center mt-16">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-[#FFC107] text-xs font-bold tracking-widest uppercase mb-8 shadow-2xl"
+          >
+            <Sparkles className="w-4 h-4" />
+            Discover SCO Network
+          </motion.div>
+          
+          <motion.h1 
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="text-4xl md:text-6xl lg:text-7xl font-black text-white mb-8 tracking-tight drop-shadow-2xl leading-tight"
+          >
+            Shaping The Future <br/>
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#FFC107] to-[#ffda6a]">Together.</span>
+          </motion.h1>
+
+          <motion.div 
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+            className="p-6 md:p-8 rounded-3xl bg-white/5 backdrop-blur-xl border border-white/10 shadow-2xl max-w-3xl"
+          >
+            <p className="text-gray-300 text-sm md:text-base lg:text-lg font-medium leading-relaxed">
+              We are a global community of visionary entrepreneurs, professionals, and industrialists. By combining modern economic excellence with deep-rooted cultural values, we are building a legacy of shared prosperity.
+            </p>
+          </motion.div>
         </div>
       </section>
 
-      {/* 2. Heritage & Stats Section */}
-      <section className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-          {/* Left Text */}
-          <div>
-            <div className="inline-block px-3 py-1 bg-[#fff6e5] text-[#dca010] text-[10px] font-bold uppercase tracking-widest rounded-sm mb-6">OUR HERITAGE</div>
-            <h2 className="text-3xl md:text-4xl font-extrabold text-[#0A1435] leading-tight mb-8">
-              A Legacy of Economic Prosperity and Social Service
+      {/* 2. Heritage & Collage Section */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 md:py-32 overflow-hidden">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
+          
+          {/* Left Text Content */}
+          <motion.div 
+            initial={{ opacity: 0, x: -50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.8 }}
+          >
+            <div className="inline-flex items-center gap-2 text-[#0A1435] font-black tracking-widest uppercase text-sm mb-4">
+              <div className="w-8 h-1 bg-[#FFC107] rounded-full"></div>
+              Our Heritage
+            </div>
+            <h2 className="text-4xl md:text-5xl font-extrabold text-[#0A1435] leading-tight mb-8">
+              A Legacy of <br className="hidden md:block" />
+              <span className="text-gray-400">Prosperity & Service</span>
             </h2>
-            <div className="space-y-6 text-gray-500 text-sm leading-relaxed">
+            <div className="space-y-6 text-gray-600 text-lg leading-relaxed">
               <p>
-                Founded on the pillars of Seva (Service), Shiksha (Education), and Arthik Sudradhata (Economic Strengthening), JITO has grown into a premier organization of Jain industrialists, entrepreneurs, and professionals worldwide.
+                Founded on the enduring pillars of <span className="font-bold text-[#0A1435]">Seva</span> (Service), <span className="font-bold text-[#0A1435]">Shiksha</span> (Education), and <span className="font-bold text-[#0A1435]">Arthik Sudradhata</span> (Economic Strengthening), we have grown into a premier global organization.
               </p>
               <p>
-                For decades, we have focused on creating a platform that fosters networking, business growth, and social responsibility, ensuring that the values of Jainism translate into modern economic excellence.
+                For decades, we have focused on creating an unshakeable platform that fosters elite networking, sustainable business growth, and profound social responsibility.
               </p>
             </div>
-          </div>
+            <button className="mt-10 group flex items-center gap-3 text-[#0A1435] font-bold hover:text-[#FFC107] transition-colors">
+              Explore our Timeline
+              <div className="w-10 h-10 rounded-full bg-[#0A1435] group-hover:bg-[#FFC107] flex items-center justify-center text-white transition-colors">
+                <ChevronRight className="w-5 h-5" />
+              </div>
+            </button>
+          </motion.div>
 
-          {/* Right Stats Grid */}
-          <div className="grid grid-cols-2 gap-4">
-            <div className="bg-[#185bc3] text-white p-8 rounded-xl shadow-lg flex flex-col items-center justify-center text-center transform hover:-translate-y-1 transition-transform">
-              <div className="text-3xl md:text-4xl font-black mb-1 text-[#FFC107]">15k+</div>
-              <div className="text-[9px] font-bold tracking-[0.15em] uppercase mt-1">Global Members</div>
-            </div>
-            <div className="bg-[#cdccca] text-[#0A1435] p-8 rounded-xl shadow-lg flex flex-col items-center justify-center text-center transform hover:-translate-y-1 transition-transform">
-              <div className="text-3xl md:text-4xl font-black mb-1">60+</div>
-              <div className="text-[9px] font-bold tracking-[0.15em] uppercase mt-1">Chapters Worldwide</div>
-            </div>
-            <div className="bg-white border border-gray-100 text-[#ea5d24] p-8 rounded-xl shadow-[0_4px_20px_rgb(0,0,0,0.06)] flex flex-col items-center justify-center text-center transform hover:-translate-y-1 transition-transform">
-              <div className="text-3xl md:text-4xl font-black mb-1 text-[#ea5d24]">500+</div>
-              <div className="text-[9px] text-gray-500 font-bold tracking-[0.15em] uppercase mt-1">Events Annually</div>
-            </div>
-            <div className="bg-[#e45a1c] text-white p-8 rounded-xl shadow-lg flex flex-col items-center justify-center text-center transform hover:-translate-y-1 transition-transform">
-              <div className="text-3xl md:text-4xl font-black mb-1 text-white">$2B+</div>
-              <div className="text-[9px] font-bold tracking-[0.15em] uppercase mt-1">Invested Capital</div>
-            </div>
+          {/* Right Floating Image Collage */}
+          <div className="relative h-[500px] w-full hidden md:block">
+            <motion.div 
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+              className="absolute top-0 right-0 w-2/3 h-[300px] rounded-[40px] overflow-hidden shadow-2xl z-10 hover:z-30 hover:scale-105 transition-transform duration-500 border-8 border-white"
+            >
+              <img src="/img1.png" alt="Community Event" className="w-full h-full object-cover" />
+            </motion.div>
+            
+            <motion.div 
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="absolute bottom-10 left-0 w-[55%] h-[250px] rounded-[40px] overflow-hidden shadow-2xl z-20 hover:z-30 hover:scale-105 transition-transform duration-500 border-8 border-white"
+            >
+              <img src="/img2.png" alt="Leadership" className="w-full h-full object-cover" />
+            </motion.div>
+            
+            <motion.div 
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+              className="absolute bottom-0 right-10 w-[45%] h-[200px] rounded-[40px] overflow-hidden shadow-2xl z-30 hover:scale-105 transition-transform duration-500 border-8 border-white"
+            >
+              <img src="/img3.png" alt="Networking" className="w-full h-full object-cover" />
+            </motion.div>
           </div>
         </div>
       </section>
 
-      {/* 3. Mission & Vision */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-20">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {/* Mission Card */}
-          <div className="bg-[#132349] rounded-3xl p-10 md:p-12 text-white relative overflow-hidden group">
-            <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-white/5 rounded-full blur-xl group-hover:scale-150 transition-transform duration-700"></div>
-            <div className="flex items-center gap-3 mb-6 relative z-10">
-              <div className="w-8 h-8 rounded-full border border-[#f2b528] flex items-center justify-center text-[#f2b528]">
-                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" /></svg>
-              </div>
-              <h3 className="text-2xl font-bold">Our Mission</h3>
-            </div>
-            <p className="text-[#a4b5d5] text-sm leading-relaxed relative z-10">
-              Empowering the community through quality education, leadership development, and economic opportunities that pave the way for sustainable individual and collective growth.
-            </p>
-          </div>
-
-          {/* Vision Card */}
-          <div className="bg-[#eebc2b] rounded-3xl p-10 md:p-12 text-[#0A1435] relative overflow-hidden group">
-            <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-black/5 rounded-full blur-xl group-hover:scale-150 transition-transform duration-700"></div>
-            <div className="flex items-center gap-3 mb-6 relative z-10">
-              <div className="w-8 h-8 rounded-full border border-[#0A1435] flex items-center justify-center text-[#0A1435]">
-                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" /></svg>
-              </div>
-              <h3 className="text-2xl font-bold">Our Vision</h3>
-            </div>
-            <p className="text-[#3b455b] text-sm leading-relaxed relative z-10 font-medium">
-              To build a strong, united, and prosperous global Sathwara community that leads by example, preserves our rich heritage, and contributes significantly to global progress.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* 4. Purpose & Pillars */}
-      <section className="bg-white py-10">
+      {/* 3. Animated Stats Strip */}
+      <section className="w-full bg-[#FFC107] py-16 relative z-20 shadow-[0_-20px_40px_rgba(0,0,0,0.05)]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-extrabold text-[#0A1435] mb-6">Our Purpose</h2>
-          <p className="text-gray-500 text-sm leading-relaxed max-w-3xl mb-16">
-            Sathwara Community Organisation (SCO) is committed to connecting people across borders, supporting aspiring entrepreneurs, and providing a platform for youth to excel. We believe in the power of collective progress and cultural heritage. Our journey is rooted in the values of togetherness and shared prosperity.
-          </p>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div>
-              <h3 className="text-[#0A1435] font-extrabold text-lg mb-3">Connecting</h3>
-              <p className="text-gray-400 text-xs leading-relaxed max-w-xs">
-                We build bridges between families and global networks.
-              </p>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12 text-[#0A1435]">
+            <div className="flex flex-col items-center justify-center text-center group">
+              <Users className="w-8 h-8 mb-4 opacity-50 group-hover:opacity-100 transition-opacity group-hover:scale-110 duration-300" />
+              <div className="text-4xl md:text-5xl font-black tracking-tight mb-2">
+                <CountUp end={15000} suffix="+" enableScrollSpy scrollSpyOnce />
+              </div>
+              <div className="text-xs font-bold tracking-[0.2em] uppercase opacity-80">Global Members</div>
             </div>
-            <div>
-              <h3 className="text-[#0A1435] font-extrabold text-lg mb-3">Supporting</h3>
-              <p className="text-gray-400 text-xs leading-relaxed max-w-xs">
-                Mentoring the next generation of business leaders.
-              </p>
+            
+            <div className="flex flex-col items-center justify-center text-center group">
+              <Globe className="w-8 h-8 mb-4 opacity-50 group-hover:opacity-100 transition-opacity group-hover:scale-110 duration-300" />
+              <div className="text-4xl md:text-5xl font-black tracking-tight mb-2">
+                <CountUp end={60} suffix="+" enableScrollSpy scrollSpyOnce />
+              </div>
+              <div className="text-xs font-bold tracking-[0.2em] uppercase opacity-80">Chapters Worldwide</div>
             </div>
-            <div>
-              <h3 className="text-[#0A1435] font-extrabold text-lg mb-3">Empowering</h3>
-              <p className="text-gray-400 text-xs leading-relaxed max-w-xs">
-                Creating opportunities for academic excellence.
-              </p>
+
+            <div className="flex flex-col items-center justify-center text-center group">
+              <Briefcase className="w-8 h-8 mb-4 opacity-50 group-hover:opacity-100 transition-opacity group-hover:scale-110 duration-300" />
+              <div className="text-4xl md:text-5xl font-black tracking-tight mb-2">
+                $<CountUp end={2} suffix="B+" enableScrollSpy scrollSpyOnce />
+              </div>
+              <div className="text-xs font-bold tracking-[0.2em] uppercase opacity-80">Invested Capital</div>
+            </div>
+
+            <div className="flex flex-col items-center justify-center text-center group">
+              <GraduationCap className="w-8 h-8 mb-4 opacity-50 group-hover:opacity-100 transition-opacity group-hover:scale-110 duration-300" />
+              <div className="text-4xl md:text-5xl font-black tracking-tight mb-2">
+                <CountUp end={500} suffix="+" enableScrollSpy scrollSpyOnce />
+              </div>
+              <div className="text-xs font-bold tracking-[0.2em] uppercase opacity-80">Annual Events</div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* 5. Stats Ribbon */}
-      <section className="w-full bg-[#061125] py-20 mt-12">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center divide-x divide-[#1a2b4c]">
-            <div className="flex flex-col items-center justify-center">
-              <div className="text-4xl md:text-5xl font-black text-[#f2b528] mb-3">5000+</div>
-              <div className="text-[9px] text-white font-bold tracking-[0.2em] uppercase">Active Members</div>
+      {/* 4. Bento Box: Mission & Vision */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 md:py-32">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-6 auto-rows-[minmax(300px,auto)]">
+          
+          {/* Mission Card - Spans 8 cols */}
+          <motion.div 
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="md:col-span-8 bg-gradient-to-br from-[#132349] to-[#0A1435] rounded-[40px] p-10 md:p-14 text-white relative overflow-hidden group shadow-xl"
+          >
+            {/* Oversized Background Icon */}
+            <Target className="absolute -bottom-10 -right-10 w-64 h-64 text-white/5 group-hover:scale-110 transition-transform duration-700" strokeWidth={1} />
+            
+            <div className="relative z-10 flex flex-col h-full justify-between">
+              <div className="inline-flex items-center gap-3 mb-8">
+                <div className="p-3 bg-[#FFC107] rounded-2xl">
+                  <Target className="w-6 h-6 text-[#0A1435]" />
+                </div>
+                <h3 className="text-3xl font-black tracking-tight">Our Mission</h3>
+              </div>
+              <p className="text-[#a4b5d5] text-lg md:text-xl font-medium leading-relaxed max-w-2xl">
+                Empowering the community through elite education, leadership development, and economic opportunities that pave the way for sustainable individual and collective growth.
+              </p>
             </div>
-            <div className="flex flex-col items-center justify-center">
-              <div className="text-4xl md:text-5xl font-black text-[#f2b528] mb-3">10+</div>
-              <div className="text-[9px] text-white font-bold tracking-[0.2em] uppercase">Global Chapters</div>
+          </motion.div>
+
+          {/* Vision Card - Spans 4 cols */}
+          <motion.div 
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="md:col-span-4 bg-white border border-gray-100 rounded-[40px] p-10 md:p-14 text-[#0A1435] relative overflow-hidden group shadow-xl hover:shadow-2xl transition-shadow"
+          >
+            <Shield className="absolute -top-10 -right-10 w-48 h-48 text-slate-50 group-hover:scale-110 transition-transform duration-700" strokeWidth={1} />
+            
+            <div className="relative z-10 flex flex-col h-full justify-between">
+              <div className="inline-flex items-center gap-3 mb-8">
+                <div className="p-3 bg-[#0A1435] rounded-2xl">
+                  <Shield className="w-6 h-6 text-[#FFC107]" />
+                </div>
+                <h3 className="text-3xl font-black tracking-tight">Our Vision</h3>
+              </div>
+              <p className="text-gray-500 text-lg font-medium leading-relaxed">
+                To build a strong, united, and globally prosperous community that leads by example.
+              </p>
             </div>
-            <div className="flex flex-col items-center justify-center">
-              <div className="text-4xl md:text-5xl font-black text-[#f2b528] mb-3">50+</div>
-              <div className="text-[9px] text-white font-bold tracking-[0.2em] uppercase">Annual Initiatives</div>
-            </div>
-            <div className="flex flex-col items-center justify-center">
-              <div className="text-4xl md:text-5xl font-black text-[#f2b528] mb-3">100%</div>
-              <div className="text-[9px] text-white font-bold tracking-[0.2em] uppercase">Community Focused</div>
-            </div>
+          </motion.div>
+
+        </div>
+      </section>
+
+      {/* 5. Floating Core Values */}
+      <section className="w-full bg-[#050912] py-24 md:py-32 relative overflow-hidden">
+        {/* Subtle background glow */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-4xl h-[400px] bg-[#112255] rounded-full filter blur-[150px] opacity-30"></div>
+        
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-20">
+            <h2 className="text-3xl md:text-5xl font-extrabold text-white mb-6">Pillars of Our Community</h2>
+            <p className="text-gray-400 max-w-2xl mx-auto text-lg">The foundational values that drive our global network.</p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-8">
+            {coreValues.map((value, index) => {
+              const Icon = value.icon;
+              return (
+                <motion.div 
+                  key={index}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  className="flex flex-col items-center text-center p-6 rounded-3xl bg-white/5 border border-white/10 backdrop-blur-sm hover:bg-white/10 transition-colors group"
+                >
+                  <motion.div 
+                    animate={{ y: [0, -8, 0] }}
+                    transition={{ duration: 3 + index, repeat: Infinity, ease: "easeInOut" }}
+                    className="w-20 h-20 rounded-2xl bg-gradient-to-br from-[#132349] to-[#0A1435] border border-[#FFC107]/30 flex items-center justify-center mb-6 shadow-lg shadow-[#FFC107]/10 group-hover:scale-110 transition-transform duration-300"
+                  >
+                    <Icon className="w-8 h-8 text-[#FFC107]" strokeWidth={1.5} />
+                  </motion.div>
+                  <h3 className="text-white text-xl font-bold mb-3">{value.label}</h3>
+                  <p className="text-gray-400 text-sm leading-relaxed">{value.desc}</p>
+                </motion.div>
+              )
+            })}
           </div>
         </div>
       </section>
 
-      {/* 6. Core Values */}
-      <section className="w-full bg-[#050912] py-24">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center">
-          <h2 className="text-3xl font-extrabold text-white mb-16 text-center">Our Core Values</h2>
-
-          <div className="flex flex-wrap justify-center gap-10 md:gap-20">
-
-            <div className="flex flex-col items-center group">
-              <div className="w-16 h-16 rounded-full border border-[#f2b528] flex items-center justify-center mb-4 group-hover:bg-[#f2b528]/10 transition-colors">
-                <FaUsers className="w-6 h-6 text-[#f2b528]" />
-              </div>
-              <span className="text-white text-xs font-semibold">Unity</span>
-            </div>
-
-            <div className="flex flex-col items-center group">
-              <div className="w-16 h-16 rounded-full border border-[#f2b528] flex items-center justify-center mb-4 group-hover:bg-[#f2b528]/10 transition-colors">
-                <FaChartLine className="w-6 h-6 text-[#f2b528]" />
-              </div>
-              <span className="text-white text-xs font-semibold">Growth</span>
-            </div>
-
-            <div className="flex flex-col items-center group">
-              <div className="w-16 h-16 rounded-full border border-[#f2b528] flex items-center justify-center mb-4 group-hover:bg-[#f2b528]/10 transition-colors">
-                <FaShieldAlt className="w-6 h-6 text-[#f2b528]" />
-              </div>
-              <span className="text-white text-xs font-semibold">Leadership</span>
-            </div>
-
-            <div className="flex flex-col items-center group">
-              <div className="w-16 h-16 rounded-full border border-[#f2b528] flex items-center justify-center mb-4 group-hover:bg-[#f2b528]/10 transition-colors">
-                <FaBookOpen className="w-6 h-6 text-[#f2b528]" />
-              </div>
-              <span className="text-white text-xs font-semibold">Education</span>
-            </div>
-
-            <div className="flex flex-col items-center group">
-              <div className="w-16 h-16 rounded-full border border-[#f2b528] flex items-center justify-center mb-4 group-hover:bg-[#f2b528]/10 transition-colors">
-                <FaHandshake className="w-6 h-6 text-[#f2b528]" />
-              </div>
-              <span className="text-white text-xs font-semibold">Collaboration</span>
-            </div>
-
-          </div>
-        </div>
-      </section>
     </div>
   );
 };
