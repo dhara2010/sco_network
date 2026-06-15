@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import CountUpModule from 'react-countup';
 import { Shield, Target, Users, BookOpen, Handshake, ChevronRight, Sparkles, Globe, Briefcase, GraduationCap } from 'lucide-react';
@@ -99,12 +100,12 @@ const AboutUsPage = () => {
                 For decades, we have focused on creating an unshakeable platform that fosters elite networking, sustainable business growth, and profound social responsibility.
               </p>
             </div>
-            <button className="mt-10 group flex items-center gap-3 text-[#0A1435] font-bold hover:text-[#FFC107] transition-colors">
+            <Link to="/projects" className="mt-10 group flex items-center gap-3 text-[#0A1435] font-bold hover:text-[#FFC107] transition-colors">
               Explore our Timeline
               <div className="w-10 h-10 rounded-full bg-[#0A1435] group-hover:bg-[#FFC107] flex items-center justify-center text-white transition-colors">
                 <ChevronRight className="w-5 h-5" />
               </div>
-            </button>
+            </Link>
           </motion.div>
 
           {/* Right Floating Image Collage */}

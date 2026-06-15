@@ -15,6 +15,21 @@ router.get('/public', async (req, res) => {
   }
 });
 
+// @route   GET /api/projects/public/:id
+// @desc    Get single APPROVED project by ID
+// @access  Public
+router.get('/public/:id', async (req, res) => {
+  try {
+    const project = await Project.findOne({ _id: req.params.id, status: 'Approved' });
+    if (!project) {
+      return res.status(404).json({ message: 'Project not found' });
+    }
+    res.json(project);
+  } catch (error) {
+    res.status(500).json({ message: 'Server error: ' + error.message });
+  }
+});
+
 // @route   GET /api/projects/admin
 // @desc    Get all projects (with optional status filter)
 // @access  Private (Admin)

@@ -27,6 +27,7 @@ const contactRoutes = require('./routes/contact');
 const dashboardRoutes = require('./routes/dashboard');
 const projectsRoutes = require('./routes/projects');
 const reportsRoutes = require('./routes/reports');
+const chaptersRoutes = require('./routes/chapters');
 
 app.use('/api/auth', authRoutes);
 app.use('/api/members', membersRoutes);
@@ -35,6 +36,7 @@ app.use('/api/contact', contactRoutes);
 app.use('/api/dashboard', dashboardRoutes);
 app.use('/api/projects', projectsRoutes);
 app.use('/api/reports', reportsRoutes);
+app.use('/api/chapters', chaptersRoutes);
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);

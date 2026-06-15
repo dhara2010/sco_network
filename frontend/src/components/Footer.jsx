@@ -20,15 +20,15 @@ const Footer = () => {
               Dedicated to the growth and prosperity of the Sathwara community worldwide. Building excellence through unity.
             </p>
             <div className="flex items-center gap-4">
-              <a href="#" onClick={(e) => { e.preventDefault(); alert('Coming soon!'); }} className="w-10 h-10 rounded-full bg-[#f4f7f9] flex items-center justify-center text-[#0A1435] hover:bg-gray-200 transition-colors">
+              <Link to="/contact" className="w-10 h-10 rounded-full bg-[#f4f7f9] flex items-center justify-center text-[#0A1435] hover:bg-gray-200 transition-colors">
                 <Share2 className="w-4 h-4" />
-              </a>
-              <a href="#" onClick={(e) => { e.preventDefault(); alert('Coming soon!'); }} className="w-10 h-10 rounded-full bg-[#f4f7f9] flex items-center justify-center text-[#0A1435] hover:bg-gray-200 transition-colors">
+              </Link>
+              <Link to="/committee" className="w-10 h-10 rounded-full bg-[#f4f7f9] flex items-center justify-center text-[#0A1435] hover:bg-gray-200 transition-colors">
                 <Users className="w-4 h-4" />
-              </a>
-              <a href="#" onClick={(e) => { e.preventDefault(); alert('Coming soon!'); }} className="w-10 h-10 rounded-full bg-[#f4f7f9] flex items-center justify-center text-[#0A1435] hover:bg-gray-200 transition-colors">
+              </Link>
+              <Link to="/projects" className="w-10 h-10 rounded-full bg-[#f4f7f9] flex items-center justify-center text-[#0A1435] hover:bg-gray-200 transition-colors">
                 <Globe className="w-4 h-4" />
-              </a>
+              </Link>
             </div>
           </div>
 
@@ -39,7 +39,7 @@ const Footer = () => {
               <li><Link to="/about" className="text-[#59667a] text-sm hover:text-[#0A1435] transition-colors">About SCO</Link></li>
               <li><Link to="/projects" className="text-[#59667a] text-sm hover:text-[#0A1435] transition-colors">Our Initiatives</Link></li>
               <li><Link to="/annual-reports" className="text-[#59667a] text-sm hover:text-[#0A1435] transition-colors">Success Stories</Link></li>
-              <li><Link to="/register" className="text-[#59667a] text-sm hover:text-[#0A1435] transition-colors">Become a Member</Link></li>
+              <li><Link to="/become-member" className="text-[#59667a] text-sm hover:text-[#0A1435] transition-colors">Become a Member</Link></li>
             </ul>
           </div>
 
@@ -47,10 +47,10 @@ const Footer = () => {
           <div className="flex flex-col">
             <h3 className="text-[#0A1435] font-extrabold text-sm uppercase tracking-wider mb-6">RESOURCES</h3>
             <ul className="flex flex-col gap-4">
-              <li><a href="#" onClick={(e) => { e.preventDefault(); alert('Coming soon!'); }} className="text-[#59667a] text-sm hover:text-[#0A1435] transition-colors">Educational Grants</a></li>
-              <li><a href="#" onClick={(e) => { e.preventDefault(); alert('Coming soon!'); }} className="text-[#59667a] text-sm hover:text-[#0A1435] transition-colors">Business Directory</a></li>
-              <li><a href="#" onClick={(e) => { e.preventDefault(); alert('Coming soon!'); }} className="text-[#59667a] text-sm hover:text-[#0A1435] transition-colors">Youth Leadership</a></li>
-              <li><a href="#" onClick={(e) => { e.preventDefault(); alert('Coming soon!'); }} className="text-[#59667a] text-sm hover:text-[#0A1435] transition-colors">Global Network</a></li>
+              <li><Link to="/projects" className="text-[#59667a] text-sm hover:text-[#0A1435] transition-colors">Educational Grants</Link></li>
+              <li><Link to="/projects" className="text-[#59667a] text-sm hover:text-[#0A1435] transition-colors">Business Directory</Link></li>
+              <li><Link to="/projects" className="text-[#59667a] text-sm hover:text-[#0A1435] transition-colors">Youth Leadership</Link></li>
+              <li><Link to="/voice-of-sco" className="text-[#59667a] text-sm hover:text-[#0A1435] transition-colors">Global Network</Link></li>
             </ul>
           </div>
 
@@ -66,13 +66,12 @@ const Footer = () => {
                 placeholder="Your email address"
                 className="w-full px-4 py-3 rounded-lg bg-[#f4f7f9] border-none text-sm text-gray-700 placeholder-gray-400 focus:ring-2 focus:ring-[#0A1435] outline-none"
               />
-              <button
-                type="button"
-                onClick={() => alert('Newsletter subscribe coming soon!')}
-                className="w-full px-4 py-3 rounded-lg bg-[#FFC107] text-[#0A1435] font-bold text-sm shadow-sm hover:bg-[#f5b700] transition-colors"
+              <Link
+                to="/contact"
+                className="w-full px-4 py-3 rounded-lg bg-[#FFC107] text-[#0A1435] font-bold text-sm shadow-sm hover:bg-[#f5b700] transition-colors flex justify-center items-center"
               >
                 Subscribe
-              </button>
+              </Link>
             </form>
           </div>
 
@@ -84,8 +83,8 @@ const Footer = () => {
             © 2024 Sathwara Community Organisation. All rights reserved.
           </p>
           <div className="flex flex-wrap items-center gap-6 mr-14">
-            <a href="#" onClick={(e) => { e.preventDefault(); alert('Coming soon!'); }} className="text-[#8c9aae] text-xs hover:text-[#0A1435] transition-colors">Privacy Policy</a>
-            <a href="#" onClick={(e) => { e.preventDefault(); alert('Coming soon!'); }} className="text-[#8c9aae] text-xs hover:text-[#0A1435] transition-colors">Terms of Service</a>
+            <Link to="/about" className="text-[#8c9aae] text-xs hover:text-[#0A1435] transition-colors">Privacy Policy</Link>
+            <Link to="/about" className="text-[#8c9aae] text-xs hover:text-[#0A1435] transition-colors">Terms of Service</Link>
           </div>
 
           {/* Back to top button */}

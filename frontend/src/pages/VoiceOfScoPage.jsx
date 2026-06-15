@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { FaArrowRight, FaThLarge, FaList, FaExternalLinkAlt, FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 
 const magazines = [
@@ -54,12 +55,12 @@ const VoiceOfScoPage = () => {
               </p>
 
               <div className="flex flex-col sm:flex-row items-center gap-4">
-                <button onClick={() => alert('Coming soon!')} className="w-full sm:w-auto bg-[#f2b528] hover:bg-[#e0a41d] text-[#0A1435] font-bold py-3.5 px-8 rounded flex items-center justify-center transition-colors shadow-lg">
+                <Link to="/annual-reports" className="w-full sm:w-auto bg-[#f2b528] hover:bg-[#e0a41d] text-[#0A1435] font-bold py-3.5 px-8 rounded flex items-center justify-center transition-colors shadow-lg">
                   Latest Issue <FaArrowRight className="ml-2 w-3.5 h-3.5" />
-                </button>
-                <button onClick={() => alert('Archive coming soon!')} className="w-full sm:w-auto bg-white/5 hover:bg-white/10 border border-white/20 text-white font-bold py-3.5 px-8 rounded transition-colors backdrop-blur-sm">
+                </Link>
+                <Link to="/annual-reports" className="w-full sm:w-auto bg-white/5 hover:bg-white/10 border border-white/20 text-white font-bold py-3.5 px-8 rounded transition-colors backdrop-blur-sm">
                   Browse Archive
-                </button>
+                </Link>
               </div>
             </div>
 
@@ -138,9 +139,9 @@ const VoiceOfScoPage = () => {
                 </p>
 
                 {/* View Button */}
-                <button onClick={() => alert('Magazine viewer coming soon!')} className="w-full py-2.5 border border-gray-200 rounded text-[#0A1435] text-xs font-bold hover:bg-[#0A1435] hover:text-white transition-colors flex items-center justify-center gap-2">
+                <Link to="/annual-reports" className="w-full py-2.5 border border-gray-200 rounded text-[#0A1435] text-xs font-bold hover:bg-[#0A1435] hover:text-white transition-colors flex items-center justify-center gap-2">
                   View Magazine <FaExternalLinkAlt className="w-3 h-3" />
-                </button>
+                </Link>
               </div>
             ) : (
               <div key={mag.id} className="group flex flex-col sm:flex-row bg-white border border-gray-100 rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow">
@@ -159,9 +160,9 @@ const VoiceOfScoPage = () => {
                     {mag.description}
                   </p>
                   <div>
-                    <button onClick={() => alert('Magazine viewer coming soon!')} className="inline-flex py-2.5 px-6 border border-gray-200 rounded text-[#0A1435] text-xs font-bold hover:bg-[#0A1435] hover:text-white transition-colors items-center justify-center gap-2">
+                    <Link to="/annual-reports" className="inline-flex py-2.5 px-6 border border-gray-200 rounded text-[#0A1435] text-xs font-bold hover:bg-[#0A1435] hover:text-white transition-colors items-center justify-center gap-2">
                       View Magazine <FaExternalLinkAlt className="w-3 h-3" />
-                    </button>
+                    </Link>
                   </div>
                 </div>
               </div>

@@ -9,6 +9,7 @@ import CommitteeMembersPage from './pages/CommitteeMembersPage';
 import VoiceOfScoPage from './pages/VoiceOfScoPage';
 import AnnualReportsPage from './pages/AnnualReportsPage';
 import ProjectsPage from './pages/ProjectsPage';
+import ProjectDetailsPage from './pages/ProjectDetailsPage';
 import MemberProfilePage from './pages/MemberProfilePage';
 import LoginPage from './pages/auth/LoginPage';
 import BecomeMemberPage from './pages/BecomeMemberPage';
@@ -17,6 +18,7 @@ import DashboardHome from './pages/admin/DashboardHome';
 import ManageMembers from './pages/admin/ManageMembers';
 import ManageProjects from './pages/admin/ManageProjects';
 import ManageReports from './pages/admin/ManageReports';
+import ManageChapters from './pages/admin/ManageChapters';
 import AdminSettings from './pages/admin/AdminSettings';
 
 import './App.css';
@@ -30,6 +32,7 @@ function App() {
           <Route index element={<HomePage />} />
           <Route path="about" element={<AboutUsPage />} />
           <Route path="projects" element={<ProjectsPage />} />
+          <Route path="projects/:id" element={<ProjectDetailsPage />} />
           <Route path="committee" element={<CommitteeMembersPage />} />
           <Route path="voice-of-sco" element={<VoiceOfScoPage />} />
           <Route path="annual-reports" element={<AnnualReportsPage />} />
@@ -45,6 +48,7 @@ function App() {
           <Route path="members" element={<ManageMembers />} />
           <Route path="projects" element={<ManageProjects />} />
           <Route path="reports" element={<ManageReports />} />
+          <Route path="chapters" element={<ManageChapters />} />
           <Route path="settings" element={<AdminSettings />} />
         </Route>
       </Routes>

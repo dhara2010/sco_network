@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Folder, MapPin, Calendar, ArrowRight } from 'lucide-react';
 
@@ -100,9 +101,9 @@ const ProjectsPage = () => {
                     )}
                   </div>
                   
-                  <button className="mt-6 w-full py-2.5 rounded-xl bg-[#F8F9FA] text-[#0B2B5B] font-bold text-[14px] hover:bg-[#1056A5] hover:text-white transition-colors border border-gray-100 flex items-center justify-center gap-2">
+                  <Link to={`/projects/${project._id}`} className="mt-6 w-full py-2.5 rounded-xl bg-[#F8F9FA] text-[#0B2B5B] font-bold text-[14px] hover:bg-[#1056A5] hover:text-white transition-colors border border-gray-100 flex items-center justify-center gap-2">
                     View Details <ArrowRight size={14} />
-                  </button>
+                  </Link>
                 </div>
 
               </div>

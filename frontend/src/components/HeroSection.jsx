@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { ChevronLeft, ChevronRight, X } from 'lucide-react';
 import { motion } from 'framer-motion';
+import GujaratMap from './GujaratMap';
 
 const images = [
   '/img1.png',
@@ -87,7 +88,7 @@ const HeroSection = () => {
             </button>
           </motion.div>
 
-          {/* Right Side: Map Image (3 parts) */}
+          {/* Right Side: Interactive Gujarat Map (3 parts) */}
           <motion.div
             initial={{ opacity: 0, x: 30 }}
             animate={{ opacity: 1, x: 0 }}
@@ -96,23 +97,13 @@ const HeroSection = () => {
             onClick={() => setIsModalOpen(true)}
             title="Click to enlarge map"
           >
-            <h3 className="text-lg md:text-xl font-bold text-gray-800 mb-2 mt-1">SCO Network Zones</h3>
-
+            <h3 className="text-lg md:text-xl font-bold text-gray-800 mb-2 mt-1">Gujarat Chapters</h3>
             <div className="relative w-full flex-1 flex items-center justify-center overflow-hidden">
-              {/* Using an error handler to show a placeholder if map.jpg doesn't exist yet */}
-              <img
-                src="/map.jpg"
-                alt="India Map with Regions"
-                className="max-h-full max-w-full object-contain group-hover:scale-105 transition-transform duration-500"
-                onError={(e) => {
-                  e.target.style.display = 'none';
-                  e.target.nextSibling.style.display = 'flex';
-                }}
-              />
+              <GujaratMap />
             </div>
 
             {/* Click icon overlay */}
-            <div className="absolute inset-0 bg-black/5 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center pointer-events-none rounded-2xl">
+            <div className="absolute inset-0 bg-black/5 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center pointer-events-none rounded-2xl z-20">
               <div className="bg-white/80 backdrop-blur-sm text-gray-800 text-xs font-bold py-2 px-4 rounded-full shadow-sm transform translate-y-4 group-hover:translate-y-0 transition-all duration-300 mt-8">
                 Click to Enlarge
               </div>
@@ -124,7 +115,7 @@ const HeroSection = () => {
 
       {/* Fullscreen Map Modal */}
       {isModalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-md p-2 md:p-6" onClick={() => setIsModalOpen(false)}>
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-md p-4 md:p-8" onClick={() => setIsModalOpen(false)}>
           {/* Floating Close Button */}
           <button
             onClick={() => setIsModalOpen(false)}
@@ -134,13 +125,13 @@ const HeroSection = () => {
             <X className="h-8 w-8 md:h-10 md:w-10" strokeWidth={1.5} />
           </button>
 
-          {/* Modal Image */}
-          <img
-            src="/map.jpg"
-            alt="Enlarged India Map"
-            className="w-full h-full max-w-[98vw] max-h-[98vh] object-contain cursor-default select-none"
+          {/* Modal Map */}
+          <div 
+            className="w-full h-full max-w-5xl max-h-[85vh] bg-white rounded-3xl overflow-hidden shadow-2xl relative"
             onClick={(e) => e.stopPropagation()}
-          />
+          >
+            <GujaratMap />
+          </div>
         </div>
       )}
     </section>

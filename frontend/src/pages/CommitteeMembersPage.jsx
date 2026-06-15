@@ -157,11 +157,11 @@ const CommitteeMembersPage = () => {
               </div>
 
               {/* View Profile Button */}
-              <Link to={`/member/${member._id}`} className="w-full">
-                <button className="w-full py-2.5 rounded-xl bg-[#F8F9FA] text-[#0B2B5B] font-bold text-[14px] hover:bg-[#E5E7EB] transition-colors shadow-sm border border-gray-50">
+              <div className="mt-6">
+                <Link to={`/member/${member._id}`} className="w-full block text-center py-2.5 rounded-xl bg-[#F8F9FA] text-[#0B2B5B] font-bold text-[14px] hover:bg-[#E5E7EB] transition-colors shadow-sm border border-gray-50">
                   View Profile
-                </button>
-              </Link>
+                </Link>
+              </div>
             </div>
           ))}
         </motion.div>

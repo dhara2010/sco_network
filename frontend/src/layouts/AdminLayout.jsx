@@ -1,6 +1,6 @@
 import React from 'react';
 import { Outlet, Link, useLocation, useNavigate } from 'react-router-dom';
-import { LayoutDashboard, Users, GraduationCap, FolderKanban, FileText, Settings, LogOut } from 'lucide-react';
+import { LayoutDashboard, Users, GraduationCap, FolderKanban, FileText, Settings, LogOut, MapPin } from 'lucide-react';
 
 const AdminLayout = () => {
   const location = useLocation();
@@ -16,6 +16,7 @@ const AdminLayout = () => {
     { name: 'Members Management', path: '/admin/members', icon: <Users size={20} /> },
     { name: 'Projects Management', path: '/admin/projects', icon: <FolderKanban size={20} /> },
     { name: 'Reports Management', path: '/admin/reports', icon: <FileText size={20} /> },
+    { name: 'Chapters Management', path: '/admin/chapters', icon: <MapPin size={20} /> },
     { name: 'Settings', path: '/admin/settings', icon: <Settings size={20} /> },
   ];
 
