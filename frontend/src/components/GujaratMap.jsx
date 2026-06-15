@@ -14,6 +14,7 @@ const GujaratMap = () => {
         if (res.ok) {
           const data = await res.json();
           setChapters(data);
+        
         }
       } catch (err) {
         console.error('Failed to fetch chapters', err);
