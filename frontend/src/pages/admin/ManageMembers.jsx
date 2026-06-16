@@ -24,7 +24,7 @@ const ManageMembers = () => {
       if (search) queryParams.append('search', search);
       if (statusFilter) queryParams.append('status', statusFilter);
 
-      const res = await fetch(`http://localhost:5000/api/members/admin?${queryParams}`, {
+      const res = await fetch(`https://sco-network.onrender.com/api/members/admin?${queryParams}`, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       if (res.status === 401) {
@@ -48,7 +48,7 @@ const ManageMembers = () => {
     setActionLoading(true);
     try {
       const token = localStorage.getItem('adminToken');
-      const res = await fetch(`http://localhost:5000/api/members/admin/${memberId}`, {
+      const res = await fetch(`https://sco-network.onrender.com/api/members/admin/${memberId}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',

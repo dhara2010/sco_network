@@ -10,6 +10,7 @@ import VoiceOfScoPage from './pages/VoiceOfScoPage';
 import AnnualReportsPage from './pages/AnnualReportsPage';
 import ProjectsPage from './pages/ProjectsPage';
 import ProjectDetailsPage from './pages/ProjectDetailsPage';
+import ChaptersPage from './pages/ChaptersPage';
 import MemberProfilePage from './pages/MemberProfilePage';
 import LoginPage from './pages/auth/LoginPage';
 import BecomeMemberPage from './pages/BecomeMemberPage';
@@ -33,6 +34,7 @@ function App() {
           <Route path="about" element={<AboutUsPage />} />
           <Route path="projects" element={<ProjectsPage />} />
           <Route path="projects/:id" element={<ProjectDetailsPage />} />
+          <Route path="chapters" element={<ChaptersPage />} />
           <Route path="committee" element={<CommitteeMembersPage />} />
           <Route path="voice-of-sco" element={<VoiceOfScoPage />} />
           <Route path="annual-reports" element={<AnnualReportsPage />} />

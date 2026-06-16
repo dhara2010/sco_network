@@ -12,7 +12,7 @@ const ProjectsPage = () => {
     const fetchProjects = async () => {
       try {
         setLoading(true);
-        const res = await fetch('http://localhost:5000/api/projects/public');
+        const res = await fetch('https://sco-network.onrender.com/api/projects/public');
         const data = await res.json();
         if (!res.ok) throw new Error(data.message || 'Failed to load projects');
         setProjects(data);

@@ -23,7 +23,7 @@ const CommitteeMembersPage = () => {
   useEffect(() => {
     const fetchMembers = async () => {
       try {
-        const res = await fetch('http://localhost:5000/api/members/public');
+        const res = await fetch('https://sco-network.onrender.com/api/members/public');
         const data = await res.json();
         if (!res.ok) throw new Error(data.message || 'Failed to load committee members');
         setGroupedMembers(data);

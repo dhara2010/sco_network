@@ -10,7 +10,7 @@ const GujaratMap = () => {
   useEffect(() => {
     const fetchChapters = async () => {
       try {
-        const res = await fetch('http://localhost:5000/api/chapters/public');
+        const res = await fetch('https://sco-network.onrender.com/api/chapters/public');
         if (res.ok) {
           const data = await res.json();
           setChapters(data);

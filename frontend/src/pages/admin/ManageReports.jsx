@@ -14,7 +14,7 @@ const ManageReports = () => {
       const token = localStorage.getItem('adminToken');
       const statusQuery = activeTab !== 'All' ? `?status=${activeTab}` : '';
       
-      const res = await fetch(`http://localhost:5000/api/reports/admin${statusQuery}`, {
+      const res = await fetch(`https://sco-network.onrender.com/api/reports/admin${statusQuery}`, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       const data = await res.json();
@@ -34,7 +34,7 @@ const ManageReports = () => {
   const handleStatusChange = async (reportId, newStatus) => {
     try {
       const token = localStorage.getItem('adminToken');
-      const res = await fetch(`http://localhost:5000/api/reports/admin/${reportId}`, {
+      const res = await fetch(`https://sco-network.onrender.com/api/reports/admin/${reportId}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -54,7 +54,7 @@ const ManageReports = () => {
     if (!window.confirm("Are you sure you want to delete this report?")) return;
     try {
       const token = localStorage.getItem('adminToken');
-      const res = await fetch(`http://localhost:5000/api/reports/admin/${reportId}`, {
+      const res = await fetch(`https://sco-network.onrender.com/api/reports/admin/${reportId}`, {
         method: 'DELETE',
         headers: { 'Authorization': `Bearer ${token}` }
       });

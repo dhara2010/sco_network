@@ -60,7 +60,7 @@ const BecomeMemberPage = () => {
 
     setLoading(true);
     try {
-      const res = await fetch('http://localhost:5000/api/members/register', {
+      const res = await fetch('https://sco-network.onrender.com/api/members/register', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData)
@@ -84,7 +84,7 @@ const BecomeMemberPage = () => {
         animate={{ opacity: 1, y: 0 }}
         className="max-w-4xl mx-auto bg-white rounded-2xl shadow-xl overflow-hidden"
       >
-        <div className="bg-gradient-to-r from-blue-900 to-indigo-800 py-8 px-10 text-white">
+        <div className="bg-gradient-to-r from-[var(--color-sco-navy)] to-[#112255] py-8 px-10 text-white">
           <h2 className="text-3xl font-bold">Become a Member</h2>
           <p className="mt-2 opacity-90">Join our prestigious organization by filling out the form below.</p>
         </div>
@@ -168,7 +168,7 @@ const BecomeMemberPage = () => {
           </section>
 
           <div className="flex gap-4 pt-4 border-t">
-            <button type="submit" disabled={loading} className="flex-1 bg-blue-900 text-white py-3 px-4 rounded-md shadow hover:bg-blue-800 transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-900 font-semibold">
+            <button type="submit" disabled={loading} className="flex-1 bg-[var(--color-sco-navy)] text-white py-3 px-4 rounded-md shadow hover:bg-blue-900 transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[var(--color-sco-navy)] font-semibold">
               {loading ? 'Submitting...' : 'Submit Request'}
             </button>
             <button type="button" onClick={() => window.location.reload()} className="flex-1 bg-gray-100 text-gray-700 py-3 px-4 rounded-md shadow hover:bg-gray-200 transition-colors font-semibold">

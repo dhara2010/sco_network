@@ -17,7 +17,7 @@ const DashboardHome = () => {
         const token = localStorage.getItem('adminToken');
         // Fetch from the dashboard stats AND members stats to get membersByDesignation
         // Actually members stats has everything we need
-        const res = await fetch('http://localhost:5000/api/members/stats', {
+        const res = await fetch('https://sco-network.onrender.com/api/members/stats', {
           headers: { 'Authorization': `Bearer ${token}` }
         });
         if (res.ok) {

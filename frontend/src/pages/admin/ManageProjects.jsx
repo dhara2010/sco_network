@@ -17,7 +17,7 @@ const ManageProjects = () => {
       const token = localStorage.getItem('adminToken');
       const statusQuery = activeTab !== 'All' ? `?status=${activeTab}` : '';
       
-      const res = await fetch(`http://localhost:5000/api/projects/admin${statusQuery}`, {
+      const res = await fetch(`https://sco-network.onrender.com/api/projects/admin${statusQuery}`, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       const data = await res.json();
@@ -37,7 +37,7 @@ const ManageProjects = () => {
   const handleStatusChange = async (projectId, newStatus) => {
     try {
       const token = localStorage.getItem('adminToken');
-      const res = await fetch(`http://localhost:5000/api/projects/admin/${projectId}`, {
+      const res = await fetch(`https://sco-network.onrender.com/api/projects/admin/${projectId}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -59,7 +59,7 @@ const ManageProjects = () => {
     if (!window.confirm("Are you sure you want to delete this project?")) return;
     try {
       const token = localStorage.getItem('adminToken');
-      const res = await fetch(`http://localhost:5000/api/projects/admin/${projectId}`, {
+      const res = await fetch(`https://sco-network.onrender.com/api/projects/admin/${projectId}`, {
         method: 'DELETE',
         headers: { 'Authorization': `Bearer ${token}` }
       });

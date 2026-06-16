@@ -1,5 +1,11 @@
 @import "tailwindcss";
 
+@theme {
+  --color-sco-navy: #0A1435;
+  --color-sco-gold: #fdb813;
+  --color-sco-light: #E2E0D8;
+}
+
 html {
   scroll-behavior: smooth;
 }

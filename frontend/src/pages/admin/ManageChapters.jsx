@@ -19,7 +19,7 @@ const ManageChapters = () => {
 
   const fetchChapters = async () => {
     try {
-      const res = await fetch('http://localhost:5000/api/chapters/admin');
+      const res = await fetch('https://sco-network.onrender.com/api/chapters/admin');
       if (res.ok) {
         const data = await res.json();
         setChapters(data);
@@ -40,8 +40,8 @@ const ManageChapters = () => {
     e.preventDefault();
     try {
       const url = editingId 
-        ? `http://localhost:5000/api/chapters/admin/${editingId}`
-        : 'http://localhost:5000/api/chapters/admin';
+        ? `https://sco-network.onrender.com/api/chapters/admin/${editingId}`
+        : 'https://sco-network.onrender.com/api/chapters/admin';
         
       const method = editingId ? 'PUT' : 'POST';
       
@@ -78,7 +78,7 @@ const ManageChapters = () => {
 
   const handleStatusChange = async (id, newStatus) => {
     try {
-      const res = await fetch(`http://localhost:5000/api/chapters/admin/${id}`, {
+      const res = await fetch(`https://sco-network.onrender.com/api/chapters/admin/${id}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ status: newStatus })
@@ -96,7 +96,7 @@ const ManageChapters = () => {
   const handleDelete = async (id) => {
     if (!window.confirm('Are you sure you want to delete this chapter?')) return;
     try {
-      const res = await fetch(`http://localhost:5000/api/chapters/admin/${id}`, {
+      const res = await fetch(`https://sco-network.onrender.com/api/chapters/admin/${id}`, {
         method: 'DELETE'
       });
       if (res.ok) {

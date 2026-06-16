@@ -119,9 +119,9 @@ const Navbar = () => {
           <Link to="/projects" className={`py-3 relative transition-colors ${location.pathname === '/projects' ? 'text-[#fdb813]' : 'hover:text-[#fdb813]'} after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 hover:after:w-full after:bg-[#fdb813] after:transition-all after:duration-300`}>
             PROJECTS
           </Link>
-          <div onClick={() => alert('Chapters coming soon!')} className="group relative flex cursor-pointer items-center py-3 hover:text-[#fdb813] transition-colors after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 hover:after:w-full after:bg-[#fdb813] after:transition-all after:duration-300">
-            <span>CHAPTERS</span>
-          </div>
+          <Link to="/chapters" className={`py-3 relative flex items-center transition-colors ${location.pathname === '/chapters' ? 'text-[#fdb813]' : 'hover:text-[#fdb813]'} after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 hover:after:w-full after:bg-[#fdb813] after:transition-all after:duration-300`}>
+            CHAPTERS
+          </Link>
 
           <Link to="/committee" className={`py-3 relative flex items-center transition-colors ${location.pathname === '/committee' ? 'text-[#fdb813]' : 'hover:text-[#fdb813]'} after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 hover:after:w-full after:bg-[#fdb813] after:transition-all after:duration-300`}>
             COMMITTEE MEMBERS
@@ -163,9 +163,9 @@ const Navbar = () => {
               <Link onClick={() => setIsMobileMenuOpen(false)} to="/projects" className={`pb-2 border-b border-[#1a2b4c] ${location.pathname === '/projects' ? 'text-[#fdb813]' : 'hover:text-[#fdb813]'}`}>
                 PROJECTS
               </Link>
-              <div onClick={() => { alert('Chapters coming soon!'); setIsMobileMenuOpen(false); }} className="pb-2 border-b border-[#1a2b4c] cursor-pointer hover:text-[#fdb813]">
+              <Link onClick={() => setIsMobileMenuOpen(false)} to="/chapters" className={`pb-2 border-b border-[#1a2b4c] ${location.pathname === '/chapters' ? 'text-[#fdb813]' : 'hover:text-[#fdb813]'}`}>
                 CHAPTERS
-              </div>
+              </Link>
               <Link onClick={() => setIsMobileMenuOpen(false)} to="/committee" className={`pb-2 border-b border-[#1a2b4c] ${location.pathname === '/committee' ? 'text-[#fdb813]' : 'hover:text-[#fdb813]'}`}>
                 COMMITTEE MEMBERS
               </Link>

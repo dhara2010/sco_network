@@ -16,8 +16,8 @@ const AnnualReportsPage = () => {
       try {
         setLoading(true);
         const url = activeTab === 'All Years' 
-          ? 'http://localhost:5000/api/reports/public' 
-          : `http://localhost:5000/api/reports/public?category=${encodeURIComponent(activeTab)}`;
+          ? 'https://sco-network.onrender.com/api/reports/public' 
+          : `https://sco-network.onrender.com/api/reports/public?category=${encodeURIComponent(activeTab)}`;
           
         const res = await fetch(url);
         const data = await res.json();
