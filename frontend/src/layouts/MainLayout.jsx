@@ -6,7 +6,7 @@ import Footer from '../components/Footer';
 
 const MainLayout = () => {
   return (
-    <div className="min-h-screen bg-gray-50 relative overflow-x-hidden">
+    <div className="min-h-screen bg-gray-50 relative">
       <Navbar />
       <main>
         <Outlet />

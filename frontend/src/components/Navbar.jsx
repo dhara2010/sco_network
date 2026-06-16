@@ -46,7 +46,7 @@ const Navbar = () => {
           <div className="flex items-center space-x-3 w-full sm:w-auto justify-end">
             {/* Language Switcher */}
             <div className="relative">
-              <button 
+              <button
                 onClick={() => setIsLangDropdownOpen(!isLangDropdownOpen)}
                 className="flex items-center space-x-1 hover:text-gray-800 transition-colors py-2 px-1"
               >
@@ -54,22 +54,22 @@ const Navbar = () => {
                 <span className="font-semibold text-xs uppercase">{currentLang}</span>
                 <ChevronDown className="w-3 h-3" />
               </button>
-              
+
               <AnimatePresence>
                 {isLangDropdownOpen && (
-                  <motion.div 
+                  <motion.div
                     initial={{ opacity: 0, y: -10 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -10 }}
                     className="absolute right-0 mt-2 w-32 bg-white rounded-lg shadow-xl border border-gray-100 overflow-hidden z-50"
                   >
-                    <button 
+                    <button
                       onClick={() => handleTranslate('en')}
                       className={`w-full text-left px-4 py-3 text-sm hover:bg-blue-50 transition-colors ${currentLang === 'EN' ? 'font-bold text-[#115fc6]' : 'text-gray-700'}`}
                     >
                       English (EN)
                     </button>
-                    <button 
+                    <button
                       onClick={() => handleTranslate('gu')}
                       className={`w-full text-left px-4 py-3 text-sm hover:bg-blue-50 transition-colors border-t border-gray-100 ${currentLang === 'GU' ? 'font-bold text-[#115fc6]' : 'text-gray-700'}`}
                     >
@@ -97,9 +97,9 @@ const Navbar = () => {
         <Link to="/">
           <img src="/logo.png" alt="SCO Network Logo" className="h-[70px] md:h-[90px] w-auto object-contain" />
         </Link>
-        
+
         {/* Mobile Menu Toggle */}
-        <button 
+        <button
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           className="md:hidden text-[#0A1435] p-2 focus:outline-none"
         >
@@ -147,7 +147,7 @@ const Navbar = () => {
       {/* Mobile Menu Overlay */}
       <AnimatePresence>
         {isMobileMenuOpen && (
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
@@ -181,7 +181,7 @@ const Navbar = () => {
               <div onClick={() => { alert('Downloads coming soon!'); setIsMobileMenuOpen(false); }} className="pb-2 cursor-pointer hover:text-[#fdb813]">
                 DOWNLOAD
               </div>
-              
+
               <div className="pt-4 flex justify-center">
                 <Link onClick={() => setIsMobileMenuOpen(false)} to="/login" className="flex w-full justify-center items-center rounded-full bg-[#18233b] px-6 py-3 text-xs font-bold text-white hover:bg-[#0f172a] transition-colors">
                   <LogIn className="mr-2 h-4 w-4" strokeWidth={2.5} />
