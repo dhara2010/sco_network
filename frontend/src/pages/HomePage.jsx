@@ -1,19 +1,19 @@
 import React from 'react';
-import HomeHero from '../components/home/HomeHero';
-import AboutIntro from '../components/home/AboutIntro';
-import StatsGrid from '../components/home/StatsGrid';
-import InitiativesGrid from '../components/home/InitiativesGrid';
-import LatestNews from '../components/home/LatestNews';
+import HeroSection from '../components/HeroSection';
+import CommunitySection from '../components/CommunitySection';
+import InitiativesSection from '../components/InitiativesSection';
+import AboutSection from '../components/AboutSection';
+import KeyInitiativesSection from '../components/KeyInitiativesSection';
 
 const HomePage = () => {
   return (
-    <div className="bg-white">
-      <HomeHero />
-      <AboutIntro />
-      <StatsGrid />
-      <InitiativesGrid />
-      <LatestNews />
-    </div>
+    <>
+      <HeroSection />
+      <CommunitySection />
+      <InitiativesSection />
+      <AboutSection />
+      <KeyInitiativesSection />
+    </>
   );
 };
 

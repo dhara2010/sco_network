@@ -33,7 +33,7 @@ const AnnualReportsPage = () => {
   }, [activeTab]);
 
   return (
-    <div className="min-h-screen bg-white pb-16">
+    <div className="min-h-screen bg-white pb-16 pt-14">
       {/* Hero Section */}
       <div className="bg-[#1056A5] text-white py-24 px-4 text-center relative overflow-hidden">
         {/* Subtle diagonal accent overlay similar to mockup */}

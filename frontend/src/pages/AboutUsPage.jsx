@@ -16,7 +16,7 @@ const AboutUsPage = () => {
   ];
 
   return (
-    <div className="w-full bg-slate-50 font-sans min-h-screen">
+    <div className="w-full bg-slate-50 font-sans min-h-screen pt-14">
       {/* 1. Immersive Hero Section */}
       <section className="relative w-full h-[600px] flex items-center justify-center overflow-hidden bg-[#0A1435]">
         {/* Background Image with Deep Overlay */}
@@ -27,13 +27,13 @@ const AboutUsPage = () => {
 
         {/* Animated Background Elements */}
         <div className="absolute inset-0 opacity-40 z-0 pointer-events-none">
-          <motion.div 
-            animate={{ scale: [1, 1.2, 1], rotate: [0, 90, 0] }} 
+          <motion.div
+            animate={{ scale: [1, 1.2, 1], rotate: [0, 90, 0] }}
             transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
             className="absolute top-[-10%] left-[-10%] w-96 h-96 bg-[#FFC107] rounded-full mix-blend-multiply filter blur-[100px] opacity-30"
           />
-          <motion.div 
-            animate={{ scale: [1, 1.5, 1], rotate: [0, -90, 0] }} 
+          <motion.div
+            animate={{ scale: [1, 1.5, 1], rotate: [0, -90, 0] }}
             transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
             className="absolute bottom-[-10%] right-[-10%] w-[500px] h-[500px] bg-blue-500 rounded-full mix-blend-multiply filter blur-[120px] opacity-20"
           />
@@ -49,18 +49,18 @@ const AboutUsPage = () => {
             <Sparkles className="w-4 h-4" />
             Discover SCO Network
           </motion.div>
-          
-          <motion.h1 
+
+          <motion.h1
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
             className="text-4xl md:text-6xl lg:text-7xl font-black text-white mb-8 tracking-tight drop-shadow-2xl leading-tight"
           >
-            Shaping The Future <br/>
+            Shaping The Future <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#FFC107] to-[#ffda6a]">Together.</span>
           </motion.h1>
 
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
@@ -76,9 +76,9 @@ const AboutUsPage = () => {
       {/* 2. Heritage & Collage Section */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 md:py-32 overflow-hidden">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
-          
+
           {/* Left Text Content */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: "-100px" }}
@@ -110,7 +110,7 @@ const AboutUsPage = () => {
 
           {/* Right Floating Image Collage */}
           <div className="relative h-[500px] w-full hidden md:block">
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -119,8 +119,8 @@ const AboutUsPage = () => {
             >
               <img src="/img1.png" alt="Community Event" className="w-full h-full object-cover" />
             </motion.div>
-            
-            <motion.div 
+
+            <motion.div
               initial={{ opacity: 0, x: -50 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
@@ -129,8 +129,8 @@ const AboutUsPage = () => {
             >
               <img src="/img2.png" alt="Leadership" className="w-full h-full object-cover" />
             </motion.div>
-            
-            <motion.div 
+
+            <motion.div
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -154,7 +154,7 @@ const AboutUsPage = () => {
               </div>
               <div className="text-xs font-bold tracking-[0.2em] uppercase opacity-80">Global Members</div>
             </div>
-            
+
             <div className="flex flex-col items-center justify-center text-center group">
               <Globe className="w-8 h-8 mb-4 opacity-50 group-hover:opacity-100 transition-opacity group-hover:scale-110 duration-300" />
               <div className="text-4xl md:text-5xl font-black tracking-tight mb-2">
@@ -185,9 +185,9 @@ const AboutUsPage = () => {
       {/* 4. Bento Box: Mission & Vision */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 md:py-32">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-6 auto-rows-[minmax(300px,auto)]">
-          
+
           {/* Mission Card - Spans 8 cols */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -196,7 +196,7 @@ const AboutUsPage = () => {
           >
             {/* Oversized Background Icon */}
             <Target className="absolute -bottom-10 -right-10 w-64 h-64 text-white/5 group-hover:scale-110 transition-transform duration-700" strokeWidth={1} />
-            
+
             <div className="relative z-10 flex flex-col h-full justify-between">
               <div className="inline-flex items-center gap-3 mb-8">
                 <div className="p-3 bg-[#FFC107] rounded-2xl">
@@ -211,7 +211,7 @@ const AboutUsPage = () => {
           </motion.div>
 
           {/* Vision Card - Spans 4 cols */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -219,7 +219,7 @@ const AboutUsPage = () => {
             className="md:col-span-4 bg-white border border-gray-100 rounded-[40px] p-10 md:p-14 text-[#0A1435] relative overflow-hidden group shadow-xl hover:shadow-2xl transition-shadow"
           >
             <Shield className="absolute -top-10 -right-10 w-48 h-48 text-slate-50 group-hover:scale-110 transition-transform duration-700" strokeWidth={1} />
-            
+
             <div className="relative z-10 flex flex-col h-full justify-between">
               <div className="inline-flex items-center gap-3 mb-8">
                 <div className="p-3 bg-[#0A1435] rounded-2xl">
@@ -240,7 +240,7 @@ const AboutUsPage = () => {
       <section className="w-full bg-[#050912] py-24 md:py-32 relative overflow-hidden">
         {/* Subtle background glow */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-4xl h-[400px] bg-[#112255] rounded-full filter blur-[150px] opacity-30"></div>
-        
+
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-20">
             <h2 className="text-3xl md:text-5xl font-extrabold text-white mb-6">Pillars of Our Community</h2>
@@ -251,7 +251,7 @@ const AboutUsPage = () => {
             {coreValues.map((value, index) => {
               const Icon = value.icon;
               return (
-                <motion.div 
+                <motion.div
                   key={index}
                   initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
@@ -259,7 +259,7 @@ const AboutUsPage = () => {
                   transition={{ duration: 0.5, delay: index * 0.1 }}
                   className="flex flex-col items-center text-center p-6 rounded-3xl bg-white/5 border border-white/10 backdrop-blur-sm hover:bg-white/10 transition-colors group"
                 >
-                  <motion.div 
+                  <motion.div
                     animate={{ y: [0, -8, 0] }}
                     transition={{ duration: 3 + index, repeat: Infinity, ease: "easeInOut" }}
                     className="w-20 h-20 rounded-2xl bg-gradient-to-br from-[#132349] to-[#0A1435] border border-[#FFC107]/30 flex items-center justify-center mb-6 shadow-lg shadow-[#FFC107]/10 group-hover:scale-110 transition-transform duration-300"

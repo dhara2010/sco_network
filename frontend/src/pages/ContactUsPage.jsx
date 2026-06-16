@@ -1,20 +1,30 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 import { FaMapMarkerAlt, FaEnvelope, FaPhoneAlt, FaRegClock, FaGlobe, FaShareAlt, FaCopy } from 'react-icons/fa';
 import { FiSend } from 'react-icons/fi'; // For send icon in button
 
 const ContactUsPage = () => {
   return (
-    <div className="w-full bg-gray-50 font-sans min-h-screen">
+    <div className="w-full bg-gray-50 font-sans min-h-screen mt-14">
       
       {/* 1. Header Section */}
-      <section className="w-full bg-[#115fc6] text-white py-16 md:py-24">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h1 className="text-4xl md:text-5xl font-extrabold mb-4 tracking-tight drop-shadow-sm">
+      <section className="w-full bg-[#1056A5] text-white py-16 md:py-24 text-center">
+        <div className="px-4 sm:px-6 lg:px-8">
+          <motion.h1 
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="text-4xl md:text-5xl font-extrabold mb-4 tracking-tight drop-shadow-sm"
+          >
             Contact Us
-          </h1>
-          <p className="text-blue-100 text-sm md:text-base max-w-2xl font-medium">
+          </motion.h1>
+          <motion.p 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.1 }}
+            className="text-blue-100 text-sm md:text-base font-medium"
+          >
             We're here to help and answer any questions you might have. We look forward to hearing from you.
-          </p>
+          </motion.p>
         </div>
       </section>
 
@@ -23,7 +33,13 @@ const ContactUsPage = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20">
           
           {/* Left Column: Form */}
-          <div className="bg-white rounded-2xl shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] border border-gray-100 p-8 md:p-10">
+          <motion.div 
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="bg-white rounded-2xl shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] border border-gray-100 p-8 md:p-10"
+          >
             <div className="flex items-center gap-3 mb-8">
               <FaEnvelope className="text-[#115fc6] w-5 h-5" />
               <h2 className="text-xl font-extrabold text-[#0A1435]">Send us a Message</h2>
@@ -75,10 +91,16 @@ const ContactUsPage = () => {
                 Send Message
               </button>
             </form>
-          </div>
+          </motion.div>
 
           {/* Right Column: Contact Details */}
-          <div className="py-2">
+          <motion.div 
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="py-2"
+          >
             <h2 className="text-xl font-extrabold text-[#0A1435] mb-8">Direct Contact Details</h2>
             
             <div className="space-y-8 mb-10">
@@ -158,13 +180,19 @@ const ContactUsPage = () => {
               </a>
             </div>
 
-          </div>
+          </motion.div>
         </div>
       </section>
 
       {/* 3. Map Section */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-20">
-        <div className="bg-white rounded-2xl shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07)] border border-gray-100 overflow-hidden">
+        <motion.div 
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="bg-white rounded-2xl shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07)] border border-gray-100 overflow-hidden"
+        >
           <div className="p-6 border-b border-gray-100">
             <div className="flex items-center gap-3">
               <svg className="w-5 h-5 text-[#ea5d24]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -189,11 +217,11 @@ const ContactUsPage = () => {
                 <FaMapMarkerAlt className="text-white w-5 h-5" />
               </div>
               <div className="mt-2 bg-white text-[#0A1435] text-[10px] font-bold px-4 py-1.5 rounded shadow border border-gray-100 uppercase tracking-widest">
-                JITO Head Office
+                SCO Head Office
               </div>
             </div>
           </div>
-        </div>
+        </motion.div>
       </section>
 
     </div>

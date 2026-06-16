@@ -45,7 +45,7 @@ const CommitteeMembersPage = () => {
   const displayedMembers = currentMembers.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage);
 
   return (
-    <div className="min-h-screen bg-white pb-16">
+    <div className="min-h-screen bg-white pb-16 mt-14">
       {/* Hero Section */}
       <div className="bg-[#1056A5] text-white py-24 px-4 text-center">
         <motion.h1 

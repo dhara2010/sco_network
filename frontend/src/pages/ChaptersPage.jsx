@@ -25,15 +25,15 @@ const ChaptersPage = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-gray-50 pb-20">
+    <div className="min-h-screen bg-gray-50 pb-20 mt-14">
       {/* Hero Section */}
-      <div className="bg-[var(--color-sco-navy)] text-white py-24 px-4 text-center">
+      <div className="bg-[#1056A5] text-white py-24 px-4 text-center">
         <motion.h1 
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           className="text-4xl md:text-[44px] font-extrabold mb-5 tracking-tight uppercase"
         >
-          Our <span className="text-[var(--color-sco-gold)]">Chapters</span>
+          Our Chapters
         </motion.h1>
         <motion.p 
           initial={{ opacity: 0 }}

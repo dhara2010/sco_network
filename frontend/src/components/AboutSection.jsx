@@ -7,17 +7,17 @@ const leaders = [
   {
     name: 'Nisarg Bhatt',
     role: 'CHAIRMAN',
-    image: '/nisarg.jpg'
+    image: '/nisarg.png'
   },
   {
     name: 'Parth Kanjariya',
     role: 'VICE CHAIRMAN',
-    image: '/parth.jpg'
+    image: '/parth.png'
   },
   {
     name: 'Punit Kanjariya',
     role: 'PRESIDENT',
-    image: '/punit.jpg'
+    image: '/punit.png'
   }
 ];
 
