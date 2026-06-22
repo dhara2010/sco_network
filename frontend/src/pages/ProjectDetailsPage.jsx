@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { MapPin, Calendar, ArrowLeft, Folder, Image as ImageIcon, Sparkles, ChevronRight, Share2 } from 'lucide-react';
+import { API_BASE_URL } from '../utils/api';
 
 const ProjectDetailsPage = () => {
   const { id } = useParams();
@@ -18,7 +19,7 @@ const ProjectDetailsPage = () => {
     const fetchProjectDetails = async () => {
       try {
         setLoading(true);
-        const res = await fetch(`https://sco-network.onrender.com/api/projects/public/${id}`);
+        const res = await fetch(`${API_BASE_URL}/projects/public/${id}`);
         const data = await res.json();
         if (!res.ok) throw new Error(data.message || 'Failed to load project details');
         setProject(data);

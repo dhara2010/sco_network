@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { ComposableMap, Geographies, Geography, Marker, Line } from 'react-simple-maps';
 import { MapPin } from 'lucide-react';
+import { API_BASE_URL } from '../utils/api';
 
 const GujaratMap = () => {
   const [chapters, setChapters] = useState([]);
@@ -10,7 +11,7 @@ const GujaratMap = () => {
   useEffect(() => {
     const fetchChapters = async () => {
       try {
-        const res = await fetch('https://sco-network.onrender.com/api/chapters/public');
+        const res = await fetch(`${API_BASE_URL}/chapters/public`);
         if (res.ok) {
           const data = await res.json();
           setChapters(data);

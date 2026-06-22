@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
+import { API_BASE_URL } from '../utils/api';
 
 const designations = [
   'Board of Directors',
@@ -60,7 +61,7 @@ const BecomeMemberPage = () => {
 
     setLoading(true);
     try {
-      const res = await fetch('https://sco-network.onrender.com/api/members/register', {
+      const res = await fetch(`${API_BASE_URL}/members/register`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData)

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { FileText, Download, TrendingUp, Folder, FileBarChart, PieChart, Star, Archive, ArrowRight } from 'lucide-react';
+import { API_BASE_URL } from '../utils/api';
 
 const categories = ['All Years', 'Main Board', 'Chapters', 'Projects'];
 
@@ -16,8 +17,8 @@ const AnnualReportsPage = () => {
       try {
         setLoading(true);
         const url = activeTab === 'All Years' 
-          ? 'https://sco-network.onrender.com/api/reports/public' 
-          : `https://sco-network.onrender.com/api/reports/public?category=${encodeURIComponent(activeTab)}`;
+          ? `${API_BASE_URL}/reports/public` 
+          : `${API_BASE_URL}/reports/public?category=${encodeURIComponent(activeTab)}`;
           
         const res = await fetch(url);
         const data = await res.json();

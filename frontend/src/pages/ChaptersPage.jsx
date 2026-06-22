@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import GujaratMap from '../components/GujaratMap';
 import { Users, Globe, Building2, MapPin, ArrowRight } from 'lucide-react';
+import { API_BASE_URL } from '../utils/api';
 
 const ChaptersPage = () => {
   const [chapters, setChapters] = useState([]);
@@ -10,7 +11,7 @@ const ChaptersPage = () => {
   useEffect(() => {
     const fetchChapters = async () => {
       try {
-        const res = await fetch('https://sco-network.onrender.com/api/chapters/public');
+        const res = await fetch(`${API_BASE_URL}/chapters/public`);
         if (res.ok) {
           const data = await res.json();
           setChapters(data);

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { Building, Mail, GraduationCap, User, BadgeCheck, ChevronLeft, ChevronRight, ArrowRight } from 'lucide-react';
+import { API_BASE_URL } from '../utils/api';
 
 const designationsOrder = [
   'Board of Directors',
@@ -23,7 +24,7 @@ const CommitteeMembersPage = () => {
   useEffect(() => {
     const fetchMembers = async () => {
       try {
-        const res = await fetch('https://sco-network.onrender.com/api/members/public');
+        const res = await fetch(`${API_BASE_URL}/members/public`);
         const data = await res.json();
         if (!res.ok) throw new Error(data.message || 'Failed to load committee members');
         setGroupedMembers(data);
