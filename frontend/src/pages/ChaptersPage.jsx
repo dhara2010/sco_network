@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import GujaratMap from '../components/GujaratMap';
-import { Users, Globe, Building2, MapPin } from 'lucide-react';
+import { Users, Globe, Building2, MapPin, ArrowRight } from 'lucide-react';
 
 const ChaptersPage = () => {
   const [chapters, setChapters] = useState([]);
@@ -28,14 +28,14 @@ const ChaptersPage = () => {
     <div className="min-h-screen bg-gray-50 pb-20 mt-14">
       {/* Hero Section */}
       <div className="bg-[#1056A5] text-white py-24 px-4 text-center">
-        <motion.h1 
+        <motion.h1
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           className="text-4xl md:text-[44px] font-extrabold mb-5 tracking-tight uppercase"
         >
           Our Chapters
         </motion.h1>
-        <motion.p 
+        <motion.p
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.1 }}
@@ -66,7 +66,7 @@ const ChaptersPage = () => {
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
             {chapters.map((chapter) => (
-              <motion.div 
+              <motion.div
                 key={chapter._id}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -79,7 +79,7 @@ const ChaptersPage = () => {
                     <MapPin size={20} />
                   </div>
                 </div>
-                
+
                 <div className="space-y-3 mb-6">
                   {chapter.presidentName && (
                     <div className="flex items-center text-sm text-gray-600">
@@ -95,13 +95,13 @@ const ChaptersPage = () => {
                   )}
                 </div>
 
-                <a 
-                  href={chapter.websiteUrl} 
-                  target="_blank" 
+                <a
+                  href={chapter.websiteUrl}
+                  target="_blank"
                   rel="noopener noreferrer"
-                  className="block w-full text-center py-2 bg-gray-50 text-[var(--color-sco-navy)] font-bold rounded-xl border border-gray-200 hover:bg-[var(--color-sco-gold)] hover:border-[var(--color-sco-gold)] transition-colors"
+                  className="mt-6 w-full py-2.5 rounded-xl bg-[#F8F9FA] text-[#0B2B5B] font-bold text-[14px] hover:bg-[#1056A5] hover:text-white transition-colors border border-gray-100 flex items-center justify-center gap-2"
                 >
-                  Visit Website
+                  Visit Website <ArrowRight size={14} />
                 </a>
               </motion.div>
             ))}

@@ -1,31 +1,31 @@
 const mongoose = require('mongoose');
 
-const projectSchema = new mongoose.Schema({
+const activitySchema = new mongoose.Schema({
   title: {
     type: String,
     required: true,
-  },
-  category: {
-    type: String,
-    required: true,
-    default: 'Project',
   },
   description: {
     type: String,
     required: true,
   },
-  featuredImage: {
-    type: String,
+  activityDate: {
+    type: Date,
+    required: true,
   },
-  gallery: [{
+  images: [{
     type: String,
   }],
-  location: {
+  documents: [{
     type: String,
+  }],
+  member_id: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Member',
   },
   createdBy: {
     type: String,
-    default: 'Admin',
+    default: 'Admin', // If admin creates it without member_id
   },
   status: {
     type: String,
@@ -35,13 +35,9 @@ const projectSchema = new mongoose.Schema({
   remarks: {
     type: String,
     default: '',
-  },
-  member_id: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'Member',
   }
 }, {
   timestamps: true
 });
 
-module.exports = mongoose.model('Project', projectSchema);
+module.exports = mongoose.model('Activity', activitySchema);

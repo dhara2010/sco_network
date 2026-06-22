@@ -118,17 +118,6 @@ const ProjectDetailsPage = () => {
                 <span className="text-gray-800">{project.location}</span>
               </div>
             )}
-            {project.startDate && (
-              <div className="flex items-center gap-3 bg-white px-5 py-2.5 rounded-xl shadow-sm border border-gray-100">
-                <div className="w-8 h-8 rounded-full bg-amber-50 flex items-center justify-center">
-                  <Calendar size={16} className="text-[#fdb813]" />
-                </div>
-                <span className="text-gray-800">
-                  {new Date(project.startDate).toLocaleDateString('en-US', { month: 'long', year: 'numeric' })} 
-                  {project.endDate ? ` — ${new Date(project.endDate).toLocaleDateString('en-US', { month: 'long', year: 'numeric' })}` : ' — Present'}
-                </span>
-              </div>
-            )}
           </div>
         </motion.div>
 

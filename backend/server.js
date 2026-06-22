@@ -28,6 +28,8 @@ const dashboardRoutes = require('./routes/dashboard');
 const projectsRoutes = require('./routes/projects');
 const reportsRoutes = require('./routes/reports');
 const chaptersRoutes = require('./routes/chapters');
+const memberDashboardRoutes = require('./routes/member-dashboard');
+const activitiesRoutes = require('./routes/activities');
 
 app.use('/api/auth', authRoutes);
 app.use('/api/members', membersRoutes);
@@ -37,6 +39,8 @@ app.use('/api/dashboard', dashboardRoutes);
 app.use('/api/projects', projectsRoutes);
 app.use('/api/reports', reportsRoutes);
 app.use('/api/chapters', chaptersRoutes);
+app.use('/api/member-dashboard', memberDashboardRoutes);
+app.use('/api/activities', activitiesRoutes);
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);

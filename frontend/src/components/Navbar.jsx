@@ -32,7 +32,7 @@ const Navbar = () => {
 
   return (
     <>
-      <header className="w-full font-sans bg-white sticky md:static top-0 z-50 shadow-sm">
+      <header className="w-full font-sans bg-white">
         {/* Top Bar */}
         <div className="w-full border-b border-gray-100 bg-white">
           <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-2 text-sm text-gray-500">
@@ -102,8 +102,10 @@ const Navbar = () => {
           </div>
         </div>
 
-        {/* Middle Bar: Logo & Mobile Toggle */}
-        <div className="flex justify-between items-center bg-white py-6 px-4 md:justify-center relative z-10">
+        {/* Sticky Mobile Navbar (Logo + Hamburger + Mobile Menu) */}
+        <div className="sticky md:static top-0 z-50 bg-white shadow-sm md:shadow-none">
+          {/* Middle Bar: Logo & Mobile Toggle */}
+          <div className="flex justify-between items-center bg-white py-4 px-4 md:py-6 md:justify-center relative z-10">
           <Link to="/" className="transform hover:scale-105 transition-all duration-500 hover:drop-shadow-xl">
             <img src="/logo.png" alt="SCO Network Logo" className="h-[70px] md:h-[90px] w-auto object-contain drop-shadow-sm" />
           </Link>
@@ -165,6 +167,7 @@ const Navbar = () => {
             </motion.div>
           )}
         </AnimatePresence>
+        </div>
       </header>
 
       {/* Bottom Bar: Desktop Navigation */}
@@ -174,87 +177,67 @@ const Navbar = () => {
           : "relative bg-white pb-5"
           }`}
       >
-        <nav className="mx-auto max-w-7xl bg-[#071B4D] rounded-md flex items-center justify-center space-x-3 lg:space-x-8 text-[11px] lg:text-xs font-semibold tracking-wider text-white py-3 px-4 lg:px-6 flex-wrap md:flex-nowrap">
+        <nav className="mx-auto max-w-7xl bg-[#071B4D] rounded-md flex items-center justify-center space-x-3 lg:space-x-8 text-[11px] lg:text-xs font-semibold tracking-wider text-white px-4 lg:px-6 flex-wrap md:flex-nowrap">
 
           <Link
             to="/"
-            className={`${isHome ? "text-[#fdb813]" : "hover:text-[#fdb813]"
-              }`}
+            className={`py-5 relative transition-colors ${isHome ? "text-[#fdb813]" : "hover:text-[#fdb813]"} after:absolute after:bottom-0 after:left-0 after:h-[3px] after:w-0 hover:after:w-full after:bg-[#fdb813] after:transition-all after:duration-300`}
           >
             HOME
           </Link>
 
           <Link
             to="/about"
-            className={`${isAbout ? "text-[#fdb813]" : "hover:text-[#fdb813]"
-              }`}
+            className={`py-5 relative transition-colors ${isAbout ? "text-[#fdb813]" : "hover:text-[#fdb813]"} after:absolute after:bottom-0 after:left-0 after:h-[3px] after:w-0 hover:after:w-full after:bg-[#fdb813] after:transition-all after:duration-300`}
           >
             ABOUT US
           </Link>
 
           <Link
             to="/projects"
-            className={`${location.pathname === "/projects"
-              ? "text-[#fdb813]"
-              : "hover:text-[#fdb813]"
-              }`}
+            className={`py-5 relative transition-colors ${location.pathname === "/projects" ? "text-[#fdb813]" : "hover:text-[#fdb813]"} after:absolute after:bottom-0 after:left-0 after:h-[3px] after:w-0 hover:after:w-full after:bg-[#fdb813] after:transition-all after:duration-300`}
           >
             PROJECTS
           </Link>
 
           <Link
             to="/chapters"
-            className={`${location.pathname === "/chapters"
-              ? "text-[#fdb813]"
-              : "hover:text-[#fdb813]"
-              }`}
+            className={`py-5 relative transition-colors ${location.pathname === "/chapters" ? "text-[#fdb813]" : "hover:text-[#fdb813]"} after:absolute after:bottom-0 after:left-0 after:h-[3px] after:w-0 hover:after:w-full after:bg-[#fdb813] after:transition-all after:duration-300`}
           >
             CHAPTERS
           </Link>
 
           <Link
             to="/committee"
-            className={`${location.pathname === "/committee"
-              ? "text-[#fdb813]"
-              : "hover:text-[#fdb813]"
-              }`}
+            className={`py-5 relative transition-colors ${location.pathname === "/committee" ? "text-[#fdb813]" : "hover:text-[#fdb813]"} after:absolute after:bottom-0 after:left-0 after:h-[3px] after:w-0 hover:after:w-full after:bg-[#fdb813] after:transition-all after:duration-300`}
           >
             COMMITTEE MEMBERS
           </Link>
 
           <Link
             to="/annual-reports"
-            className={`${location.pathname === "/annual-reports"
-              ? "text-[#fdb813]"
-              : "hover:text-[#fdb813]"
-              }`}
+            className={`py-5 relative transition-colors ${location.pathname === "/annual-reports" ? "text-[#fdb813]" : "hover:text-[#fdb813]"} after:absolute after:bottom-0 after:left-0 after:h-[3px] after:w-0 hover:after:w-full after:bg-[#fdb813] after:transition-all after:duration-300`}
           >
             ANNUAL REPORTS
           </Link>
 
           <Link
             to="/contact"
-            className={`${location.pathname === "/contact"
-              ? "text-[#fdb813]"
-              : "hover:text-[#fdb813]"
-              }`}
+            className={`py-5 relative transition-colors ${location.pathname === "/contact" ? "text-[#fdb813]" : "hover:text-[#fdb813]"} after:absolute after:bottom-0 after:left-0 after:h-[3px] after:w-0 hover:after:w-full after:bg-[#fdb813] after:transition-all after:duration-300`}
           >
             CONTACT US
           </Link>
 
           <Link
             to="/voice-of-sco"
-            className={`${location.pathname === "/voice-of-sco"
-              ? "text-[#fdb813]"
-              : "hover:text-[#fdb813]"
-              }`}
+            className={`py-5 relative transition-colors ${location.pathname === "/voice-of-sco" ? "text-[#fdb813]" : "hover:text-[#fdb813]"} after:absolute after:bottom-0 after:left-0 after:h-[3px] after:w-0 hover:after:w-full after:bg-[#fdb813] after:transition-all after:duration-300`}
           >
             VOICE OF SCO
           </Link>
 
           <div
             onClick={() => alert("Downloads coming soon!")}
-            className="cursor-pointer hover:text-[#fdb813]"
+            className="py-5 cursor-pointer hover:text-[#fdb813] relative transition-colors after:absolute after:bottom-0 after:left-0 after:h-[3px] after:w-0 hover:after:w-full after:bg-[#fdb813] after:transition-all after:duration-300"
           >
             DOWNLOAD
           </div>

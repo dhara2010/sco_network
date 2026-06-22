@@ -35,6 +35,64 @@ router.post('/register', async (req, res) => {
   }
 });
 
+// @route   POST /api/members/login
+// @desc    Login for members
+// @access  Public
+router.post('/login', async (req, res) => {
+  try {
+    const { email, password } = req.body;
+    
+    const member = await Member.findOne({ email });
+    if (!member) {
+      return res.status(400).json({ message: 'Invalid credentials' });
+    }
+
+    if (member.status !== 'Approved') {
+      return res.status(403).json({ message: `Your account is ${member.status.toLowerCase()}. You cannot log in.` });
+    }
+
+    const isMatch = await bcrypt.compare(password, member.password);
+    if (!isMatch) {
+      return res.status(400).json({ message: 'Invalid credentials' });
+    }
+
+    const payload = {
+      user: {
+        id: member.id,
+        role: 'Member'
+      }
+    };
+    
+    const jwt = require('jsonwebtoken');
+    jwt.sign(
+      payload,
+      process.env.JWT_SECRET || 'secret123',
+      { expiresIn: '1d' },
+      (err, token) => {
+        if (err) throw err;
+        res.json({ token, role: 'Member', memberId: member.id });
+      }
+    );
+  } catch (error) {
+    res.status(500).json({ message: 'Server error' });
+  }
+});
+
+// @route   GET /api/members/me
+// @desc    Get logged in member profile
+// @access  Private (Member)
+router.get('/me', protect, authorize('Member'), async (req, res) => {
+  try {
+    const member = await Member.findById(req.user.id).select('-password');
+    if (!member) {
+      return res.status(404).json({ message: 'Member not found' });
+    }
+    res.json(member);
+  } catch (error) {
+    res.status(500).json({ message: 'Server error' });
+  }
+});
+
 // @route   GET /api/members/public
 // @desc    Get all approved members grouped by designation
 // @access  Public

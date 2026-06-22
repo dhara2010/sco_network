@@ -92,13 +92,6 @@ const ProjectsPage = () => {
                         {project.location}
                       </div>
                     )}
-                    {project.startDate && (
-                      <div className="flex items-center text-[13px] text-gray-500 font-medium gap-2">
-                        <Calendar size={16} className="text-[#1056A5]" />
-                        {new Date(project.startDate).toLocaleDateString()}
-                        {project.endDate && ` - ${new Date(project.endDate).toLocaleDateString()}`}
-                      </div>
-                    )}
                   </div>
 
                   <Link to={`/projects/${project._id}`} className="mt-6 w-full py-2.5 rounded-xl bg-[#F8F9FA] text-[#0B2B5B] font-bold text-[14px] hover:bg-[#1056A5] hover:text-white transition-colors border border-gray-100 flex items-center justify-center gap-2">

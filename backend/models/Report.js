@@ -37,6 +37,10 @@ const reportSchema = new mongoose.Schema({
   remarks: {
     type: String,
     default: '',
+  },
+  member_id: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Member',
   }
 }, {
   timestamps: true

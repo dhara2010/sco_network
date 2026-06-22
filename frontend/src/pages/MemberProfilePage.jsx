@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { User, Building, MapPin, Phone, Mail, Briefcase, GraduationCap, ArrowLeft, BadgeCheck } from 'lucide-react';
+import { API_BASE_URL } from '../utils/api';
 
 const MemberProfilePage = () => {
   const { id } = useParams();
@@ -12,7 +13,7 @@ const MemberProfilePage = () => {
   useEffect(() => {
     const fetchMember = async () => {
       try {
-        const res = await fetch(`https://sco-network.onrender.com/api/members/public/${id}`);
+        const res = await fetch(`${API_BASE_URL}/members/public/${id}`);
         const data = await res.json();
         if (!res.ok) throw new Error(data.message || 'Failed to load member profile');
         setMember(data);

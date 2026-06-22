@@ -20,10 +20,17 @@ import DashboardHome from './pages/admin/DashboardHome';
 import ManageMembers from './pages/admin/ManageMembers';
 import ManageProjects from './pages/admin/ManageProjects';
 import ManageReports from './pages/admin/ManageReports';
+import ManageActivities from './pages/admin/ManageActivities';
 import ManageChapters from './pages/admin/ManageChapters';
 import AdminSettings from './pages/admin/AdminSettings';
 
-import './App.css';
+import MemberLayout from './layouts/MemberLayout';
+import MemberDashboard from './pages/member/MemberDashboard';
+import MemberProjects from './pages/member/MemberProjects';
+import MemberReports from './pages/member/MemberReports';
+import MemberActivities from './pages/member/MemberActivities';
+
+
 
 function App() {
   return (
@@ -46,12 +53,21 @@ function App() {
           <Route path="become-member" element={<BecomeMemberPage />} />
         </Route>
 
+        {/* Member Panel Routes */}
+        <Route path="/member-panel" element={<MemberLayout />}>
+          <Route path="dashboard" element={<MemberDashboard />} />
+          <Route path="projects" element={<MemberProjects />} />
+          <Route path="reports" element={<MemberReports />} />
+          <Route path="activities" element={<MemberActivities />} />
+        </Route>
+
         {/* Admin Routes with AdminLayout */}
         <Route path="/admin" element={<AdminLayout />}>
           <Route index element={<DashboardHome />} />
           <Route path="members" element={<ManageMembers />} />
           <Route path="projects" element={<ManageProjects />} />
           <Route path="reports" element={<ManageReports />} />
+          <Route path="activities" element={<ManageActivities />} />
           <Route path="chapters" element={<ManageChapters />} />
           <Route path="settings" element={<AdminSettings />} />
         </Route>

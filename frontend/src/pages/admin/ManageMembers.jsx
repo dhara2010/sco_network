@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Search, Eye, CheckCircle, XCircle, Clock } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
+import { API_BASE_URL } from '../../utils/api';
 
 const ManageMembers = () => {
   const [members, setMembers] = useState([]);
@@ -24,7 +25,7 @@ const ManageMembers = () => {
       if (search) queryParams.append('search', search);
       if (statusFilter) queryParams.append('status', statusFilter);
 
-      const res = await fetch(`https://sco-network.onrender.com/api/members/admin?${queryParams}`, {
+      const res = await fetch(`${API_BASE_URL}/members/admin?${queryParams}`, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       if (res.status === 401) {
@@ -48,7 +49,7 @@ const ManageMembers = () => {
     setActionLoading(true);
     try {
       const token = localStorage.getItem('adminToken');
-      const res = await fetch(`https://sco-network.onrender.com/api/members/admin/${memberId}`, {
+      const res = await fetch(`${API_BASE_URL}/members/admin/${memberId}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -81,14 +82,14 @@ const ManageMembers = () => {
         <h1 className="text-2xl font-bold text-gray-900">Member Requests Management</h1>
       </div>
 
-      <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-200 flex flex-col sm:flex-row gap-4 items-center justify-between">
+      <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex flex-col sm:flex-row gap-4 items-center justify-between">
         <div className="relative w-full sm:w-64">
           <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-gray-400">
             <Search size={18} />
           </div>
           <input
             type="text"
-            className="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md leading-5 bg-white placeholder-gray-500 focus:outline-none focus:placeholder-gray-400 focus:ring-1 focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+            className="block w-full pl-10 pr-3 py-2 border border-gray-200 rounded-xl leading-5 bg-gray-50 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:bg-white sm:text-sm transition-colors"
             placeholder="Search by name, email, city..."
             value={search}
             onChange={e => setSearch(e.target.value)}
@@ -99,7 +100,7 @@ const ManageMembers = () => {
             <button
               key={status}
               onClick={() => setStatusFilter(status)}
-              className={`px-4 py-2 text-sm font-medium rounded-md ${statusFilter === status ? 'bg-blue-600 text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'}`}
+              className={`px-4 py-2 text-sm font-medium rounded-xl transition-colors ${statusFilter === status ? 'bg-blue-600 text-white shadow-md' : 'bg-gray-50 text-gray-600 hover:bg-gray-100'}`}
             >
               {status || 'All'}
             </button>
@@ -110,7 +111,7 @@ const ManageMembers = () => {
       {loading ? (
         <div className="text-center py-12">Loading...</div>
       ) : (
-        <div className="bg-white shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
+        <div className="bg-white shadow-sm border border-gray-100 rounded-2xl overflow-hidden">
           <table className="min-w-full divide-y divide-gray-200">
             <thead className="bg-gray-50">
               <tr>
@@ -145,7 +146,7 @@ const ManageMembers = () => {
                     {getStatusBadge(member.status)}
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                    <button onClick={() => { setSelectedMember(member); setRemarks(member.remarks || ''); }} className="text-blue-600 hover:text-blue-900 flex items-center justify-end w-full">
+                    <button onClick={() => { setSelectedMember(member); setRemarks(member.remarks || ''); }} className="text-blue-600 hover:text-blue-800 flex items-center justify-end w-full transition-colors bg-blue-50 hover:bg-blue-100 px-3 py-1.5 rounded-lg">
                       <Eye size={18} className="mr-1" /> View / Action
                     </button>
                   </td>
@@ -191,9 +192,9 @@ const ManageMembers = () => {
                 </div>
               </div>
               <div className="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
-                <button disabled={actionLoading} type="button" onClick={() => handleStatusChange(selectedMember._id, 'Approved')} className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-green-600 text-base font-medium text-white hover:bg-green-700 focus:outline-none sm:ml-3 sm:w-auto sm:text-sm">Approve</button>
-                <button disabled={actionLoading} type="button" onClick={() => handleStatusChange(selectedMember._id, 'Rejected')} className="mt-3 w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-red-600 text-base font-medium text-white hover:bg-red-700 focus:outline-none sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">Reject</button>
-                <button disabled={actionLoading} type="button" onClick={() => handleStatusChange(selectedMember._id, 'Pending')} className="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">Set Pending</button>
+                <button disabled={actionLoading} type="button" onClick={() => handleStatusChange(selectedMember._id, 'Approved')} className="w-full inline-flex justify-center rounded-xl border border-transparent shadow-sm px-4 py-2 bg-emerald-600 text-base font-medium text-white hover:bg-emerald-700 focus:outline-none sm:ml-3 sm:w-auto sm:text-sm transition-colors">Approve</button>
+                <button disabled={actionLoading} type="button" onClick={() => handleStatusChange(selectedMember._id, 'Rejected')} className="mt-3 w-full inline-flex justify-center rounded-xl border border-transparent shadow-sm px-4 py-2 bg-red-600 text-base font-medium text-white hover:bg-red-700 focus:outline-none sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm transition-colors">Reject</button>
+                <button disabled={actionLoading} type="button" onClick={() => handleStatusChange(selectedMember._id, 'Pending')} className="mt-3 w-full inline-flex justify-center rounded-xl border border-gray-200 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm transition-colors">Set Pending</button>
               </div>
             </div>
           </div>

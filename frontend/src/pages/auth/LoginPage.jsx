@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Mail, Lock, ArrowRight } from 'lucide-react';
+import { API_BASE_URL } from '../../utils/api';
 
 const LoginPage = () => {
   const [email, setEmail] = useState('');
@@ -15,22 +16,43 @@ const LoginPage = () => {
     setError('');
     setLoading(true);
     try {
-      const res = await fetch('https://sco-network.onrender.com/api/auth/login', {
+      // First try to log in as Admin
+      let res = await fetch(`${API_BASE_URL}/auth/login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, password })
       });
-      const data = await res.json();
       
-      if (!res.ok) throw new Error(data.message || 'Login failed');
+      let data = await res.json();
       
-      localStorage.setItem('adminToken', data.token); // using same token name for simplicity
+      if (!res.ok) {
+        // If Admin login fails, try Member login
+        res = await fetch(`${API_BASE_URL}/members/login`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email, password })
+        });
+        data = await res.json();
+        
+        if (!res.ok) {
+          throw new Error(data.message || 'Login failed');
+        }
+        
+        // Member login successful
+        localStorage.setItem('memberToken', data.token);
+        localStorage.setItem('userRole', data.role);
+        navigate('/member-panel/dashboard');
+        return;
+      }
+      
+      // Admin login successful
+      localStorage.setItem('adminToken', data.token); 
       localStorage.setItem('userRole', data.role);
       
       if (data.role === 'Admin' || data.role === 'Super Admin') {
         navigate('/admin');
       } else {
-        navigate('/'); // Regular user dashboard or home
+        navigate('/'); // Fallback
       }
     } catch (err) {
       setError(err.message);

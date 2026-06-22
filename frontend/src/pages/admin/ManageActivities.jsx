@@ -1,27 +1,27 @@
 import React, { useState, useEffect } from 'react';
-import { Search, Eye, CheckCircle, XCircle, Clock, Trash2, FileText } from 'lucide-react';
+import { Search, Eye, CheckCircle, XCircle, Clock, Trash2, Activity } from 'lucide-react';
 import { API_BASE_URL } from '../../utils/api';
 
-const ManageReports = () => {
-  const [reports, setReports] = useState([]);
+const ManageActivities = () => {
+  const [activities, setActivities] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [activeTab, setActiveTab] = useState('All');
   const [searchQuery, setSearchQuery] = useState('');
   const [viewRecord, setViewRecord] = useState(null);
 
-  const fetchReports = async () => {
+  const fetchActivities = async () => {
     try {
       setLoading(true);
       const token = localStorage.getItem('adminToken');
       const statusQuery = activeTab !== 'All' ? `?status=${activeTab}` : '';
       
-      const res = await fetch(`${API_BASE_URL}/reports/admin${statusQuery}`, {
+      const res = await fetch(`${API_BASE_URL}/activities/admin${statusQuery}`, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       const data = await res.json();
-      if (!res.ok) throw new Error(data.message || 'Failed to fetch reports');
-      setReports(data);
+      if (!res.ok) throw new Error(data.message || 'Failed to fetch activities');
+      setActivities(data);
     } catch (err) {
       setError(err.message);
     } finally {
@@ -30,16 +30,16 @@ const ManageReports = () => {
   };
 
   useEffect(() => {
-    fetchReports();
+    fetchActivities();
   }, [activeTab]);
 
-  const handleStatusChange = async (reportId, newStatus) => {
-    const remarks = window.prompt(`Enter remarks for ${newStatus === 'Approved' ? 'approving' : 'rejecting'} this report (Optional):`, '');
+  const handleStatusChange = async (activityId, newStatus) => {
+    const remarks = window.prompt(`Enter remarks for ${newStatus === 'Approved' ? 'approving' : 'rejecting'} this activity (Optional):`, '');
     if (remarks === null) return; // User cancelled
 
     try {
       const token = localStorage.getItem('adminToken');
-      const res = await fetch(`${API_BASE_URL}/reports/admin/${reportId}`, {
+      const res = await fetch(`${API_BASE_URL}/activities/admin/${activityId}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -49,39 +49,39 @@ const ManageReports = () => {
       });
       
       if (!res.ok) throw new Error('Failed to update status');
-      fetchReports();
+      fetchActivities();
     } catch (err) {
       alert(err.message);
     }
   };
 
-  const handleDelete = async (reportId) => {
-    if (!window.confirm("Are you sure you want to delete this report?")) return;
+  const handleDelete = async (activityId) => {
+    if (!window.confirm("Are you sure you want to delete this activity?")) return;
     try {
       const token = localStorage.getItem('adminToken');
-      const res = await fetch(`${API_BASE_URL}/reports/admin/${reportId}`, {
+      const res = await fetch(`${API_BASE_URL}/activities/admin/${activityId}`, {
         method: 'DELETE',
         headers: { 'Authorization': `Bearer ${token}` }
       });
       
-      if (!res.ok) throw new Error('Failed to delete report');
-      fetchReports();
+      if (!res.ok) throw new Error('Failed to delete activity');
+      fetchActivities();
     } catch (err) {
       alert(err.message);
     }
   };
 
-  const filteredReports = reports.filter(r => 
-    r.title.toLowerCase().includes(searchQuery.toLowerCase()) || 
-    r.reportYear.includes(searchQuery)
+  const filteredActivities = activities.filter(a => 
+    a.title.toLowerCase().includes(searchQuery.toLowerCase()) || 
+    (a.member_id?.fullName && a.member_id.fullName.toLowerCase().includes(searchQuery.toLowerCase()))
   );
 
   return (
     <div className="space-y-6">
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-4">
         <div>
-          <h1 className="text-2xl font-bold text-gray-900">Reports Management</h1>
-          <p className="text-gray-500 mt-1">Review, approve, and manage annual reports</p>
+          <h1 className="text-2xl font-bold text-gray-900">Activities Management</h1>
+          <p className="text-gray-500 mt-1">Review, approve, and manage member activities</p>
         </div>
       </div>
 
@@ -105,7 +105,7 @@ const ManageReports = () => {
           <div className="relative w-full sm:w-64">
             <input
               type="text"
-              placeholder="Search reports..."
+              placeholder="Search activities..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               className="w-full pl-10 pr-4 py-2 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 bg-gray-50 focus:bg-white transition-colors"
@@ -119,70 +119,79 @@ const ManageReports = () => {
           <table className="w-full text-left border-collapse">
             <thead>
               <tr className="bg-gray-50 border-b border-gray-200 text-gray-500 text-xs uppercase tracking-wider">
-                <th className="p-4 font-semibold">Report Title</th>
-                <th className="p-4 font-semibold">Year</th>
-                <th className="p-4 font-semibold">Category</th>
-                <th className="p-4 font-semibold">Date Added</th>
+                <th className="p-4 font-semibold">Activity Info</th>
+                <th className="p-4 font-semibold">Author</th>
+                <th className="p-4 font-semibold">Activity Date</th>
                 <th className="p-4 font-semibold">Status</th>
                 <th className="p-4 font-semibold text-right">Actions</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-200 text-sm">
               {loading ? (
-                <tr><td colSpan="6" className="p-8 text-center text-gray-500">Loading reports...</td></tr>
+                <tr><td colSpan="5" className="p-8 text-center text-gray-500">Loading activities...</td></tr>
               ) : error ? (
-                <tr><td colSpan="6" className="p-8 text-center text-red-500">Error: {error}</td></tr>
-              ) : filteredReports.length === 0 ? (
-                <tr><td colSpan="6" className="p-8 text-center text-gray-500">No reports found.</td></tr>
+                <tr><td colSpan="5" className="p-8 text-center text-red-500">Error: {error}</td></tr>
+              ) : filteredActivities.length === 0 ? (
+                <tr><td colSpan="5" className="p-8 text-center text-gray-500">No activities found.</td></tr>
               ) : (
-                filteredReports.map((report) => (
-                  <tr key={report._id} className="hover:bg-gray-50 transition-colors">
+                filteredActivities.map((activity) => (
+                  <tr key={activity._id} className="hover:bg-gray-50 transition-colors">
                     <td className="p-4">
                       <div className="flex items-center gap-3">
-                        <div className="w-10 h-10 rounded-lg bg-blue-50 flex items-center justify-center text-blue-600">
-                           <FileText size={20} />
+                        <div className="w-10 h-10 rounded-lg bg-orange-50 flex items-center justify-center text-orange-600">
+                           <Activity size={20} />
                         </div>
                         <div>
-                          <div className="font-semibold text-gray-900">{report.title}</div>
-                          <a href={report.reportFile} target="_blank" rel="noreferrer" className="text-blue-500 text-xs hover:underline">View PDF</a>
+                          <div className="font-semibold text-gray-900">{activity.title}</div>
+                          <div className="text-gray-500 text-xs truncate max-w-[200px]">{activity.description}</div>
                         </div>
                       </div>
                     </td>
-                    <td className="p-4 text-gray-900 font-bold">{report.reportYear}</td>
-                    <td className="p-4 text-gray-600">{report.category}</td>
-                    <td className="p-4 text-gray-600">{new Date(report.createdAt).toLocaleDateString()}</td>
+                    <td className="p-4 text-gray-600">
+                      {activity.member_id ? (
+                        <>
+                          <p className="font-medium">{activity.member_id.fullName}</p>
+                          <p className="text-xs text-gray-400">{activity.member_id.email}</p>
+                        </>
+                      ) : (
+                        <p className="font-medium text-gray-500">Admin</p>
+                      )}
+                    </td>
+                    <td className="p-4 text-gray-600">
+                      {activity.activityDate ? new Date(activity.activityDate).toLocaleDateString() : '-'}
+                    </td>
                     <td className="p-4">
                       <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium border
-                        ${report.status === 'Pending' ? 'bg-yellow-50 text-yellow-800 border-yellow-200' : ''}
-                        ${report.status === 'Approved' ? 'bg-green-50 text-green-800 border-green-200' : ''}
-                        ${report.status === 'Rejected' ? 'bg-red-50 text-red-800 border-red-200' : ''}
+                        ${activity.status === 'Pending' ? 'bg-yellow-50 text-yellow-800 border-yellow-200' : ''}
+                        ${activity.status === 'Approved' ? 'bg-green-50 text-green-800 border-green-200' : ''}
+                        ${activity.status === 'Rejected' ? 'bg-red-50 text-red-800 border-red-200' : ''}
                       `}>
-                        {report.status === 'Pending' && <Clock size={12} className="mr-1" />}
-                        {report.status === 'Approved' && <CheckCircle size={12} className="mr-1" />}
-                        {report.status === 'Rejected' && <XCircle size={12} className="mr-1" />}
-                        {report.status}
+                        {activity.status === 'Pending' && <Clock size={12} className="mr-1" />}
+                        {activity.status === 'Approved' && <CheckCircle size={12} className="mr-1" />}
+                        {activity.status === 'Rejected' && <XCircle size={12} className="mr-1" />}
+                        {activity.status}
                       </span>
                     </td>
                     <td className="p-4 flex items-center justify-end gap-2">
-                      <button onClick={() => setViewRecord(report)} className="text-blue-600 hover:bg-blue-50 p-1.5 rounded-md transition-colors" title="View Details">
+                      <button onClick={() => setViewRecord(activity)} className="text-blue-600 hover:bg-blue-50 p-1.5 rounded-md transition-colors" title="View Details">
                         <Eye size={18} />
                       </button>
-                      {report.status === 'Pending' && (
+                      {activity.status === 'Pending' && (
                         <>
-                          <button onClick={() => handleStatusChange(report._id, 'Approved')} className="text-emerald-600 hover:bg-emerald-50 p-1.5 rounded-md transition-colors" title="Approve">
+                          <button onClick={() => handleStatusChange(activity._id, 'Approved')} className="text-emerald-600 hover:bg-emerald-50 p-1.5 rounded-md transition-colors" title="Approve">
                             <CheckCircle size={18} />
                           </button>
-                          <button onClick={() => handleStatusChange(report._id, 'Rejected')} className="text-red-600 hover:bg-red-50 p-1.5 rounded-md transition-colors" title="Reject">
+                          <button onClick={() => handleStatusChange(activity._id, 'Rejected')} className="text-red-600 hover:bg-red-50 p-1.5 rounded-md transition-colors" title="Reject">
                             <XCircle size={18} />
                           </button>
                         </>
                       )}
-                      {report.status === 'Rejected' && (
-                        <button onClick={() => handleStatusChange(report._id, 'Pending')} className="text-yellow-600 hover:bg-yellow-50 p-1.5 rounded-md transition-colors" title="Revert to Pending">
+                      {activity.status === 'Rejected' && (
+                        <button onClick={() => handleStatusChange(activity._id, 'Pending')} className="text-yellow-600 hover:bg-yellow-50 p-1.5 rounded-md transition-colors" title="Revert to Pending">
                           <Clock size={18} />
                         </button>
                       )}
-                      <button onClick={() => handleDelete(report._id)} className="text-gray-400 hover:text-red-600 hover:bg-red-50 p-1.5 rounded-md transition-colors ml-2" title="Delete">
+                      <button onClick={() => handleDelete(activity._id)} className="text-gray-400 hover:text-red-600 hover:bg-red-50 p-1.5 rounded-md transition-colors ml-2" title="Delete">
                         <Trash2 size={18} />
                       </button>
                     </td>
@@ -199,7 +208,7 @@ const ManageReports = () => {
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-50">
           <div className="bg-white rounded-xl shadow-xl w-full max-w-2xl max-h-[90vh] overflow-y-auto">
             <div className="flex justify-between items-center p-6 border-b border-gray-100 sticky top-0 bg-white z-10">
-              <h3 className="text-xl font-bold text-gray-900">Report Details</h3>
+              <h3 className="text-xl font-bold text-gray-900">Activity Details</h3>
               <button onClick={() => setViewRecord(null)} className="text-gray-400 hover:text-gray-600 transition-colors">
                 <XCircle size={24} />
               </button>
@@ -211,12 +220,12 @@ const ManageReports = () => {
               </div>
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <p className="text-sm text-gray-500 font-medium">Category</p>
-                  <p className="text-gray-900">{viewRecord.category}</p>
+                  <p className="text-sm text-gray-500 font-medium">Author</p>
+                  <p className="text-gray-900">{viewRecord.member_id ? viewRecord.member_id.fullName : 'Admin'}</p>
                 </div>
                 <div>
-                  <p className="text-sm text-gray-500 font-medium">Year</p>
-                  <p className="text-gray-900">{viewRecord.reportYear}</p>
+                  <p className="text-sm text-gray-500 font-medium">Activity Date</p>
+                  <p className="text-gray-900">{viewRecord.activityDate ? new Date(viewRecord.activityDate).toLocaleDateString() : '-'}</p>
                 </div>
                 <div>
                   <p className="text-sm text-gray-500 font-medium">Status</p>
@@ -239,14 +248,6 @@ const ManageReports = () => {
                 <p className="text-sm text-gray-500 font-medium">Description</p>
                 <p className="text-gray-900 whitespace-pre-wrap">{viewRecord.description}</p>
               </div>
-              {viewRecord.reportFile && (
-                <div>
-                  <p className="text-sm text-gray-500 font-medium mb-2">Report Document</p>
-                  <a href={viewRecord.reportFile} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 text-blue-600 hover:text-blue-800 hover:underline bg-blue-50 px-4 py-2 rounded-lg transition-colors">
-                    <FileText size={20} /> View PDF Document
-                  </a>
-                </div>
-              )}
               {viewRecord.remarks && (
                 <div>
                   <p className="text-sm text-gray-500 font-medium text-red-600 mb-1">Remarks</p>
@@ -266,4 +267,4 @@ const ManageReports = () => {
   );
 };
 
-export default ManageReports;
+export default ManageActivities;

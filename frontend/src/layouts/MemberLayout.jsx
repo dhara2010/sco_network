@@ -1,24 +1,42 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Outlet, Link, useLocation, useNavigate } from 'react-router-dom';
-import { LayoutDashboard, Users, GraduationCap, FolderKanban, FileText, Settings, LogOut, MapPin } from 'lucide-react';
+import { LayoutDashboard, FolderKanban, FileText, Activity, LogOut, User } from 'lucide-react';
+import { API_BASE_URL } from '../utils/api';
 
-const AdminLayout = () => {
+const MemberLayout = () => {
   const location = useLocation();
   const navigate = useNavigate();
+  const [profile, setProfile] = useState(null);
+
+  useEffect(() => {
+    const fetchProfile = async () => {
+      try {
+        const token = localStorage.getItem('memberToken');
+        if (!token) return;
+        const res = await fetch(`${API_BASE_URL}/members/me`, {
+          headers: { 'Authorization': `Bearer ${token}` }
+        });
+        if (res.ok) {
+          const data = await res.json();
+          setProfile(data);
+        }
+      } catch (err) {
+        console.error(err);
+      }
+    };
+    fetchProfile();
+  }, []);
 
   const handleLogout = () => {
-    localStorage.removeItem('adminToken');
+    localStorage.removeItem('memberToken');
     navigate('/login');
   };
 
   const navItems = [
-    { name: 'Dashboard', path: '/admin', icon: <LayoutDashboard size={20} /> },
-    { name: 'Members Management', path: '/admin/members', icon: <Users size={20} /> },
-    { name: 'Projects Management', path: '/admin/projects', icon: <FolderKanban size={20} /> },
-    { name: 'Reports Management', path: '/admin/reports', icon: <FileText size={20} /> },
-    { name: 'Activities Management', path: '/admin/activities', icon: <GraduationCap size={20} /> },
-    { name: 'Chapters Management', path: '/admin/chapters', icon: <MapPin size={20} /> },
-    { name: 'Settings', path: '/admin/settings', icon: <Settings size={20} /> },
+    { name: 'Dashboard', path: '/member-panel/dashboard', icon: <LayoutDashboard size={20} /> },
+    { name: 'My Projects', path: '/member-panel/projects', icon: <FolderKanban size={20} /> },
+    { name: 'My Reports', path: '/member-panel/reports', icon: <FileText size={20} /> },
+    { name: 'My Activities', path: '/member-panel/activities', icon: <Activity size={20} /> },
   ];
 
   return (
@@ -26,7 +44,7 @@ const AdminLayout = () => {
       {/* Sidebar */}
       <aside className="w-64 bg-white border-r border-gray-200 flex flex-col shadow-sm">
         <div className="p-6 border-b border-gray-100 flex items-center justify-center">
-          <h2 className="text-xl font-black text-gray-900 tracking-tight">Admin<span className="text-blue-600">Panel</span></h2>
+          <h2 className="text-xl font-black text-gray-900 tracking-tight">Member<span className="text-blue-600">Panel</span></h2>
         </div>
         <nav className="flex-1 overflow-y-auto py-4">
           <ul className="space-y-1 px-3">
@@ -64,12 +82,16 @@ const AdminLayout = () => {
       <main className="flex-1 overflow-y-auto relative">
         <div className="sticky top-0 bg-white border-b border-gray-100 px-8 py-4 flex justify-between items-center z-10 shadow-sm">
           <h1 className="text-xl font-bold text-gray-900 capitalize">
-            {location.pathname.split('/').pop() === 'admin' ? 'Dashboard' : location.pathname.split('/').pop().replace('-', ' ')}
+            {location.pathname.split('/').pop() === 'dashboard' ? 'Dashboard' : location.pathname.split('/').pop().replace('-', ' ')}
           </h1>
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-full bg-blue-600 text-white flex items-center justify-center font-bold shadow-md">
-              A
-            </div>
+            {profile && profile.profilePicture ? (
+              <img src={profile.profilePicture} alt="Profile" className="w-10 h-10 rounded-full object-cover shadow-md border-2 border-white" />
+            ) : (
+              <div className="w-10 h-10 rounded-full bg-blue-600 text-white flex items-center justify-center font-bold shadow-md">
+                <User size={20} />
+              </div>
+            )}
           </div>
         </div>
         <div className="p-8">
@@ -80,4 +102,4 @@ const AdminLayout = () => {
   );
 };
 
-export default AdminLayout;
+export default MemberLayout;

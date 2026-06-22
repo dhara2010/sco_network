@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Search, Eye, CheckCircle, XCircle, Clock, Trash2 } from 'lucide-react';
+import { API_BASE_URL } from '../../utils/api';
 
 const ManageProjects = () => {
   const [projects, setProjects] = useState([]);
@@ -8,8 +9,7 @@ const ManageProjects = () => {
   const [activeTab, setActiveTab] = useState('All');
   const [searchQuery, setSearchQuery] = useState('');
 
-  // We could implement View Project details modal similar to ManageMembers, 
-  // but for now we'll focus on the approval workflow.
+  const [viewRecord, setViewRecord] = useState(null);
 
   const fetchProjects = async () => {
     try {
@@ -17,7 +17,7 @@ const ManageProjects = () => {
       const token = localStorage.getItem('adminToken');
       const statusQuery = activeTab !== 'All' ? `?status=${activeTab}` : '';
       
-      const res = await fetch(`https://sco-network.onrender.com/api/projects/admin${statusQuery}`, {
+      const res = await fetch(`${API_BASE_URL}/projects/admin${statusQuery}`, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       const data = await res.json();
@@ -35,15 +35,18 @@ const ManageProjects = () => {
   }, [activeTab]);
 
   const handleStatusChange = async (projectId, newStatus) => {
+    const remarks = window.prompt(`Enter remarks for ${newStatus === 'Approved' ? 'approving' : 'rejecting'} this project (Optional):`, '');
+    if (remarks === null) return; // User cancelled
+
     try {
       const token = localStorage.getItem('adminToken');
-      const res = await fetch(`https://sco-network.onrender.com/api/projects/admin/${projectId}`, {
+      const res = await fetch(`${API_BASE_URL}/projects/admin/${projectId}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${token}`
         },
-        body: JSON.stringify({ status: newStatus })
+        body: JSON.stringify({ status: newStatus, remarks })
       });
       
       if (!res.ok) throw new Error('Failed to update status');
@@ -59,7 +62,7 @@ const ManageProjects = () => {
     if (!window.confirm("Are you sure you want to delete this project?")) return;
     try {
       const token = localStorage.getItem('adminToken');
-      const res = await fetch(`https://sco-network.onrender.com/api/projects/admin/${projectId}`, {
+      const res = await fetch(`${API_BASE_URL}/projects/admin/${projectId}`, {
         method: 'DELETE',
         headers: { 'Authorization': `Bearer ${token}` }
       });
@@ -77,7 +80,7 @@ const ManageProjects = () => {
   );
 
   return (
-    <div className="p-6">
+    <div className="space-y-6">
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-4">
         <div>
           <h1 className="text-2xl font-bold text-gray-900">Projects Management</h1>
@@ -85,7 +88,7 @@ const ManageProjects = () => {
         </div>
       </div>
 
-      <div className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
+      <div className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
         {/* Top Controls */}
         <div className="p-4 border-b border-gray-200 flex flex-col sm:flex-row justify-between items-center gap-4">
           <div className="flex space-x-1 bg-gray-100 p-1 rounded-lg w-full sm:w-auto">
@@ -94,7 +97,7 @@ const ManageProjects = () => {
                 key={tab}
                 onClick={() => setActiveTab(tab)}
                 className={`px-4 py-2 rounded-md text-sm font-medium transition-colors flex-1 sm:flex-none ${
-                  activeTab === tab ? 'bg-white text-gray-900 shadow' : 'text-gray-500 hover:text-gray-700'
+                  activeTab === tab ? 'bg-blue-600 text-white shadow-md' : 'text-gray-500 hover:text-gray-700 hover:bg-white/50'
                 }`}
               >
                 {tab}
@@ -108,7 +111,7 @@ const ManageProjects = () => {
               placeholder="Search projects..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              className="w-full pl-10 pr-4 py-2 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 bg-gray-50 focus:bg-white transition-colors"
             />
             <Search className="absolute left-3 top-2.5 text-gray-400" size={18} />
           </div>
@@ -157,9 +160,12 @@ const ManageProjects = () => {
                       </span>
                     </td>
                     <td className="p-4 flex items-center justify-end gap-2">
+                      <button onClick={() => setViewRecord(project)} className="text-blue-600 hover:bg-blue-50 p-1.5 rounded-md transition-colors" title="View Details">
+                        <Eye size={18} />
+                      </button>
                       {project.status === 'Pending' && (
                         <>
-                          <button onClick={() => handleStatusChange(project._id, 'Approved')} className="text-green-600 hover:bg-green-50 p-1.5 rounded-md transition-colors" title="Approve">
+                          <button onClick={() => handleStatusChange(project._id, 'Approved')} className="text-emerald-600 hover:bg-emerald-50 p-1.5 rounded-md transition-colors" title="Approve">
                             <CheckCircle size={18} />
                           </button>
                           <button onClick={() => handleStatusChange(project._id, 'Rejected')} className="text-red-600 hover:bg-red-50 p-1.5 rounded-md transition-colors" title="Reject">
@@ -183,6 +189,73 @@ const ManageProjects = () => {
           </table>
         </div>
       </div>
+
+      {/* View Modal */}
+      {viewRecord && (
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-50">
+          <div className="bg-white rounded-xl shadow-xl w-full max-w-2xl max-h-[90vh] overflow-y-auto">
+            <div className="flex justify-between items-center p-6 border-b border-gray-100 sticky top-0 bg-white z-10">
+              <h3 className="text-xl font-bold text-gray-900">Project Details</h3>
+              <button onClick={() => setViewRecord(null)} className="text-gray-400 hover:text-gray-600 transition-colors">
+                <XCircle size={24} />
+              </button>
+            </div>
+            <div className="p-6 space-y-4">
+              <div>
+                <p className="text-sm text-gray-500 font-medium">Title</p>
+                <p className="text-lg font-semibold text-gray-900">{viewRecord.title}</p>
+              </div>
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <p className="text-sm text-gray-500 font-medium">Category</p>
+                  <p className="text-gray-900">{viewRecord.category}</p>
+                </div>
+                <div>
+                  <p className="text-sm text-gray-500 font-medium">Location</p>
+                  <p className="text-gray-900">{viewRecord.location || '-'}</p>
+                </div>
+                <div>
+                  <p className="text-sm text-gray-500 font-medium">Status</p>
+                  <p className="text-gray-900">
+                    <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium border
+                        ${viewRecord.status === 'Pending' ? 'bg-yellow-50 text-yellow-800 border-yellow-200' : ''}
+                        ${viewRecord.status === 'Approved' ? 'bg-green-50 text-green-800 border-green-200' : ''}
+                        ${viewRecord.status === 'Rejected' ? 'bg-red-50 text-red-800 border-red-200' : ''}
+                      `}>
+                      {viewRecord.status}
+                    </span>
+                  </p>
+                </div>
+                <div>
+                  <p className="text-sm text-gray-500 font-medium">Date Added</p>
+                  <p className="text-gray-900">{new Date(viewRecord.createdAt).toLocaleDateString()}</p>
+                </div>
+              </div>
+              <div>
+                <p className="text-sm text-gray-500 font-medium">Description</p>
+                <p className="text-gray-900 whitespace-pre-wrap">{viewRecord.description}</p>
+              </div>
+              {viewRecord.featuredImage && (
+                <div>
+                  <p className="text-sm text-gray-500 font-medium mb-2">Featured Image</p>
+                  <img src={viewRecord.featuredImage} alt="Project" className="max-h-64 rounded-lg object-contain border border-gray-200" />
+                </div>
+              )}
+              {viewRecord.remarks && (
+                <div>
+                  <p className="text-sm text-gray-500 font-medium text-red-600 mb-1">Remarks</p>
+                  <p className="text-gray-900 bg-red-50 p-3 rounded-lg border border-red-100">{viewRecord.remarks}</p>
+                </div>
+              )}
+            </div>
+            <div className="p-6 border-t border-gray-100 flex justify-end">
+              <button onClick={() => setViewRecord(null)} className="px-4 py-2 bg-gray-100 text-gray-700 font-medium rounded-xl hover:bg-gray-200 transition-colors">
+                Close
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
