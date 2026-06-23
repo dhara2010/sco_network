@@ -1,5 +1,7 @@
 import React from 'react';
 import { TrendingUp, Landmark, Globe, GraduationCap } from 'lucide-react';
+import MotionWrapper from './common/MotionWrapper';
+import SectionHeader from './common/SectionHeader';
 
 const initiatives = [
   {
@@ -34,14 +36,13 @@ const KeyInitiativesSection = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* Section Header */}
-        <div className="flex flex-col items-center justify-center text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-extrabold text-[#0A1435] mb-4 tracking-tight">
-            Key Initiatives
-          </h2>
-          <p className="text-gray-500 text-base md:text-lg max-w-2xl mx-auto">
-            We focus on pillars that drive real progress for our community members worldwide.
-          </p>
-        </div>
+       <MotionWrapper className='flex flex-col items-center text-center'>
+          <SectionHeader
+            title={<>Key <span className="text-[#FFC107]">Initiatives</span></>}
+            subtitle="We focus on the core pillars that drive real progress for our community members worldwide."
+            className="mb-8 flex flex-col items-center"
+          />
+        </MotionWrapper>
 
         {/* Initiatives Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">

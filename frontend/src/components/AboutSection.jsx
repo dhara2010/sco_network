@@ -2,6 +2,8 @@ import React from 'react';
 import { CheckCircle2 } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
+import MotionWrapper from './common/MotionWrapper';
+import SectionHeader from './common/SectionHeader';
 
 const leaders = [
   {
@@ -23,21 +25,16 @@ const leaders = [
 
 const AboutSection = () => {
   return (
-    <section className="w-full font-sans py-16 md:py-24">
+    <section className="w-full font-sans py-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20">
 
           {/* Left Column - Our Leaders */}
-          <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-          >
-            <h2 className="text-3xl md:text-4xl font-extrabold text-[#0A1435] uppercase tracking-tight">
-              OUR <span className="text-[#FFC107]">LEADERS</span>
-            </h2>
-            <div className="w-16 h-1 bg-[#FFC107] mt-3 mb-10"></div>
+          <MotionWrapper>
+            <SectionHeader 
+              title={<>OUR <span className="text-[#FFC107]">LEADERS</span></>}
+              className="mb-10"
+            />
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
               {leaders.map((leader, index) => (
@@ -59,7 +56,7 @@ const AboutSection = () => {
                 </div>
               ))}
             </div>
-          </motion.div>
+          </MotionWrapper>
 
           {/* Right Column - About Us */}
           <motion.div
@@ -68,10 +65,10 @@ const AboutSection = () => {
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
           >
-            <h2 className="text-3xl md:text-4xl font-extrabold text-[#0A1435] uppercase tracking-tight">
-              ABOUT <span className="text-[#FFC107]">US</span>
-            </h2>
-            <div className="w-16 h-1 bg-[#FFC107] mt-3 mb-8"></div>
+            <SectionHeader 
+              title={<>ABOUT <span className="text-[#FFC107]">US</span></>}
+              className="mb-8"
+            />
 
             <p className="text-gray-600 text-base md:text-lg leading-relaxed mb-8">
               Sathwara Community Organisation (SCO) is a unique, multi-stakeholder community of visionary community Industrialists, Businessmen & Professionals who share a commitment to shape the future of the community and society at large.
