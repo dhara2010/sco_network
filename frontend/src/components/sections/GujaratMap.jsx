@@ -182,7 +182,7 @@ const GujaratMap = () => {
           <span className="w-2 h-2 rounded-full bg-[#115fc6] animate-pulse"></span>
           Gujarat Chapters
         </h4>
-        <p className="text-xs text-gray-600 flex items-center gap-2 font-medium">
+        <p className="text-xs flex items-center gap-2 font-medium">
           <span className="relative flex h-3 w-3">
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#fdb813] opacity-75"></span>
             <span className="relative inline-flex rounded-full h-3 w-3 bg-[#fdb813] border border-[#1056A5]"></span>

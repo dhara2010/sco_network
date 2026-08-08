@@ -33,7 +33,7 @@ const MemberLayout = () => {
       {/* Sidebar */}
       <aside className="w-64 bg-white border-r border-gray-200 flex flex-col shadow-sm">
         <div className="p-6 border-b border-gray-100 flex items-center justify-center">
-          <h2 className="text-xl font-black text-gray-900 tracking-tight">Member<span className="text-blue-600">Panel</span></h2>
+          <h2 className="text-xl font-black tracking-tight">Member<span className="text-blue-600">Panel</span></h2>
         </div>
         <nav className="flex-1 overflow-y-auto py-4">
           <ul className="space-y-1 px-3">
@@ -69,7 +69,7 @@ const MemberLayout = () => {
       {/* Main Content */}
       <main className="flex-1 overflow-y-auto relative">
         <div className="sticky top-0 bg-white border-b border-gray-100 px-8 py-4 flex justify-between items-center z-10 shadow-sm">
-          <h1 className="text-xl font-bold text-gray-900 capitalize">
+          <h1 className="text-xl font-bold capitalize">
             {location.pathname.split('/').pop() === 'dashboard' ? 'Dashboard' : location.pathname.split('/').pop().replace('-', ' ')}
           </h1>
           <div className="flex items-center gap-3">

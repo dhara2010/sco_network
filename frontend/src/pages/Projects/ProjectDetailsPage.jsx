@@ -80,7 +80,7 @@ const ProjectDetailsPage = () => {
       </MotionWrapper>
 
       {topParagraphs.length > 0 && (
-        <section className='bg-white my-10 rounded-md p-10 text-lg leading-relaxed text-gray-600 shadow-xl'>
+        <section className='bg-white my-10 rounded-md p-10 text-lg leading-relaxed shadow-xl'>
           {topParagraphs.map((paragraph, index) => (
             <p key={index} className={index > 0 ? "mt-6" : ""}>
               {paragraph}
@@ -100,7 +100,7 @@ const ProjectDetailsPage = () => {
       )}
 
       {remainingParagraphs.length > 0 && (
-        <section className='bg-white my-10 rounded-md p-10 text-lg leading-relaxed text-gray-600 shadow-xl'>
+        <section className='bg-white my-10 rounded-md p-10 text-lg leading-relaxed shadow-xl'>
           {remainingParagraphs.map((paragraph, index) => (
             <p key={index} className={index > 0 ? "mt-6" : ""}>
               {paragraph}
@@ -112,7 +112,7 @@ const ProjectDetailsPage = () => {
       {project.gallery && project.gallery.length > 0 && (
         <div className="my-16 pb-10">
           <div className="text-center mb-10">
-            <h2 className="text-3xl font-extrabold text-gray-800">Project Gallery</h2>
+            <h2 className="text-3xl font-extrabold">Project Gallery</h2>
             <div className="w-16 h-1 bg-[#FFC107] mx-auto mt-3 rounded-full"></div>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">

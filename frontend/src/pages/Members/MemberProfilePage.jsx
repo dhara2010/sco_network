@@ -27,7 +27,7 @@ const MemberProfilePage = () => {
 
   if (loading) return <div className="min-h-screen flex items-center justify-center text-blue-900 text-xl font-bold">Loading Profile...</div>;
   if (error) return <div className="min-h-screen flex items-center justify-center text-red-600 text-xl font-bold">Error: {error}</div>;
-  if (!member) return <div className="min-h-screen flex items-center justify-center text-gray-500 text-xl font-bold">Member not found</div>;
+  if (!member) return <div className="min-h-screen flex items-center justify-center text-xl font-bold">Member not found</div>;
 
   return (
     <div className="min-h-screen bg-[#F8F9FA] py-12 px-4 sm:px-6 lg:px-8 mt-16">
@@ -68,15 +68,15 @@ const MemberProfilePage = () => {
 
             {member.bio && (
               <div className="mt-8">
-                <h3 className="text-sm font-bold text-gray-400 uppercase tracking-wider mb-3">About</h3>
-                <p className="text-gray-700 leading-relaxed text-lg">{member.bio}</p>
+                <h3 className="text-sm font-bold uppercase tracking-wider mb-3">About</h3>
+                <p className="leading-relaxed text-lg">{member.bio}</p>
               </div>
             )}
 
             <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-10">
               {/* Professional Information */}
               <div className="space-y-6">
-                <h3 className="text-sm font-bold text-gray-400 uppercase tracking-wider border-b pb-2">Professional Details</h3>
+                <h3 className="text-sm font-bold uppercase tracking-wider border-b pb-2">Professional Details</h3>
 
                 {member.companyName && (
                   <div className="flex items-start gap-4">
@@ -84,8 +84,8 @@ const MemberProfilePage = () => {
                       <Building size={24} />
                     </div>
                     <div>
-                      <p className="text-sm text-gray-500 font-medium">Company</p>
-                      <p className="text-lg font-semibold text-gray-900">{member.companyName}</p>
+                      <p className="text-sm font-medium">Company</p>
+                      <p className="text-lg font-semibold">{member.companyName}</p>
                     </div>
                   </div>
                 )}
@@ -96,8 +96,8 @@ const MemberProfilePage = () => {
                       <GraduationCap size={24} />
                     </div>
                     <div>
-                      <p className="text-sm text-gray-500 font-medium">Occupation / Education</p>
-                      <p className="text-lg font-semibold text-gray-900">{member.occupation}</p>
+                      <p className="text-sm font-medium">Occupation / Education</p>
+                      <p className="text-lg font-semibold">{member.occupation}</p>
                     </div>
                   </div>
                 )}
@@ -108,8 +108,8 @@ const MemberProfilePage = () => {
                       <Briefcase size={24} />
                     </div>
                     <div>
-                      <p className="text-sm text-gray-500 font-medium">Experience</p>
-                      <p className="text-lg font-semibold text-gray-900">{member.experience}</p>
+                      <p className="text-sm font-medium">Experience</p>
+                      <p className="text-lg font-semibold">{member.experience}</p>
                     </div>
                   </div>
                 )}
@@ -117,7 +117,7 @@ const MemberProfilePage = () => {
 
               {/* Contact & Location Information */}
               <div className="space-y-6">
-                <h3 className="text-sm font-bold text-gray-400 uppercase tracking-wider border-b pb-2">Contact & Location</h3>
+                <h3 className="text-sm font-bold uppercase tracking-wider border-b pb-2">Contact & Location</h3>
 
                 {member.email && (
                   <div className="flex items-start gap-4">
@@ -125,7 +125,7 @@ const MemberProfilePage = () => {
                       <Mail size={24} />
                     </div>
                     <div>
-                      <p className="text-sm text-gray-500 font-medium">Email Address</p>
+                      <p className="text-sm font-medium">Email Address</p>
                       <a href={`mailto:${member.email}`} className="text-lg font-semibold text-[#0B2B5B] hover:underline break-all">{member.email}</a>
                     </div>
                   </div>
@@ -137,7 +137,7 @@ const MemberProfilePage = () => {
                       <Phone size={24} />
                     </div>
                     <div>
-                      <p className="text-sm text-gray-500 font-medium">Phone Number</p>
+                      <p className="text-sm font-medium">Phone Number</p>
                       <a href={`tel:${member.mobile}`} className="text-lg font-semibold text-[#0B2B5B] hover:underline">+91 {member.mobile.replace(/^\+91\s*/, '')}</a>
                     </div>
                   </div>
@@ -149,8 +149,8 @@ const MemberProfilePage = () => {
                       <MapPin size={24} />
                     </div>
                     <div>
-                      <p className="text-sm text-gray-500 font-medium">Location</p>
-                      <p className="text-lg font-semibold text-gray-900">
+                      <p className="text-sm font-medium">Location</p>
+                      <p className="text-lg font-semibold">
                         {[member.address, member.city, member.state, member.country].filter(Boolean).join(', ')}
                       </p>
                     </div>

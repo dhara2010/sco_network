@@ -77,7 +77,7 @@ const MemberReports = () => {
   return (
     <div className="space-y-6">
       <div className="flex justify-between items-center">
-        <h2 className="text-2xl font-bold text-gray-900">My Reports</h2>
+        <h2 className="text-2xl font-bold">My Reports</h2>
         <button 
           onClick={() => { setEditId(null); setFormData({ title: '', category: 'Report', description: '', reportYear: '', reportFile: '' }); setShowModal(true); }}
           className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-xl flex items-center gap-2 transition-colors shadow-sm"
@@ -87,13 +87,13 @@ const MemberReports = () => {
       </div>
 
       {loading ? (
-        <div className="text-gray-500">Loading reports...</div>
+        <div className="">Loading reports...</div>
       ) : (
         <div className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
           <div className="overflow-x-auto">
             <table className="w-full text-left border-collapse">
               <thead>
-                <tr className="bg-gray-50 text-gray-600 border-b border-gray-200">
+                <tr className="bg-gray-50 border-b border-gray-200">
                   <th className="p-4 font-semibold text-sm">Title</th>
                   <th className="p-4 font-semibold text-sm">Year</th>
                   <th className="p-4 font-semibold text-sm">Status</th>
@@ -106,10 +106,10 @@ const MemberReports = () => {
                   reports.map(report => (
                     <tr key={report._id} className="border-b border-gray-100 hover:bg-gray-50">
                       <td className="p-4">
-                        <p className="font-medium text-gray-900">{report.title}</p>
-                        <p className="text-xs text-gray-500 truncate max-w-xs">{report.description}</p>
+                        <p className="font-medium">{report.title}</p>
+                        <p className="text-xs truncate max-w-xs">{report.description}</p>
                       </td>
-                      <td className="p-4 text-sm text-gray-600">{report.reportYear}</td>
+                      <td className="p-4 text-sm">{report.reportYear}</td>
                       <td className="p-4">
                         <span className={`px-3 py-1 rounded-full text-xs font-bold ${
                           report.status === 'Approved' ? 'bg-emerald-100 text-emerald-800' :
@@ -119,7 +119,7 @@ const MemberReports = () => {
                           {report.status}
                         </span>
                       </td>
-                      <td className="p-4 text-sm text-gray-600 max-w-[200px] truncate">
+                      <td className="p-4 text-sm max-w-[200px] truncate">
                         {report.remarks || '-'}
                       </td>
                       <td className="p-4 flex items-center justify-end gap-2">
@@ -137,14 +137,14 @@ const MemberReports = () => {
                           </>
                         )}
                         {report.status === 'Approved' && (
-                          <span className="text-xs text-gray-400 italic">Locked</span>
+                          <span className="text-xs italic">Locked</span>
                         )}
                       </td>
                     </tr>
                   ))
                 ) : (
                   <tr>
-                    <td colSpan="5" className="p-8 text-center text-gray-500">
+                    <td colSpan="5" className="p-8 text-center">
                       No reports found. Click "Add Report" to submit one.
                     </td>
                   </tr>
@@ -160,8 +160,8 @@ const MemberReports = () => {
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-50">
           <div className="bg-white rounded-xl shadow-xl w-full max-w-2xl max-h-[90vh] overflow-y-auto">
             <div className="flex justify-between items-center p-6 border-b border-gray-100 sticky top-0 bg-white z-10">
-              <h3 className="text-xl font-bold text-gray-900">{editId ? 'Edit Report' : 'Add New Report'}</h3>
-              <button onClick={() => setShowModal(false)} className="text-gray-400 hover:text-gray-600">
+              <h3 className="text-xl font-bold">{editId ? 'Edit Report' : 'Add New Report'}</h3>
+              <button onClick={() => setShowModal(false)} className="hover:">
                 <X size={24} />
               </button>
             </div>
@@ -175,31 +175,31 @@ const MemberReports = () => {
               
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="md:col-span-2">
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Report Title *</label>
+                  <label className="block text-sm font-medium mb-1">Report Title *</label>
                   <input type="text" name="title" required value={formData.title} onChange={handleInputChange} className="w-full p-2.5 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none" />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Year *</label>
+                  <label className="block text-sm font-medium mb-1">Year *</label>
                   <input type="text" name="reportYear" required value={formData.reportYear} onChange={handleInputChange} placeholder="e.g. 2026" className="w-full p-2.5 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none" />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Upload PDF *</label>
+                  <label className="block text-sm font-medium mb-1">Upload PDF *</label>
                   <input type="file" accept="application/pdf" name="reportFile" required={!formData.reportFile} onChange={handleFileChange} className="w-full p-2.5 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none bg-white" />
                   {formData.reportFile && formData.reportFile.startsWith('data:') && (
                     <p className="mt-2 text-sm text-green-600 font-medium">✓ PDF selected</p>
                   )}
                   {formData.reportFile && !formData.reportFile.startsWith('data:') && (
-                    <p className="mt-2 text-sm text-gray-500 truncate"><a href={formData.reportFile} target="_blank" rel="noreferrer" className="text-purple-600 hover:underline">View Current PDF</a></p>
+                    <p className="mt-2 text-sm truncate"><a href={formData.reportFile} target="_blank" rel="noreferrer" className="text-purple-600 hover:underline">View Current PDF</a></p>
                   )}
                 </div>
                 <div className="md:col-span-2">
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Description *</label>
+                  <label className="block text-sm font-medium mb-1">Description *</label>
                   <textarea name="description" required rows="4" value={formData.description} onChange={handleInputChange} className="w-full p-2.5 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none"></textarea>
                 </div>
               </div>
 
               <div className="flex justify-end gap-3 pt-4 border-t border-gray-100">
-                <button type="button" onClick={() => setShowModal(false)} className="px-5 py-2.5 text-gray-600 hover:bg-gray-100 rounded-lg font-medium transition-colors">
+                <button type="button" onClick={() => setShowModal(false)} className="px-5 py-2.5 hover:bg-gray-100 rounded-lg font-medium transition-colors">
                   Cancel
                 </button>
                 <button type="submit" className="px-5 py-2.5 bg-blue-600 hover:bg-blue-700 text-white rounded-xl font-medium shadow-sm transition-colors">
@@ -216,28 +216,28 @@ const MemberReports = () => {
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-50">
           <div className="bg-white rounded-xl shadow-xl w-full max-w-2xl max-h-[90vh] overflow-y-auto">
             <div className="flex justify-between items-center p-6 border-b border-gray-100 sticky top-0 bg-white z-10">
-              <h3 className="text-xl font-bold text-gray-900">Report Details</h3>
-              <button onClick={() => setViewRecord(null)} className="text-gray-400 hover:text-gray-600 transition-colors">
+              <h3 className="text-xl font-bold">Report Details</h3>
+              <button onClick={() => setViewRecord(null)} className="hover: transition-colors">
                 <XCircle size={24} />
               </button>
             </div>
             <div className="p-6 space-y-4">
               <div>
-                <p className="text-sm text-gray-500 font-medium">Title</p>
-                <p className="text-lg font-semibold text-gray-900">{viewRecord.title}</p>
+                <p className="text-sm font-medium">Title</p>
+                <p className="text-lg font-semibold">{viewRecord.title}</p>
               </div>
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <p className="text-sm text-gray-500 font-medium">Category</p>
-                  <p className="text-gray-900">{viewRecord.category}</p>
+                  <p className="text-sm font-medium">Category</p>
+                  <p className="">{viewRecord.category}</p>
                 </div>
                 <div>
-                  <p className="text-sm text-gray-500 font-medium">Year</p>
-                  <p className="text-gray-900">{viewRecord.reportYear}</p>
+                  <p className="text-sm font-medium">Year</p>
+                  <p className="">{viewRecord.reportYear}</p>
                 </div>
                 <div>
-                  <p className="text-sm text-gray-500 font-medium">Status</p>
-                  <p className="text-gray-900">
+                  <p className="text-sm font-medium">Status</p>
+                  <p className="">
                     <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium border
                         ${viewRecord.status === 'Pending' ? 'bg-yellow-50 text-yellow-800 border-yellow-200' : ''}
                         ${viewRecord.status === 'Approved' ? 'bg-green-50 text-green-800 border-green-200' : ''}
@@ -248,17 +248,17 @@ const MemberReports = () => {
                   </p>
                 </div>
                 <div>
-                  <p className="text-sm text-gray-500 font-medium">Date Added</p>
-                  <p className="text-gray-900">{new Date(viewRecord.createdAt).toLocaleDateString()}</p>
+                  <p className="text-sm font-medium">Date Added</p>
+                  <p className="">{new Date(viewRecord.createdAt).toLocaleDateString()}</p>
                 </div>
               </div>
               <div>
-                <p className="text-sm text-gray-500 font-medium">Description</p>
-                <p className="text-gray-900 whitespace-pre-wrap">{viewRecord.description}</p>
+                <p className="text-sm font-medium">Description</p>
+                <p className="whitespace-pre-wrap">{viewRecord.description}</p>
               </div>
               {viewRecord.reportFile && (
                 <div>
-                  <p className="text-sm text-gray-500 font-medium mb-2">Report Document</p>
+                  <p className="text-sm font-medium mb-2">Report Document</p>
                   <a href={viewRecord.reportFile} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 text-blue-600 hover:text-blue-800 hover:underline bg-blue-50 px-4 py-2 rounded-lg transition-colors">
                     <FileText size={20} /> View PDF Document
                   </a>
@@ -266,13 +266,13 @@ const MemberReports = () => {
               )}
               {viewRecord.remarks && (
                 <div>
-                  <p className="text-sm text-gray-500 font-medium text-red-600 mb-1">Remarks</p>
-                  <p className="text-gray-900 bg-red-50 p-3 rounded-lg border border-red-100">{viewRecord.remarks}</p>
+                  <p className="text-sm font-medium text-red-600 mb-1">Remarks</p>
+                  <p className="bg-red-50 p-3 rounded-lg border border-red-100">{viewRecord.remarks}</p>
                 </div>
               )}
             </div>
             <div className="p-6 border-t border-gray-100 flex justify-end">
-              <button onClick={() => setViewRecord(null)} className="px-4 py-2 bg-gray-100 text-gray-700 font-medium rounded-lg hover:bg-gray-200 transition-colors">
+              <button onClick={() => setViewRecord(null)} className="px-4 py-2 bg-gray-100 font-medium rounded-lg hover:bg-gray-200 transition-colors">
                 Close
               </button>
             </div>

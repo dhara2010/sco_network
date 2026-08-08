@@ -18,6 +18,7 @@ const ManageChapters = () => {
     email: '',
     address: '',
     websiteUrl: '',
+    imageUrl: '',
     latitude: '',
     longitude: '',
     status: 'pending'
@@ -67,6 +68,7 @@ const ManageChapters = () => {
       email: chapter.email || '',
       address: chapter.address || '',
       websiteUrl: chapter.websiteUrl || '',
+      imageUrl: chapter.imageUrl || '',
       latitude: chapter.latitude || '',
       longitude: chapter.longitude || '',
       status: chapter.status
@@ -95,6 +97,7 @@ const ManageChapters = () => {
       email: '',
       address: '',
       websiteUrl: '',
+      imageUrl: '',
       latitude: '',
       longitude: '',
       status: 'pending'
@@ -277,6 +280,11 @@ const ManageChapters = () => {
                 <div>
                   <label className="block text-sm font-semibold text-gray-700 mb-1">Website URL</label>
                   <input type="url" name="websiteUrl" value={formData.websiteUrl} onChange={handleInputChange} className="w-full px-4 py-2.5 rounded-xl border border-gray-200 focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none transition-all" placeholder="e.g., https://suratchapter.com" />
+                </div>
+
+                <div>
+                  <label className="block text-sm font-semibold text-gray-700 mb-1">Image URL</label>
+                  <input type="text" name="imageUrl" value={formData.imageUrl} onChange={handleInputChange} className="w-full px-4 py-2.5 rounded-xl border border-gray-200 focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none transition-all" placeholder="e.g., /images/chapters/my-chapter.png" />
                 </div>
 
                 <div>

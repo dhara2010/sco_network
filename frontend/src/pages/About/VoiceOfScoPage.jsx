@@ -55,7 +55,7 @@ const VoiceOfScoPage = () => {
               </p>
 
               <div className="flex flex-col sm:flex-row items-center gap-4">
-                <Link to="/annual-reports" className="w-full sm:w-auto bg-[#f2b528] hover:bg-[#e0a41d] text-[#0A1435] font-bold py-3.5 px-8 rounded flex items-center justify-center transition-colors shadow-lg">
+                <Link to="/annual-reports" className="w-full sm:w-auto bg-[#f2b528] hover:bg-[#e0a41d] font-bold py-3.5 px-8 rounded flex items-center justify-center transition-colors shadow-lg">
                   Latest Issue <FaArrowRight className="ml-2 w-3.5 h-3.5" />
                 </Link>
                 <Link to="/annual-reports" className="w-full sm:w-auto bg-white/5 hover:bg-white/10 border border-white/20 text-white font-bold py-3.5 px-8 rounded transition-colors backdrop-blur-sm">
@@ -97,22 +97,22 @@ const VoiceOfScoPage = () => {
         <div className="flex flex-col md:flex-row justify-between items-start md:items-end border-b border-gray-100 pb-6 mb-12">
           <div>
             <div className="flex items-center gap-4 mb-2">
-              <h2 className="text-3xl font-extrabold text-[#0A1435]">Recent Issues</h2>
+              <h2 className="text-3xl font-extrabold">Recent Issues</h2>
               <div className="h-1.5 w-16 bg-[#f2b528] rounded-full mt-1"></div>
             </div>
-            <p className="text-gray-500 text-sm">Explore our history of excellence and community growth</p>
+            <p className="text-sm">Explore our history of excellence and community growth</p>
           </div>
 
           <div className="flex gap-2 mt-6 md:mt-0">
             <button 
               onClick={() => setViewMode('grid')}
-              className={`w-10 h-10 rounded border flex items-center justify-center transition-colors ${viewMode === 'grid' ? 'border-[#0A1435] text-[#0A1435] bg-gray-50' : 'border-gray-200 text-gray-400 hover:bg-gray-50'}`}
+              className={`w-10 h-10 rounded border flex items-center justify-center transition-colors ${viewMode === 'grid' ? 'border-[#0A1435] bg-gray-50' : 'border-gray-200 hover:bg-gray-50'}`}
             >
               <FaThLarge className="w-4 h-4" />
             </button>
             <button 
               onClick={() => setViewMode('list')}
-              className={`w-10 h-10 rounded border flex items-center justify-center transition-colors ${viewMode === 'list' ? 'border-[#0A1435] text-[#0A1435] bg-gray-50' : 'border-gray-200 text-gray-400 hover:text-gray-600 hover:bg-gray-50'}`}
+              className={`w-10 h-10 rounded border flex items-center justify-center transition-colors ${viewMode === 'list' ? 'border-[#0A1435] bg-gray-50' : 'border-gray-200 hover: hover:bg-gray-50'}`}
             >
               <FaList className="w-4 h-4" />
             </button>
@@ -131,10 +131,10 @@ const VoiceOfScoPage = () => {
                 </div>
 
                 {/* Info */}
-                <h3 className="text-[#0A1435] font-extrabold text-lg leading-snug mb-2">
+                <h3 className="font-extrabold text-lg leading-snug mb-2">
                   {mag.title}
                 </h3>
-                <p className="text-gray-500 text-xs leading-relaxed mb-6 flex-grow">
+                <p className="text-xs leading-relaxed mb-6 flex-grow">
                   {mag.description}
                 </p>
 
@@ -153,10 +153,10 @@ const VoiceOfScoPage = () => {
                 
                 {/* Info */}
                 <div className="p-6 flex flex-col justify-center flex-grow">
-                  <h3 className="text-[#0A1435] font-extrabold text-xl leading-snug mb-3">
+                  <h3 className="font-extrabold text-xl leading-snug mb-3">
                     {mag.title}
                   </h3>
-                  <p className="text-gray-500 text-sm leading-relaxed mb-6 max-w-2xl">
+                  <p className="text-sm leading-relaxed mb-6 max-w-2xl">
                     {mag.description}
                   </p>
                   <div>
@@ -172,23 +172,23 @@ const VoiceOfScoPage = () => {
 
         {/* 4. Pagination */}
         <div className="flex items-center justify-center gap-2 mt-20">
-          <button className="w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center text-gray-400 hover:text-[#0A1435] hover:border-gray-300 transition-colors">
+          <button className="w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center hover: hover:border-gray-300 transition-colors">
             <FaChevronLeft className="w-3 h-3" />
           </button>
           <button className="w-10 h-10 rounded-full bg-[#0A1435] text-white flex items-center justify-center text-sm font-bold shadow-md">
             1
           </button>
-          <button className="w-10 h-10 rounded-full bg-transparent text-gray-500 flex items-center justify-center text-sm font-bold hover:bg-gray-50 transition-colors">
+          <button className="w-10 h-10 rounded-full bg-transparent flex items-center justify-center text-sm font-bold hover:bg-gray-50 transition-colors">
             2
           </button>
-          <button className="w-10 h-10 rounded-full bg-transparent text-gray-500 flex items-center justify-center text-sm font-bold hover:bg-gray-50 transition-colors">
+          <button className="w-10 h-10 rounded-full bg-transparent flex items-center justify-center text-sm font-bold hover:bg-gray-50 transition-colors">
             3
           </button>
-          <span className="text-gray-400 mx-1">...</span>
-          <button className="w-10 h-10 rounded-full bg-transparent text-gray-500 flex items-center justify-center text-sm font-bold hover:bg-gray-50 transition-colors">
+          <span className="mx-1">...</span>
+          <button className="w-10 h-10 rounded-full bg-transparent flex items-center justify-center text-sm font-bold hover:bg-gray-50 transition-colors">
             12
           </button>
-          <button className="w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center text-gray-400 hover:text-[#0A1435] hover:border-gray-300 transition-colors">
+          <button className="w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center hover: hover:border-gray-300 transition-colors">
             <FaChevronRight className="w-3 h-3" />
           </button>
         </div>

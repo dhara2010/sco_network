@@ -30,10 +30,8 @@ const ProjectsPage = () => {
   return (
     <div className="min-h-screen bg-white pb-16 mt-14">
       {/* Hero Section */}
-      <div className="bg-[#1056A5] text-white py-24 px-4 text-center relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-transparent to-[#0a3d7a] opacity-50 transform -skew-x-12 scale-150 origin-bottom-right pointer-events-none"></div>
-
-        <div className="relative z-10">
+      <div className="sco-page-hero">
+        <div>
           <motion.h1
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -56,7 +54,7 @@ const ProjectsPage = () => {
 
         <div className="mb-10">
           <h2 className="text-[26px] font-extrabold text-[#0B2B5B]">Project Showcase</h2>
-          <p className="text-gray-500 text-sm mt-1">Explore our latest successful and ongoing projects.</p>
+          <p className="text-sm mt-1">Explore our latest successful and ongoing projects.</p>
         </div>
 
         {/* Projects Grid */}
@@ -67,7 +65,7 @@ const ProjectsPage = () => {
           ) : error ? (
             <div className="col-span-full text-center py-20 text-red-600 font-bold">Error: {error}</div>
           ) : projects.length === 0 ? (
-            <div className="col-span-full text-center py-20 text-gray-500 font-medium bg-gray-50 rounded-2xl border border-gray-100">No projects currently available to display.</div>
+            <div className="col-span-full text-center py-20 font-medium bg-gray-50 rounded-2xl border border-gray-100">No projects currently available to display.</div>
           ) : (
             projects.map((project) => {
               const IconComponent = Icons[project.icon] || Icons.Folder;
@@ -86,7 +84,7 @@ const ProjectsPage = () => {
                       </h3>
                       
                       {project.subtitle && (
-                        <p className="text-[12px] text-gray-500 mb-6">
+                        <p className="text-[12px] mb-6">
                           {project.subtitle}
                         </p>
                       )}

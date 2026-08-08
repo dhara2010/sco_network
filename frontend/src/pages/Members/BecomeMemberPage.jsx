@@ -163,16 +163,16 @@ const BecomeMemberPage = () => {
 
           {/* Personal Information */}
           <section>
-            <h3 className="text-xl font-semibold text-gray-800 border-b pb-2 mb-4">Personal Information</h3>
+            <h3 className="text-xl font-semibold border-b pb-2 mb-4">Personal Information</h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div><label className="block text-sm font-medium text-gray-700">Full Name *</label><input type="text" name="fullName" required value={formData.fullName} onChange={handleInputChange} className="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-2 border focus:ring-blue-500 focus:border-blue-500"/></div>
-              <div><label className="block text-sm font-medium text-gray-700">Profile Picture</label><input type="file" accept="image/*" onChange={handleFileChange} className="mt-1 block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100"/></div>
-              <div><label className="block text-sm font-medium text-gray-700">Email Address *</label><input type="email" name="email" required value={formData.email} onChange={handleInputChange} className="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-2 border focus:ring-blue-500 focus:border-blue-500"/></div>
-              <div><label className="block text-sm font-medium text-gray-700">Mobile Number *</label><input type="tel" name="mobile" required value={formData.mobile} onChange={handleInputChange} className="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-2 border focus:ring-blue-500 focus:border-blue-500"/></div>
-              <div><label className="block text-sm font-medium text-gray-700">Password *</label><input type="password" name="password" required value={formData.password} onChange={handleInputChange} className="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-2 border focus:ring-blue-500 focus:border-blue-500"/></div>
-              <div><label className="block text-sm font-medium text-gray-700">Confirm Password *</label><input type="password" name="confirmPassword" required value={formData.confirmPassword} onChange={handleInputChange} className="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-2 border focus:ring-blue-500 focus:border-blue-500"/></div>
+              <div><label className="block text-sm font-medium">Full Name *</label><input type="text" name="fullName" required value={formData.fullName} onChange={handleInputChange} className="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-2 border focus:ring-blue-500 focus:border-blue-500"/></div>
+              <div><label className="block text-sm font-medium">Profile Picture</label><input type="file" accept="image/*" onChange={handleFileChange} className="mt-1 block w-full text-sm file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100"/></div>
+              <div><label className="block text-sm font-medium">Email Address *</label><input type="email" name="email" required value={formData.email} onChange={handleInputChange} className="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-2 border focus:ring-blue-500 focus:border-blue-500"/></div>
+              <div><label className="block text-sm font-medium">Mobile Number *</label><input type="tel" name="mobile" required value={formData.mobile} onChange={handleInputChange} className="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-2 border focus:ring-blue-500 focus:border-blue-500"/></div>
+              <div><label className="block text-sm font-medium">Password *</label><input type="password" name="password" required value={formData.password} onChange={handleInputChange} className="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-2 border focus:ring-blue-500 focus:border-blue-500"/></div>
+              <div><label className="block text-sm font-medium">Confirm Password *</label><input type="password" name="confirmPassword" required value={formData.confirmPassword} onChange={handleInputChange} className="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-2 border focus:ring-blue-500 focus:border-blue-500"/></div>
               <div>
-                <label className="block text-sm font-medium text-gray-700">Gender</label>
+                <label className="block text-sm font-medium">Gender</label>
                 <select name="gender" value={formData.gender} onChange={handleInputChange} className="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-2 border focus:ring-blue-500 focus:border-blue-500">
                   <option value="">Select Gender</option>
                   <option value="Male">Male</option>
@@ -180,20 +180,20 @@ const BecomeMemberPage = () => {
                   <option value="Other">Other</option>
                 </select>
               </div>
-              <div><label className="block text-sm font-medium text-gray-700">Date of Birth</label><input type="date" name="dob" value={formData.dob} onChange={handleInputChange} className="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-2 border focus:ring-blue-500 focus:border-blue-500"/></div>
+              <div><label className="block text-sm font-medium">Date of Birth</label><input type="date" name="dob" value={formData.dob} onChange={handleInputChange} className="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-2 border focus:ring-blue-500 focus:border-blue-500"/></div>
             </div>
           </section>
 
           {/* Address Information */}
           <section>
-            <h3 className="text-xl font-semibold text-gray-800 border-b pb-2 mb-4">Address Information</h3>
+            <h3 className="text-xl font-semibold border-b pb-2 mb-4">Address Information</h3>
             <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-4">
-              <div><label className="block text-sm font-medium text-gray-700">Country</label><input type="text" name="country" value={formData.country} onChange={handleInputChange} className="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-2 border"/></div>
-              <div><label className="block text-sm font-medium text-gray-700">State</label><input type="text" name="state" value={formData.state} onChange={handleInputChange} className="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-2 border"/></div>
-              <div><label className="block text-sm font-medium text-gray-700">City</label><input type="text" name="city" value={formData.city} onChange={handleInputChange} className="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-2 border"/></div>
-              <div><label className="block text-sm font-medium text-gray-700">PIN Code *</label><input type="text" name="pincode" required value={formData.pincode} onChange={handleInputChange} maxLength="6" className="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-2 border"/></div>
+              <div><label className="block text-sm font-medium">Country</label><input type="text" name="country" value={formData.country} onChange={handleInputChange} className="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-2 border"/></div>
+              <div><label className="block text-sm font-medium">State</label><input type="text" name="state" value={formData.state} onChange={handleInputChange} className="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-2 border"/></div>
+              <div><label className="block text-sm font-medium">City</label><input type="text" name="city" value={formData.city} onChange={handleInputChange} className="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-2 border"/></div>
+              <div><label className="block text-sm font-medium">PIN Code *</label><input type="text" name="pincode" required value={formData.pincode} onChange={handleInputChange} maxLength="6" className="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-2 border"/></div>
             </div>
-            <div className="mb-6"><label className="block text-sm font-medium text-gray-700">Full Address</label><textarea name="address" rows="2" value={formData.address} onChange={handleInputChange} className="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-2 border"></textarea></div>
+            <div className="mb-6"><label className="block text-sm font-medium">Full Address</label><textarea name="address" rows="2" value={formData.address} onChange={handleInputChange} className="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-2 border"></textarea></div>
             
             {/* Nearest Chapter Card */}
             {formData.pincode && formData.pincode.length === 6 && (
@@ -214,8 +214,8 @@ const BecomeMemberPage = () => {
                 ) : nearestChapter ? (
                   <div className="bg-white p-5 rounded-xl border border-gray-100 shadow-sm grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
-                      <div className="font-bold text-gray-900 text-lg mb-1">{nearestChapter.chapterName || nearestChapter.cityName}</div>
-                      <div className="text-gray-500 text-sm mb-3">{nearestChapter.cityName}, {nearestChapter.state}</div>
+                      <div className="font-bold text-lg mb-1">{nearestChapter.chapterName || nearestChapter.cityName}</div>
+                      <div className="text-sm mb-3">{nearestChapter.cityName}, {nearestChapter.state}</div>
                       
                       {nearestChapter.distance !== undefined && (
                         <div className="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-bold bg-green-100 text-green-800 mb-2">
@@ -223,28 +223,28 @@ const BecomeMemberPage = () => {
                         </div>
                       )}
                     </div>
-                    <div className="space-y-2 text-sm text-gray-600">
+                    <div className="space-y-2 text-sm">
                       {nearestChapter.contactPerson && (
                         <div className="flex items-center gap-2">
-                          <UserIcon size={14} className="text-gray-400" />
-                          <span className="font-medium text-gray-900">{nearestChapter.contactPerson}</span>
+                          <UserIcon size={14} className="" />
+                          <span className="font-medium">{nearestChapter.contactPerson}</span>
                         </div>
                       )}
                       {nearestChapter.contactNumber && (
                         <div className="flex items-center gap-2">
-                          <Phone size={14} className="text-gray-400" />
+                          <Phone size={14} className="" />
                           {nearestChapter.contactNumber}
                         </div>
                       )}
                       {nearestChapter.email && (
                         <div className="flex items-center gap-2">
-                          <Mail size={14} className="text-gray-400" />
+                          <Mail size={14} className="" />
                           {nearestChapter.email}
                         </div>
                       )}
                     </div>
-                    <div className="col-span-1 md:col-span-2 text-sm text-gray-500 mt-2 pt-3 border-t border-gray-50">
-                      <strong className="text-gray-700">Address:</strong> {nearestChapter.address}
+                    <div className="col-span-1 md:col-span-2 text-sm mt-2 pt-3 border-t border-gray-50">
+                      <strong className="">Address:</strong> {nearestChapter.address}
                     </div>
                   </div>
                 ) : null}
@@ -254,29 +254,29 @@ const BecomeMemberPage = () => {
 
           {/* Business Information */}
           <section>
-            <h3 className="text-xl font-semibold text-gray-800 border-b pb-2 mb-4">Business Information</h3>
+            <h3 className="text-xl font-semibold border-b pb-2 mb-4">Business Information</h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div><label className="block text-sm font-medium text-gray-700">Company Name</label><input type="text" name="companyName" value={formData.companyName} onChange={handleInputChange} className="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-2 border"/></div>
-              <div><label className="block text-sm font-medium text-gray-700">Business Type</label><input type="text" name="businessType" value={formData.businessType} onChange={handleInputChange} className="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-2 border"/></div>
-              <div><label className="block text-sm font-medium text-gray-700">Occupation</label><input type="text" name="occupation" value={formData.occupation} onChange={handleInputChange} className="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-2 border"/></div>
-              <div><label className="block text-sm font-medium text-gray-700">Website (Optional)</label><input type="url" name="website" value={formData.website} onChange={handleInputChange} className="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-2 border"/></div>
+              <div><label className="block text-sm font-medium">Company Name</label><input type="text" name="companyName" value={formData.companyName} onChange={handleInputChange} className="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-2 border"/></div>
+              <div><label className="block text-sm font-medium">Business Type</label><input type="text" name="businessType" value={formData.businessType} onChange={handleInputChange} className="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-2 border"/></div>
+              <div><label className="block text-sm font-medium">Occupation</label><input type="text" name="occupation" value={formData.occupation} onChange={handleInputChange} className="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-2 border"/></div>
+              <div><label className="block text-sm font-medium">Website (Optional)</label><input type="url" name="website" value={formData.website} onChange={handleInputChange} className="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-2 border"/></div>
             </div>
           </section>
 
           {/* Membership Information */}
           <section>
-            <h3 className="text-xl font-semibold text-gray-800 border-b pb-2 mb-4">Membership Information</h3>
+            <h3 className="text-xl font-semibold border-b pb-2 mb-4">Membership Information</h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-4">
               <div>
-                <label className="block text-sm font-medium text-gray-700">Designation *</label>
+                <label className="block text-sm font-medium">Designation *</label>
                 <select name="designation" required value={formData.designation} onChange={handleInputChange} className="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-2 border focus:ring-blue-500 focus:border-blue-500">
                   <option value="">Select Designation</option>
                   {designations.map(d => <option key={d} value={d}>{d}</option>)}
                 </select>
               </div>
-              <div><label className="block text-sm font-medium text-gray-700">Experience</label><input type="text" name="experience" placeholder="e.g. 10 Years" value={formData.experience} onChange={handleInputChange} className="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-2 border"/></div>
+              <div><label className="block text-sm font-medium">Experience</label><input type="text" name="experience" placeholder="e.g. 10 Years" value={formData.experience} onChange={handleInputChange} className="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-2 border"/></div>
             </div>
-            <div><label className="block text-sm font-medium text-gray-700">Short Introduction / Bio</label><textarea name="bio" rows="3" value={formData.bio} onChange={handleInputChange} className="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-2 border"></textarea></div>
+            <div><label className="block text-sm font-medium">Short Introduction / Bio</label><textarea name="bio" rows="3" value={formData.bio} onChange={handleInputChange} className="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-2 border"></textarea></div>
           </section>
 
           {/* Declaration */}
@@ -286,8 +286,8 @@ const BecomeMemberPage = () => {
                 <input type="checkbox" name="declaration" checked={formData.declaration} onChange={handleInputChange} className="focus:ring-blue-500 h-4 w-4 text-blue-600 border-gray-300 rounded"/>
               </div>
               <div className="ml-3 text-sm">
-                <label className="font-medium text-gray-700">Declaration *</label>
-                <p className="text-gray-500">I confirm that all information provided is correct and I agree to abide by the organization's rules and regulations.</p>
+                <label className="font-medium">Declaration *</label>
+                <p className="">I confirm that all information provided is correct and I agree to abide by the organization's rules and regulations.</p>
               </div>
             </div>
           </section>
@@ -296,7 +296,7 @@ const BecomeMemberPage = () => {
             <button type="submit" disabled={loading} className="flex-1 bg-[var(--color-sco-navy)] text-white py-3 px-4 rounded-md shadow hover:bg-blue-900 transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[var(--color-sco-navy)] font-semibold">
               {loading ? 'Submitting...' : 'Submit Request'}
             </button>
-            <button type="button" onClick={() => window.location.reload()} className="flex-1 bg-gray-100 text-gray-700 py-3 px-4 rounded-md shadow hover:bg-gray-200 transition-colors font-semibold">
+            <button type="button" onClick={() => window.location.reload()} className="flex-1 bg-gray-100 py-3 px-4 rounded-md shadow hover:bg-gray-200 transition-colors font-semibold">
               Reset Form
             </button>
           </div>

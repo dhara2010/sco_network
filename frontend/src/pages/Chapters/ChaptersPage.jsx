@@ -27,7 +27,7 @@ const ChaptersPage = () => {
   return (
     <div className="min-h-screen bg-gray-50 pb-20 mt-14">
       {/* Hero Section */}
-      <div className="bg-[#1056A5] text-white py-24 px-4 text-center">
+      <div className="sco-page-hero">
         <motion.h1
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -62,7 +62,7 @@ const ChaptersPage = () => {
         </div>
 
         {loading ? (
-          <div className="text-center py-10 font-bold text-gray-500">Loading chapters...</div>
+          <div className="text-center py-10 font-bold">Loading chapters...</div>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
             {chapters.map((chapter) => (
@@ -82,13 +82,13 @@ const ChaptersPage = () => {
 
                 <div className="space-y-3 mb-6">
                   {chapter.presidentName && (
-                    <div className="flex items-center text-sm text-gray-600">
+                    <div className="flex items-center text-sm">
                       <Users size={16} className="mr-2 text-[var(--color-sco-navy)]" />
                       <span className="font-semibold mr-1">President:</span> {chapter.presidentName}
                     </div>
                   )}
                   {chapter.membersCount > 0 && (
-                    <div className="flex items-center text-sm text-gray-600">
+                    <div className="flex items-center text-sm">
                       <Building2 size={16} className="mr-2 text-[var(--color-sco-navy)]" />
                       <span className="font-semibold mr-1">Members:</span> {chapter.membersCount}
                     </div>
@@ -106,7 +106,7 @@ const ChaptersPage = () => {
               </motion.div>
             ))}
             {chapters.length === 0 && (
-              <div className="col-span-full text-center text-gray-500 py-10">
+              <div className="col-span-full text-center py-10">
                 No chapters found.
               </div>
             )}

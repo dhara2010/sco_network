@@ -33,10 +33,10 @@ const MemberDashboard = () => {
 
   return (
     <div className="space-y-6">
-      <h2 className="text-2xl font-bold text-gray-900">Welcome back{profile ? `, ${profile.fullName}` : ''}!</h2>
+      <h2 className="text-2xl font-bold">Welcome back{profile ? `, ${profile.fullName}` : ''}!</h2>
 
       {loading ? (
-        <div className="text-gray-500">Loading dashboard...</div>
+        <div className="">Loading dashboard...</div>
       ) : (
         <>
           {profile && profile.status !== 'Approved' && (
@@ -68,15 +68,15 @@ const MemberDashboard = () => {
                   </div>
                 </div>
                 <div>
-                  <p className="text-gray-500 text-sm font-medium mb-1">{card.title}</p>
-                  <h3 className="text-3xl font-extrabold text-gray-900">{card.count}</h3>
+                  <p className="text-sm font-medium mb-1">{card.title}</p>
+                  <h3 className="text-3xl font-extrabold">{card.count}</h3>
                 </div>
               </motion.div>
             ))}
           </div>
 
           <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 mt-6">
-            <h3 className="text-lg font-bold text-gray-900 mb-6 flex items-center gap-2"><UserIcon size={20} className="text-blue-600" /> Profile Information</h3>
+            <h3 className="text-lg font-bold mb-6 flex items-center gap-2"><UserIcon size={20} className="text-blue-600" /> Profile Information</h3>
             {profile && (
               <div className="flex flex-col md:flex-row gap-8 items-start">
                 {profile.profilePicture && (
@@ -86,28 +86,28 @@ const MemberDashboard = () => {
                 )}
                 <div className="flex-1 grid grid-cols-1 md:grid-cols-2 gap-y-4 gap-x-8">
                   <div>
-                    <p className="text-sm text-gray-500">Full Name</p>
-                    <p className="font-medium text-gray-900">{profile.fullName}</p>
+                    <p className="text-sm">Full Name</p>
+                    <p className="font-medium">{profile.fullName}</p>
                   </div>
                   <div>
-                    <p className="text-sm text-gray-500">Email Address</p>
-                    <p className="font-medium text-gray-900">{profile.email}</p>
+                    <p className="text-sm">Email Address</p>
+                    <p className="font-medium">{profile.email}</p>
                   </div>
                   <div>
-                    <p className="text-sm text-gray-500">Mobile</p>
-                    <p className="font-medium text-gray-900">{profile.mobile}</p>
+                    <p className="text-sm">Mobile</p>
+                    <p className="font-medium">{profile.mobile}</p>
                   </div>
                   <div>
-                    <p className="text-sm text-gray-500">Designation</p>
-                    <p className="font-medium text-gray-900">{profile.designation}</p>
+                    <p className="text-sm">Designation</p>
+                    <p className="font-medium">{profile.designation}</p>
                   </div>
                   <div>
-                    <p className="text-sm text-gray-500">Company</p>
-                    <p className="font-medium text-gray-900">{profile.companyName || 'N/A'}</p>
+                    <p className="text-sm">Company</p>
+                    <p className="font-medium">{profile.companyName || 'N/A'}</p>
                   </div>
                   <div>
-                    <p className="text-sm text-gray-500">City</p>
-                    <p className="font-medium text-gray-900">{profile.city || 'N/A'}</p>
+                    <p className="text-sm">City</p>
+                    <p className="font-medium">{profile.city || 'N/A'}</p>
                   </div>
                 </div>
               </div>
@@ -116,7 +116,7 @@ const MemberDashboard = () => {
 
           {profile && profile.status === 'Approved' && profile.groupId && profile.chapterId && (
             <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 mt-6">
-              <h3 className="text-lg font-bold text-gray-900 mb-6 flex items-center gap-2"><UserIcon size={20} className="text-blue-600" /> My Group Information</h3>
+              <h3 className="text-lg font-bold mb-6 flex items-center gap-2"><UserIcon size={20} className="text-blue-600" /> My Group Information</h3>
               
               {(() => {
                 const chapter = chaptersData.find(c => c._id === profile.chapterId);
@@ -128,12 +128,12 @@ const MemberDashboard = () => {
                   <div className="space-y-6">
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-y-4 gap-x-8 bg-blue-50/50 p-4 rounded-xl border border-blue-100">
                       <div>
-                        <p className="text-sm text-gray-500">Chapter</p>
-                        <p className="font-medium text-gray-900">{chapter?.chapterName || 'Unknown Chapter'}</p>
+                        <p className="text-sm">Chapter</p>
+                        <p className="font-medium">{chapter?.chapterName || 'Unknown Chapter'}</p>
                       </div>
                       <div>
-                        <p className="text-sm text-gray-500">Group Name</p>
-                        <p className="font-medium text-gray-900 flex items-center gap-2">
+                        <p className="text-sm">Group Name</p>
+                        <p className="font-medium flex items-center gap-2">
                           {group?.groupName || 'Unknown Group'}
                           <span className={`text-xs px-2 py-0.5 rounded-full font-bold ${isFull ? 'bg-red-100 text-red-700' : 'bg-green-100 text-green-700'}`}>
                             {groupMembers.length}/{group?.maxMembers || 6} Capacity
@@ -141,13 +141,13 @@ const MemberDashboard = () => {
                         </p>
                       </div>
                       <div>
-                        <p className="text-sm text-gray-500">My Assigned Position</p>
-                        <p className="font-medium text-gray-900">{profile.groupPosition || 'Member'}</p>
+                        <p className="text-sm">My Assigned Position</p>
+                        <p className="font-medium">{profile.groupPosition || 'Member'}</p>
                       </div>
                     </div>
 
                     <div>
-                      <h4 className="text-md font-bold text-gray-800 mb-4 border-b pb-2">Group Members</h4>
+                      <h4 className="text-md font-bold mb-4 border-b pb-2">Group Members</h4>
                       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                         {groupMembers.map(member => (
                           <div key={member._id} className="flex items-center gap-3 p-3 bg-white border border-gray-100 rounded-xl shadow-sm hover:shadow-md transition-shadow">
@@ -161,10 +161,10 @@ const MemberDashboard = () => {
                               )}
                             </div>
                             <div>
-                              <p className="font-bold text-gray-900 text-sm">{member.fullName} {member._id === profile._id ? '(You)' : ''}</p>
+                              <p className="font-bold text-sm">{member.fullName} {member._id === profile._id ? '(You)' : ''}</p>
                               <p className="text-xs text-blue-600 font-medium mb-1">{member.groupPosition || 'Member'}</p>
-                              <p className="text-xs text-gray-500 truncate">{member.email}</p>
-                              <p className="text-xs text-gray-500">{member.mobile}</p>
+                              <p className="text-xs truncate">{member.email}</p>
+                              <p className="text-xs">{member.mobile}</p>
                             </div>
                           </div>
                         ))}

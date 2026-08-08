@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { ChevronLeft, ChevronRight, X } from 'lucide-react';
-import { motion } from 'framer-motion';
+import { ChevronLeft, ChevronRight, X, ArrowRight, MapPin } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Link } from 'react-router-dom';
 import GujaratMap from './GujaratMap';
 
 const images = [
@@ -20,7 +21,7 @@ const HeroSection = () => {
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
-    }, 4000); // Change image every 4 seconds
+    }, 6000); // 6 seconds for a slower, more premium transition
     return () => clearInterval(timer);
   }, []);
 
@@ -33,107 +34,159 @@ const HeroSection = () => {
   };
 
   return (
-    <section className="w-full">
-      <div className="mx-auto max-w-7xl px-4 py-8">
-        {/* 10-column grid for 7:3 ratio */}
-        <div className="grid grid-cols-1 lg:grid-cols-10 gap-8 items-stretch">
-
-          {/* Left Side: Scrollable Image Carousel (7 parts) */}
-          <motion.div 
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-            className="lg:col-span-7 relative h-[400px] md:h-[450px] w-full overflow-hidden rounded-3xl shadow-2xl group bg-gray-200"
-          >
-            {/* Image Slider Container */}
-            <div
-              className="flex h-full w-full transition-transform duration-700 ease-in-out"
-              style={{ transform: `translateX(-${currentIndex * 100}%)` }}
-            >
-              {images.map((img, index) => (
-                <div key={index} className="h-full w-full flex-shrink-0">
-                  <img
-                    src={img}
-                    alt={`Slide ${index + 1}`}
-                    className="h-full w-full object-cover"
-                  />
-                </div>
-              ))}
-            </div>
-
-            {/* Overlay Gradient for text readability */}
-            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent pointer-events-none z-10" />
-
-            {/* Text Content */}
-            <div className="absolute bottom-0 left-0 p-6 md:p-8 text-white z-20 w-full">
-              <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold drop-shadow-md">
-                Empowering Global Trade Excellence
-              </h2>
-            </div>
-
-            {/* Navigation Arrows (visible on hover) */}
-            <button
-              onClick={goToPrevious}
-              className="absolute left-4 top-1/2 -translate-y-1/2 z-30 p-2 rounded-full bg-white/20 text-white backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity hover:bg-white/40"
-              aria-label="Previous image"
-            >
-              <ChevronLeft className="h-6 w-6" />
-            </button>
-            <button
-              onClick={goToNext}
-              className="absolute right-4 top-1/2 -translate-y-1/2 z-30 p-2 rounded-full bg-white/20 text-white backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity hover:bg-white/40"
-              aria-label="Next image"
-            >
-              <ChevronRight className="h-6 w-6" />
-            </button>
-          </motion.div>
-
-          {/* Right Side: Interactive Gujarat Map (3 parts) */}
-          <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-            className="lg:col-span-3 flex flex-col items-center justify-start rounded-3xl bg-white shadow-xl p-4 relative overflow-hidden border border-gray-100 cursor-pointer hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 group"
-            onClick={() => setIsModalOpen(true)}
-            title="Click to enlarge map"
-          >
-            <h3 className="text-lg md:text-xl font-bold text-gray-800 mb-2 mt-1">Gujarat Chapters</h3>
-            <div className="relative w-full flex-1 flex items-center justify-center overflow-hidden">
-              <GujaratMap />
-            </div>
-
-            {/* Click icon overlay */}
-            <div className="absolute inset-0 bg-black/5 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center pointer-events-none rounded-2xl z-20">
-              <div className="bg-white/80 backdrop-blur-sm text-gray-800 text-xs font-bold py-2 px-4 rounded-full shadow-sm transform translate-y-4 group-hover:translate-y-0 transition-all duration-300 mt-8">
-                Click to Enlarge
-              </div>
-            </div>
-          </motion.div>
-
-        </div>
+    <section className="relative w-full min-h-[90vh] md:min-h-screen flex items-center justify-center overflow-hidden bg-[#0A1435]">
+      
+      {/* Background Image Slider with Crossfade */}
+      <div className="absolute inset-0 w-full h-full">
+        <AnimatePresence initial={false}>
+          <motion.img
+            key={currentIndex}
+            src={images[currentIndex]}
+            alt={`Hero Background ${currentIndex + 1}`}
+            initial={{ opacity: 0, scale: 1.05 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 1.5, ease: "easeInOut" }}
+            className="absolute inset-0 w-full h-full object-cover"
+          />
+        </AnimatePresence>
+        {/* Premium Overlay: Darker at bottom, slight vignette */}
+        <div className="absolute inset-0 bg-gradient-to-r from-[#071B4D]/90 via-[#071B4D]/60 to-[#071B4D]/40" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#0A1435] via-transparent to-transparent" />
       </div>
 
-      {/* Fullscreen Map Modal */}
-      {isModalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-md p-4 md:p-8" onClick={() => setIsModalOpen(false)}>
-          {/* Floating Close Button */}
-          <button
-            onClick={() => setIsModalOpen(false)}
-            className="absolute top-4 right-4 md:top-8 md:right-8 z-50 p-2 rounded-full bg-white/10 hover:bg-white/20 transition-colors text-white"
-            aria-label="Close modal"
-          >
-            <X className="h-8 w-8 md:h-10 md:w-10" strokeWidth={1.5} />
-          </button>
-
-          {/* Modal Map */}
-          <div 
-            className="w-full h-full max-w-5xl max-h-[85vh] bg-white rounded-3xl overflow-hidden shadow-2xl relative"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <GujaratMap />
+      {/* Main Content Area */}
+      <div className="relative z-10 w-full max-w-7xl mx-auto px-6 lg:px-8 pt-24 pb-12 flex flex-col lg:flex-row items-center justify-between gap-12 lg:gap-8">
+        
+        {/* Left: Typography & CTAs */}
+        <motion.div 
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+          className="w-full lg:w-3/5 text-center lg:text-left pt-10 lg:pt-0"
+        >
+          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-[#FFC107] text-xs font-bold tracking-widest mb-6">
+            <span className="w-2 h-2 rounded-full bg-[#FFC107] animate-pulse"></span>
+            GLOBAL SATHWARA NETWORK
           </div>
+          
+          <h1 className="text-4xl md:text-5xl lg:text-7xl font-black text-white leading-[1.1] mb-6 drop-shadow-lg">
+            Empowering Global <br className="hidden lg:block" />
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#FFC107] to-[#FFA000]">Trade Excellence</span>
+          </h1>
+          
+          <p className="text-gray-300 text-lg md:text-xl max-w-2xl mx-auto lg:mx-0 mb-10 leading-relaxed font-light">
+            Dedicated to the growth and prosperity of the Sathwara community worldwide. Building excellence through unity, leadership, and professional networking.
+          </p>
+          
+          <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
+            <Link to="/become-member" className="w-full sm:w-auto px-8 py-4 rounded-full bg-[#FFC107] text-[#071B4D] font-bold text-sm hover:bg-white transition-all duration-300 shadow-[0_0_20px_rgba(255,193,7,0.3)] hover:shadow-[0_0_30px_rgba(255,255,255,0.5)] flex items-center justify-center gap-2 group">
+              Become a Member <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+            </Link>
+            <Link to="/about" className="w-full sm:w-auto px-8 py-4 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white font-bold text-sm hover:bg-white/20 transition-all duration-300 flex items-center justify-center gap-2">
+              Explore Network
+            </Link>
+          </div>
+        </motion.div>
+
+        {/* Right: Glassmorphism Map Card */}
+        <motion.div
+          initial={{ opacity: 0, x: 30 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8, delay: 0.4 }}
+          className="w-full lg:w-2/5 max-w-md mx-auto relative group cursor-pointer"
+          onClick={() => setIsModalOpen(true)}
+        >
+          <div className="absolute -inset-1 rounded-[2.5rem] bg-gradient-to-br from-white/20 to-white/0 blur-xl opacity-50 group-hover:opacity-70 transition-opacity duration-500"></div>
+          <div className="relative bg-[#071B4D]/40 backdrop-blur-xl border border-white/20 rounded-[2rem] p-6 shadow-2xl overflow-hidden group-hover:-translate-y-2 transition-transform duration-500">
+            
+            <div className="flex items-center justify-between mb-4">
+              <h3 className="text-white font-bold text-lg flex items-center gap-2">
+                <MapPin className="text-[#FFC107]" size={20} />
+                Gujarat Chapters
+              </h3>
+              <div className="text-xs text-gray-300 bg-white/10 px-2 py-1 rounded-full">Interactive</div>
+            </div>
+            
+            <div className="relative w-full h-[280px] flex items-center justify-center rounded-xl bg-white/5 overflow-hidden border border-white/10">
+              {/* Scale down the map slightly to fit the premium card */}
+              <div className="transform scale-90 w-full h-full flex items-center justify-center pointer-events-none">
+                <GujaratMap />
+              </div>
+              
+              {/* Hover Overlay */}
+              <div className="absolute inset-0 bg-[#071B4D]/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center backdrop-blur-sm">
+                <div className="bg-[#FFC107] text-[#071B4D] text-sm font-bold py-2.5 px-6 rounded-full shadow-xl transform translate-y-4 group-hover:translate-y-0 transition-all duration-300 flex items-center gap-2">
+                  Enlarge Map <ArrowRight size={14} />
+                </div>
+              </div>
+            </div>
+          </div>
+        </motion.div>
+
+      </div>
+
+      {/* Slider Controls (Subtle) */}
+      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 flex items-center gap-8">
+        <button onClick={goToPrevious} className="text-white/50 hover:text-white transition-colors p-2">
+          <ChevronLeft size={24} strokeWidth={1.5} />
+        </button>
+        <div className="flex gap-2">
+          {images.map((_, idx) => (
+            <div key={idx} className={`h-1 rounded-full transition-all duration-500 ${idx === currentIndex ? 'w-8 bg-[#FFC107]' : 'w-2 bg-white/30'}`} />
+          ))}
         </div>
-      )}
+        <button onClick={goToNext} className="text-white/50 hover:text-white transition-colors p-2">
+          <ChevronRight size={24} strokeWidth={1.5} />
+        </button>
+      </div>
+
+      {/* Scroll Indicator */}
+      <motion.div 
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1, duration: 1 }}
+        className="absolute bottom-4 right-8 z-20 hidden lg:flex flex-col items-center gap-2"
+      >
+        <span className="text-[10px] text-white/50 tracking-[0.2em] rotate-90 origin-right translate-y-6">SCROLL</span>
+        <div className="w-[1px] h-12 bg-white/20 mt-8 relative overflow-hidden">
+          <motion.div 
+            animate={{ y: [0, 48] }} 
+            transition={{ repeat: Infinity, duration: 1.5, ease: "linear" }}
+            className="w-full h-1/2 bg-[#FFC107] absolute top-0"
+          />
+        </div>
+      </motion.div>
+
+      {/* Fullscreen Map Modal */}
+      <AnimatePresence>
+        {isModalOpen && (
+          <motion.div 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[100] flex items-center justify-center bg-[#071B4D]/90 backdrop-blur-xl p-4 md:p-8" 
+            onClick={() => setIsModalOpen(false)}
+          >
+            <button
+              onClick={() => setIsModalOpen(false)}
+              className="absolute top-6 right-6 md:top-10 md:right-10 z-[110] p-3 rounded-full bg-white/10 hover:bg-[#FFC107] hover:text-[#071B4D] transition-colors text-white"
+            >
+              <X className="h-6 w-6" strokeWidth={2} />
+            </button>
+
+            <motion.div 
+              initial={{ scale: 0.9, opacity: 0, y: 20 }}
+              animate={{ scale: 1, opacity: 1, y: 0 }}
+              exit={{ scale: 0.9, opacity: 0, y: 20 }}
+              className="w-full h-full max-w-6xl max-h-[85vh] bg-white rounded-3xl overflow-hidden shadow-2xl relative flex items-center justify-center p-8"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <GujaratMap />
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   );
 };

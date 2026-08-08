@@ -42,7 +42,7 @@ const MemberViewProfile = () => {
             {profile.profilePicture ? (
               <img src={profile.profilePicture} alt="Profile" className="w-32 h-32 rounded-full object-cover border-2 border-[#044766]" />
             ) : (
-              <div className="w-32 h-32 rounded-full bg-gray-300 flex items-center justify-center text-4xl text-gray-600 font-bold border-2 border-[#044766]">
+              <div className="w-32 h-32 rounded-full bg-gray-300 flex items-center justify-center text-4xl font-bold border-2 border-[#044766]">
                 {profile.fullName?.charAt(0)}
               </div>
             )}
@@ -58,31 +58,31 @@ const MemberViewProfile = () => {
           <div className="flex-1 space-y-1.5 w-full">
             <h1 className="text-2xl font-bold mb-3">{profile.fullName}</h1>
             
-            <div className="text-sm text-gray-200 flex items-center gap-2">
+            <div className="text-sm flex items-center gap-2">
               <Briefcase size={14} className="shrink-0" />
               <span className="truncate">{profile.companyName || 'N/A'}</span>
             </div>
-            <div className="text-sm text-gray-200 flex items-center gap-2">
+            <div className="text-sm flex items-center gap-2">
               <Phone size={14} className="shrink-0" />
               <span>{profile.mobile || 'N/A'}</span>
             </div>
-            <div className="text-sm text-gray-200 flex items-center gap-2">
+            <div className="text-sm flex items-center gap-2">
               <Mail size={14} className="shrink-0" />
               <span className="truncate">{profile.email || 'N/A'}</span>
             </div>
-            <div className="text-sm text-gray-200 flex items-center gap-2">
+            <div className="text-sm flex items-center gap-2">
               <Droplet size={14} className="shrink-0" />
               <span>{profile.bloodGroup || 'N/A'}</span>
             </div>
-            <div className="text-sm text-gray-200 flex items-center gap-2">
+            <div className="text-sm flex items-center gap-2">
               <Calendar size={14} className="shrink-0" />
               <span>DOB : {profile.dob ? new Date(profile.dob).toLocaleDateString('en-GB') : 'N/A'}</span>
             </div>
-            <div className="text-sm text-gray-200 flex items-center gap-2">
+            <div className="text-sm flex items-center gap-2">
               <Users size={14} className="shrink-0" />
               <span>Member of : {profile.memberOf || 'N/A'}</span>
             </div>
-            <div className="text-sm text-gray-200 flex items-center gap-2">
+            <div className="text-sm flex items-center gap-2">
               <Calendar size={14} className="shrink-0" />
               <span>Renewal Date: {profile.renewalDate ? new Date(profile.renewalDate).toLocaleDateString('en-GB') : 'N/A'}</span>
             </div>
@@ -106,7 +106,7 @@ const MemberViewProfile = () => {
         
         {/* Business Location */}
         <div className="flex items-center justify-between">
-          <h2 className="text-[17px] font-bold text-gray-800">My Business Location :</h2>
+          <h2 className="text-[17px] font-bold">My Business Location :</h2>
           <button className="bg-[#044766] text-white px-4 py-2 rounded-lg font-semibold flex items-center gap-2 text-sm hover:bg-[#03364f] transition">
             Set My Location <span className="text-lg">📍</span>
           </button>
@@ -114,9 +114,9 @@ const MemberViewProfile = () => {
 
         {/* V2V Sheet */}
         <div>
-          <h2 className="text-[17px] font-bold text-gray-800 mb-3">V2V Sheet :</h2>
+          <h2 className="text-[17px] font-bold mb-3">V2V Sheet :</h2>
           <div className="flex flex-wrap items-center gap-4">
-            <span className="text-gray-700 text-[15px]">Visible to Everyone</span>
+            <span className="text-[15px]">Visible to Everyone</span>
             {/* Toggle Switch (Mock) */}
             <div className="w-12 h-6 bg-[#34C759] rounded-full relative cursor-pointer mr-2">
               <div className="absolute right-1 top-1 w-4 h-4 bg-white rounded-full"></div>
@@ -139,7 +139,7 @@ const MemberViewProfile = () => {
 
         {/* Business Profile Title */}
         <div className="flex items-center gap-3 pt-2">
-          <h2 className="text-xl font-extrabold text-gray-800">Business Profile :</h2>
+          <h2 className="text-xl font-extrabold">Business Profile :</h2>
           <button className="w-10 h-10 bg-[#044766] rounded-xl flex items-center justify-center text-white hover:bg-[#03364f] transition">
             <Edit2 size={18} />
           </button>
@@ -148,42 +148,42 @@ const MemberViewProfile = () => {
         {/* Business Details Grid */}
         <div className="space-y-3">
           <div className="flex flex-col md:flex-row md:gap-4 border-b border-gray-200 pb-3">
-            <span className="font-bold text-gray-900 md:w-32 shrink-0 text-[15px]">Name :</span>
-            <span className="text-gray-700 text-[15px]">{profile.companyName || 'N/A'}</span>
+            <span className="font-bold md:w-32 shrink-0 text-[15px]">Name :</span>
+            <span className="text-[15px]">{profile.companyName || 'N/A'}</span>
           </div>
           <div className="flex flex-col md:flex-row md:gap-4 border-b border-gray-200 pb-3">
-            <span className="font-bold text-gray-900 md:w-32 shrink-0 text-[15px]">Category :</span>
-            <span className="text-gray-700 text-[15px]">{profile.businessType || 'N/A'}</span>
+            <span className="font-bold md:w-32 shrink-0 text-[15px]">Category :</span>
+            <span className="text-[15px]">{profile.businessType || 'N/A'}</span>
           </div>
           <div className="flex flex-col md:flex-row md:gap-4 border-b border-gray-200 pb-3">
-            <span className="font-bold text-gray-900 md:w-32 shrink-0 text-[15px]">Mobile No :</span>
-            <span className="text-gray-700 text-[15px]">{profile.businessMobile || 'N/A'}</span>
+            <span className="font-bold md:w-32 shrink-0 text-[15px]">Mobile No :</span>
+            <span className="text-[15px]">{profile.businessMobile || 'N/A'}</span>
           </div>
           <div className="flex flex-col md:flex-row md:gap-4 border-b border-gray-200 pb-3">
-            <span className="font-bold text-gray-900 md:w-32 shrink-0 text-[15px]">Email :</span>
-            <span className="text-gray-700 text-[15px] break-all">{profile.businessEmail || 'N/A'}</span>
+            <span className="font-bold md:w-32 shrink-0 text-[15px]">Email :</span>
+            <span className="text-[15px] break-all">{profile.businessEmail || 'N/A'}</span>
           </div>
           <div className="flex flex-col md:flex-row md:gap-4 border-b border-gray-200 pb-3">
-            <span className="font-bold text-gray-900 md:w-32 shrink-0 text-[15px]">Website :</span>
+            <span className="font-bold md:w-32 shrink-0 text-[15px]">Website :</span>
             <a href={profile.website} target="_blank" rel="noreferrer" className="text-blue-600 hover:underline text-[15px] break-all">{profile.website || 'N/A'}</a>
           </div>
           <div className="flex flex-col md:flex-row md:gap-4 border-b border-gray-200 pb-3">
-            <span className="font-bold text-gray-900 md:w-32 shrink-0 text-[15px]">Since :</span>
-            <span className="text-gray-700 text-[15px]">{profile.businessSince ? new Date(profile.businessSince).toLocaleDateString('en-GB') : 'N/A'}</span>
+            <span className="font-bold md:w-32 shrink-0 text-[15px]">Since :</span>
+            <span className="text-[15px]">{profile.businessSince ? new Date(profile.businessSince).toLocaleDateString('en-GB') : 'N/A'}</span>
           </div>
           <div className="flex flex-col md:flex-row md:gap-4 border-b border-gray-200 pb-3">
-            <span className="font-bold text-gray-900 md:w-32 shrink-0 text-[15px]">Address :</span>
-            <span className="text-gray-700 text-[15px]">{profile.businessAddress || 'N/A'}</span>
+            <span className="font-bold md:w-32 shrink-0 text-[15px]">Address :</span>
+            <span className="text-[15px]">{profile.businessAddress || 'N/A'}</span>
           </div>
           <div className="flex flex-col md:flex-row md:gap-4">
-            <span className="font-bold text-gray-900 md:w-32 shrink-0 text-[15px]">Description :</span>
-            <span className="text-gray-700 text-[15px] leading-relaxed whitespace-pre-wrap">{profile.businessDescription || profile.bio || 'N/A'}</span>
+            <span className="font-bold md:w-32 shrink-0 text-[15px]">Description :</span>
+            <span className="text-[15px] leading-relaxed whitespace-pre-wrap">{profile.businessDescription || profile.bio || 'N/A'}</span>
           </div>
         </div>
 
         {/* Social Links Row */}
         <div className="flex flex-wrap justify-center gap-3 pt-6 pb-4">
-          <a href={profile.website} target="_blank" rel="noreferrer" className="w-12 h-12 bg-[#F5B041] rounded-xl flex items-center justify-center text-black shadow-md hover:scale-105 transition">
+          <a href={profile.website} target="_blank" rel="noreferrer" className="w-12 h-12 bg-[#F5B041] rounded-xl flex items-center justify-center shadow-md hover:scale-105 transition">
             <FaGlobe size={24} />
           </a>
           <a href={`tel:${profile.mobile}`} className="w-12 h-12 bg-[#2E86C1] rounded-xl flex items-center justify-center text-white shadow-md hover:scale-105 transition">

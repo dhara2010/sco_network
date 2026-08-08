@@ -47,7 +47,7 @@ const CommitteeMembersPage = () => {
   return (
     <div className="min-h-screen bg-white pb-16 mt-14">
       {/* Hero Section */}
-      <div className="bg-[#1056A5] text-white py-24 px-4 text-center">
+      <div className="sco-page-hero">
         <motion.h1
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -86,7 +86,7 @@ const CommitteeMembersPage = () => {
               <button
                 key={desig}
                 onClick={() => { setActiveTab(desig); setCurrentPage(1); }}
-                className={`pb-4 font-bold text-[13px] tracking-wide transition-colors relative ${activeTab === desig ? 'text-[#0B2B5B]' : 'text-gray-500 hover:text-gray-800'}`}
+                className={`pb-4 font-bold text-[13px] tracking-wide transition-colors relative ${activeTab === desig ? 'text-[#0B2B5B]' : ' hover:'}`}
               >
                 {desig}
                 {activeTab === desig && (
@@ -162,7 +162,7 @@ const CommitteeMembersPage = () => {
 
         {displayedMembers.length === 0 && (
           <div className="text-center py-20 bg-gray-50 rounded-2xl border border-gray-100">
-            <h3 className="text-xl font-semibold text-gray-500">No members found in this committee.</h3>
+            <h3 className="text-xl font-semibold">No members found in this committee.</h3>
           </div>
         )}
 
@@ -172,7 +172,7 @@ const CommitteeMembersPage = () => {
             <button
               onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
               disabled={currentPage === 1}
-              className="w-10 h-10 rounded-full flex items-center justify-center border border-gray-200 text-gray-500 hover:bg-gray-50 disabled:opacity-50 transition-colors"
+              className="w-10 h-10 rounded-full flex items-center justify-center border border-gray-200 hover:bg-gray-50 disabled:opacity-50 transition-colors"
             >
               <ChevronLeft size={18} />
             </button>
@@ -196,7 +196,7 @@ const CommitteeMembersPage = () => {
             <button
               onClick={() => setCurrentPage(p => Math.min(totalPages, p + 1))}
               disabled={currentPage === totalPages}
-              className="w-10 h-10 rounded-full flex items-center justify-center border border-gray-200 text-gray-500 hover:bg-gray-50 disabled:opacity-50 transition-colors"
+              className="w-10 h-10 rounded-full flex items-center justify-center border border-gray-200 hover:bg-gray-50 disabled:opacity-50 transition-colors"
             >
               <ChevronRight size={18} />
             </button>

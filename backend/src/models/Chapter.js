@@ -14,6 +14,10 @@ const ChapterSchema = new mongoose.Schema({
     type: String,
     trim: true
   },
+  imageUrl: {
+    type: String,
+    trim: true
+  },
   pincode: {
     type: String,
     trim: true

@@ -66,7 +66,7 @@ const AboutUsPage = () => {
             transition={{ duration: 0.8, delay: 0.4 }}
             className="p-6 md:p-8 rounded-3xl bg-white/5 backdrop-blur-xl border border-white/10 shadow-2xl max-w-3xl"
           >
-            <p className="text-gray-300 text-sm md:text-base lg:text-lg font-medium leading-relaxed">
+            <p className="text-sm md:text-base lg:text-lg text-white font-medium leading-relaxed">
               We are a global community of visionary entrepreneurs, professionals, and industrialists. By combining modern economic excellence with deep-rooted cultural values, we are building a legacy of shared prosperity.
             </p>
           </motion.div>
@@ -84,23 +84,23 @@ const AboutUsPage = () => {
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.8 }}
           >
-            <div className="inline-flex items-center gap-2 text-[#0A1435] font-black tracking-widest uppercase text-sm mb-4">
+            <div className="inline-flex items-center gap-2 font-black tracking-widest uppercase text-sm mb-4">
               <div className="w-8 h-1 bg-[#FFC107] rounded-full"></div>
               Our Heritage
             </div>
-            <h2 className="text-4xl md:text-5xl font-extrabold text-[#0A1435] leading-tight mb-8">
+            <h2 className="text-4xl md:text-5xl font-extrabold leading-tight mb-8">
               A Legacy of <br className="hidden md:block" />
-              <span className="text-gray-400">Prosperity & Service</span>
+              <span className="">Prosperity & Service</span>
             </h2>
-            <div className="space-y-6 text-gray-600 text-lg leading-relaxed">
+            <div className="space-y-6 text-lg leading-relaxed">
               <p>
-                Founded on the enduring pillars of <span className="font-bold text-[#0A1435]">Seva</span> (Service), <span className="font-bold text-[#0A1435]">Shiksha</span> (Education), and <span className="font-bold text-[#0A1435]">Arthik Sudradhata</span> (Economic Strengthening), we have grown into a premier global organization.
+                Founded on the enduring pillars of <span className="font-bold">Seva</span> (Service), <span className="font-bold">Shiksha</span> (Education), and <span className="font-bold">Arthik Sudradhata</span> (Economic Strengthening), we have grown into a premier global organization.
               </p>
               <p>
                 For decades, we have focused on creating an unshakeable platform that fosters elite networking, sustainable business growth, and profound social responsibility.
               </p>
             </div>
-            <Link to="/projects" className="mt-10 group flex items-center gap-3 text-[#0A1435] font-bold hover:text-[#FFC107] transition-colors">
+            <Link to="/projects" className="mt-10 group flex items-center gap-3 font-bold hover:text-[#FFC107] transition-colors">
               Explore our Timeline
               <div className="w-10 h-10 rounded-full bg-[#0A1435] group-hover:bg-[#FFC107] flex items-center justify-center text-white transition-colors">
                 <ChevronRight className="w-5 h-5" />
@@ -200,7 +200,7 @@ const AboutUsPage = () => {
             <div className="relative z-10 flex flex-col h-full justify-between">
               <div className="inline-flex items-center gap-3 mb-8">
                 <div className="p-3 bg-[#FFC107] rounded-2xl">
-                  <Target className="w-6 h-6 text-[#0A1435]" />
+                  <Target className="w-6 h-6" />
                 </div>
                 <h3 className="text-3xl font-black tracking-tight">Our Mission</h3>
               </div>
@@ -216,9 +216,9 @@ const AboutUsPage = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="md:col-span-4 bg-white border border-gray-100 rounded-[40px] p-10 md:p-14 text-[#0A1435] relative overflow-hidden group shadow-xl hover:shadow-2xl transition-shadow"
+            className="md:col-span-4 bg-white border border-gray-100 rounded-[40px] p-10 md:p-14 relative overflow-hidden group shadow-xl hover:shadow-2xl transition-shadow"
           >
-            <Shield className="absolute -top-10 -right-10 w-48 h-48 text-slate-50 group-hover:scale-110 transition-transform duration-700" strokeWidth={1} />
+            <Shield className="absolute -top-10 -right-10 w-48 h-48 group-hover:scale-110 transition-transform duration-700" strokeWidth={1} />
 
             <div className="relative z-10 flex flex-col h-full justify-between">
               <div className="inline-flex items-center gap-3 mb-8">
@@ -227,7 +227,7 @@ const AboutUsPage = () => {
                 </div>
                 <h3 className="text-3xl font-black tracking-tight">Our Vision</h3>
               </div>
-              <p className="text-gray-500 text-lg font-medium leading-relaxed">
+              <p className="text-lg font-medium leading-relaxed">
                 To build a strong, united, and globally prosperous community that leads by example.
               </p>
             </div>
@@ -237,14 +237,11 @@ const AboutUsPage = () => {
       </section>
 
       {/* 5. Floating Core Values */}
-      <section className="w-full bg-[#050912] py-24 md:py-32 relative overflow-hidden">
-        {/* Subtle background glow */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-4xl h-[400px] bg-[#112255] rounded-full filter blur-[150px] opacity-30"></div>
-
+      <section className="w-full bg-white py-24 md:py-32 relative overflow-hidden">
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-20">
-            <h2 className="text-3xl md:text-5xl font-extrabold text-white mb-6">Pillars of Our Community</h2>
-            <p className="text-gray-400 max-w-2xl mx-auto text-lg">The foundational values that drive our global network.</p>
+            <h2 className="text-3xl md:text-5xl font-extrabold mb-6">Pillars of Our Community</h2>
+            <p className="max-w-2xl mx-auto text-lg">The foundational values that drive our global network.</p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-8">
@@ -257,7 +254,7 @@ const AboutUsPage = () => {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className="flex flex-col items-center text-center p-6 rounded-3xl bg-white/5 border border-white/10 backdrop-blur-sm hover:bg-white/10 transition-colors group"
+                  className="flex flex-col items-center text-center p-6 rounded-3xl bg-white border border-gray-100 shadow-xl hover:shadow-2xl transition-all group hover:-translate-y-2"
                 >
                   <motion.div
                     animate={{ y: [0, -8, 0] }}
@@ -266,8 +263,8 @@ const AboutUsPage = () => {
                   >
                     <Icon className="w-8 h-8 text-[#FFC107]" strokeWidth={1.5} />
                   </motion.div>
-                  <h3 className="text-white text-xl font-bold mb-3">{value.label}</h3>
-                  <p className="text-gray-400 text-sm leading-relaxed">{value.desc}</p>
+                  <h3 className="text-xl font-bold mb-3">{value.label}</h3>
+                  <p className="text-sm leading-relaxed">{value.desc}</p>
                 </motion.div>
               )
             })}

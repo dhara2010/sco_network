@@ -37,11 +37,8 @@ const AnnualReportsPage = () => {
   return (
     <div className="min-h-screen bg-white pb-16 pt-14">
       {/* Hero Section */}
-      <div className="bg-[#1056A5] text-white py-24 px-4 text-center relative overflow-hidden">
-        {/* Subtle diagonal accent overlay similar to mockup */}
-        <div className="absolute inset-0 bg-gradient-to-br from-transparent to-[#0a3d7a] opacity-50 transform -skew-x-12 scale-150 origin-bottom-right pointer-events-none"></div>
-        
-        <div className="relative z-10">
+      <div className="sco-page-hero">
+        <div>
           <motion.h1 
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -80,7 +77,7 @@ const AnnualReportsPage = () => {
         <div className="mb-10">
           <div>
             <h2 className="text-[26px] font-extrabold text-[#0B2B5B]">Report Archive</h2>
-            <p className="text-gray-500 text-sm mt-1">Browse through historical documents</p>
+            <p className="text-sm mt-1">Browse through historical documents</p>
           </div>
         </div>
 
@@ -92,7 +89,7 @@ const AnnualReportsPage = () => {
           ) : error ? (
              <div className="col-span-full text-center py-20 text-red-600 font-bold">Error: {error}</div>
           ) : reports.length === 0 ? (
-             <div className="col-span-full text-center py-20 text-gray-500 font-medium bg-gray-50 rounded-2xl border border-gray-100">No approved reports available for this category yet.</div>
+             <div className="col-span-full text-center py-20 font-medium bg-gray-50 rounded-2xl border border-gray-100">No approved reports available for this category yet.</div>
           ) : (
             reports.map((report, index) => {
               const hasBg = !!report.coverImage;
@@ -115,7 +112,7 @@ const AnnualReportsPage = () => {
                   <div className="relative z-10 flex flex-col items-center justify-center w-full h-full opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-4 group-hover:translate-y-0">
                     <h3 className={`text-[48px] font-extrabold leading-none mb-4 ${hasBg ? 'text-white' : 'text-[#0B2B5B]'}`}>{report.reportYear}</h3>
                     
-                    <p className={`text-[14px] font-medium text-center mb-8 line-clamp-3 ${hasBg ? 'text-blue-50' : 'text-gray-500'}`}>{report.title}</p>
+                    <p className={`text-[14px] font-medium text-center mb-8 line-clamp-3 ${hasBg ? 'text-blue-50' : ''}`}>{report.title}</p>
                     
                     <a 
                       href={report.reportFile} 
@@ -159,7 +156,7 @@ const AnnualReportsPage = () => {
         <div className="mt-20 bg-[#fffdf5] border border-[#fef0c7] rounded-[24px] p-8 md:p-12 flex flex-col lg:flex-row items-center justify-between gap-8">
           <div className="max-w-xl text-center lg:text-left">
             <h3 className="text-[22px] font-extrabold text-[#0B2B5B] mb-2">Stay updated with SCO</h3>
-            <p className="text-[15px] text-gray-600 font-medium">Subscribe to receive monthly newsletters and instant notifications when new reports are published.</p>
+            <p className="text-[15px] font-medium">Subscribe to receive monthly newsletters and instant notifications when new reports are published.</p>
           </div>
           
           <div className="w-full lg:w-auto flex-1 max-w-md">

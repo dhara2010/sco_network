@@ -79,7 +79,7 @@ const MemberProjects = () => {
   return (
     <div className="space-y-6">
       <div className="flex justify-between items-center">
-        <h2 className="text-2xl font-bold text-gray-900">My Projects</h2>
+        <h2 className="text-2xl font-bold">My Projects</h2>
         <button 
           onClick={() => { setEditId(null); setFormData({ title: '', category: 'Project', description: '', location: '', featuredImage: '' }); setShowModal(true); }}
           className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-xl flex items-center gap-2 transition-colors shadow-sm"
@@ -89,13 +89,13 @@ const MemberProjects = () => {
       </div>
 
       {loading ? (
-        <div className="text-gray-500">Loading projects...</div>
+        <div className="">Loading projects...</div>
       ) : (
         <div className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
           <div className="overflow-x-auto">
             <table className="w-full text-left border-collapse">
               <thead>
-                <tr className="bg-gray-50 text-gray-600 border-b border-gray-200">
+                <tr className="bg-gray-50 border-b border-gray-200">
                   <th className="p-4 font-semibold text-sm">Title</th>
                   <th className="p-4 font-semibold text-sm">Category</th>
                   <th className="p-4 font-semibold text-sm">Status</th>
@@ -108,10 +108,10 @@ const MemberProjects = () => {
                   projects.map(project => (
                     <tr key={project._id} className="border-b border-gray-100 hover:bg-gray-50">
                       <td className="p-4">
-                        <p className="font-medium text-gray-900">{project.title}</p>
-                        <p className="text-xs text-gray-500 truncate max-w-xs">{project.description}</p>
+                        <p className="font-medium">{project.title}</p>
+                        <p className="text-xs truncate max-w-xs">{project.description}</p>
                       </td>
-                      <td className="p-4 text-sm text-gray-600">{project.category}</td>
+                      <td className="p-4 text-sm">{project.category}</td>
                       <td className="p-4">
                         <span className={`px-3 py-1 rounded-full text-xs font-bold ${
                           project.status === 'Approved' ? 'bg-emerald-100 text-emerald-800' :
@@ -121,7 +121,7 @@ const MemberProjects = () => {
                           {project.status}
                         </span>
                       </td>
-                      <td className="p-4 text-sm text-gray-600 max-w-[200px] truncate">
+                      <td className="p-4 text-sm max-w-[200px] truncate">
                         {project.remarks || '-'}
                       </td>
                       <td className="p-4 flex items-center justify-end gap-2">
@@ -139,14 +139,14 @@ const MemberProjects = () => {
                           </>
                         )}
                         {project.status === 'Approved' && (
-                          <span className="text-xs text-gray-400 italic">Locked</span>
+                          <span className="text-xs italic">Locked</span>
                         )}
                       </td>
                     </tr>
                   ))
                 ) : (
                   <tr>
-                    <td colSpan="5" className="p-8 text-center text-gray-500">
+                    <td colSpan="5" className="p-8 text-center">
                       No projects found. Click "Add Project" to submit one.
                     </td>
                   </tr>
@@ -162,8 +162,8 @@ const MemberProjects = () => {
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-50">
           <div className="bg-white rounded-xl shadow-xl w-full max-w-2xl max-h-[90vh] overflow-y-auto">
             <div className="flex justify-between items-center p-6 border-b border-gray-100 sticky top-0 bg-white z-10">
-              <h3 className="text-xl font-bold text-gray-900">{editId ? 'Edit Project' : 'Add New Project'}</h3>
-              <button onClick={() => setShowModal(false)} className="text-gray-400 hover:text-gray-600">
+              <h3 className="text-xl font-bold">{editId ? 'Edit Project' : 'Add New Project'}</h3>
+              <button onClick={() => setShowModal(false)} className="hover:">
                 <X size={24} />
               </button>
             </div>
@@ -177,19 +177,19 @@ const MemberProjects = () => {
               
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Project Title *</label>
+                  <label className="block text-sm font-medium mb-1">Project Title *</label>
                   <input type="text" name="title" required value={formData.title} onChange={handleInputChange} className="w-full p-2.5 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none" />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Category *</label>
+                  <label className="block text-sm font-medium mb-1">Category *</label>
                   <input type="text" name="category" required value={formData.category} onChange={handleInputChange} className="w-full p-2.5 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none" />
                 </div>
                 <div className="md:col-span-2">
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Location</label>
+                  <label className="block text-sm font-medium mb-1">Location</label>
                   <input type="text" name="location" value={formData.location} onChange={handleInputChange} className="w-full p-2.5 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none" />
                 </div>
                 <div className="md:col-span-2">
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Featured Image</label>
+                  <label className="block text-sm font-medium mb-1">Featured Image</label>
                   <input type="file" accept="image/*" onChange={handleFileChange} className="w-full p-2.5 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none bg-white" />
                   {formData.featuredImage && (
                     <div className="mt-2">
@@ -198,13 +198,13 @@ const MemberProjects = () => {
                   )}
                 </div>
                 <div className="md:col-span-2">
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Description *</label>
+                  <label className="block text-sm font-medium mb-1">Description *</label>
                   <textarea name="description" required rows="4" value={formData.description} onChange={handleInputChange} className="w-full p-2.5 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none"></textarea>
                 </div>
               </div>
 
               <div className="flex justify-end gap-3 pt-4 border-t border-gray-100">
-                <button type="button" onClick={() => setShowModal(false)} className="px-5 py-2.5 text-gray-600 hover:bg-gray-100 rounded-lg font-medium transition-colors">
+                <button type="button" onClick={() => setShowModal(false)} className="px-5 py-2.5 hover:bg-gray-100 rounded-lg font-medium transition-colors">
                   Cancel
                 </button>
                 <button type="submit" className="px-5 py-2.5 bg-blue-600 hover:bg-blue-700 text-white rounded-xl font-medium shadow-sm transition-colors">
@@ -221,28 +221,28 @@ const MemberProjects = () => {
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-50">
           <div className="bg-white rounded-xl shadow-xl w-full max-w-2xl max-h-[90vh] overflow-y-auto">
             <div className="flex justify-between items-center p-6 border-b border-gray-100 sticky top-0 bg-white z-10">
-              <h3 className="text-xl font-bold text-gray-900">Project Details</h3>
-              <button onClick={() => setViewRecord(null)} className="text-gray-400 hover:text-gray-600 transition-colors">
+              <h3 className="text-xl font-bold">Project Details</h3>
+              <button onClick={() => setViewRecord(null)} className="hover: transition-colors">
                 <XCircle size={24} />
               </button>
             </div>
             <div className="p-6 space-y-4">
               <div>
-                <p className="text-sm text-gray-500 font-medium">Title</p>
-                <p className="text-lg font-semibold text-gray-900">{viewRecord.title}</p>
+                <p className="text-sm font-medium">Title</p>
+                <p className="text-lg font-semibold">{viewRecord.title}</p>
               </div>
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <p className="text-sm text-gray-500 font-medium">Category</p>
-                  <p className="text-gray-900">{viewRecord.category}</p>
+                  <p className="text-sm font-medium">Category</p>
+                  <p className="">{viewRecord.category}</p>
                 </div>
                 <div>
-                  <p className="text-sm text-gray-500 font-medium">Location</p>
-                  <p className="text-gray-900">{viewRecord.location || '-'}</p>
+                  <p className="text-sm font-medium">Location</p>
+                  <p className="">{viewRecord.location || '-'}</p>
                 </div>
                 <div>
-                  <p className="text-sm text-gray-500 font-medium">Status</p>
-                  <p className="text-gray-900">
+                  <p className="text-sm font-medium">Status</p>
+                  <p className="">
                     <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium border
                         ${viewRecord.status === 'Pending' ? 'bg-yellow-50 text-yellow-800 border-yellow-200' : ''}
                         ${viewRecord.status === 'Approved' ? 'bg-green-50 text-green-800 border-green-200' : ''}
@@ -253,29 +253,29 @@ const MemberProjects = () => {
                   </p>
                 </div>
                 <div>
-                  <p className="text-sm text-gray-500 font-medium">Date Added</p>
-                  <p className="text-gray-900">{new Date(viewRecord.createdAt).toLocaleDateString()}</p>
+                  <p className="text-sm font-medium">Date Added</p>
+                  <p className="">{new Date(viewRecord.createdAt).toLocaleDateString()}</p>
                 </div>
               </div>
               <div>
-                <p className="text-sm text-gray-500 font-medium">Description</p>
-                <p className="text-gray-900 whitespace-pre-wrap">{viewRecord.description}</p>
+                <p className="text-sm font-medium">Description</p>
+                <p className="whitespace-pre-wrap">{viewRecord.description}</p>
               </div>
               {viewRecord.featuredImage && (
                 <div>
-                  <p className="text-sm text-gray-500 font-medium mb-2">Featured Image</p>
+                  <p className="text-sm font-medium mb-2">Featured Image</p>
                   <img src={viewRecord.featuredImage} alt="Project" className="max-h-64 rounded-lg object-contain border border-gray-200" />
                 </div>
               )}
               {viewRecord.remarks && (
                 <div>
-                  <p className="text-sm text-gray-500 font-medium text-red-600 mb-1">Remarks</p>
-                  <p className="text-gray-900 bg-red-50 p-3 rounded-lg border border-red-100">{viewRecord.remarks}</p>
+                  <p className="text-sm font-medium text-red-600 mb-1">Remarks</p>
+                  <p className="bg-red-50 p-3 rounded-lg border border-red-100">{viewRecord.remarks}</p>
                 </div>
               )}
             </div>
             <div className="p-6 border-t border-gray-100 flex justify-end">
-              <button onClick={() => setViewRecord(null)} className="px-4 py-2 bg-gray-100 text-gray-700 font-medium rounded-lg hover:bg-gray-200 transition-colors">
+              <button onClick={() => setViewRecord(null)} className="px-4 py-2 bg-gray-100 font-medium rounded-lg hover:bg-gray-200 transition-colors">
                 Close
               </button>
             </div>

@@ -40,7 +40,7 @@ const NotFound = () => {
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2, duration: 0.6, ease: "easeOut" }}
-          className="text-3xl md:text-5xl font-bold text-gray-900 mt-2 md:mt-4 tracking-tight"
+          className="text-3xl md:text-5xl font-bold mt-2 md:mt-4 tracking-tight"
         >
           PAGE NOT FOUND
         </motion.h2>
@@ -50,7 +50,7 @@ const NotFound = () => {
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.4, duration: 0.6, ease: "easeOut" }}
-          className="text-lg md:text-xl text-gray-500 mt-6 max-w-md mx-auto font-medium"
+          className="text-lg md:text-xl mt-6 max-w-md mx-auto font-medium"
         >
           Sorry, the page you're looking for doesn't exist or may have been moved.
         </motion.p>

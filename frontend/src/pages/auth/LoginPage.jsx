@@ -54,7 +54,7 @@ const LoginPage = () => {
             <h2 className="text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600 mb-2">
               Welcome Back
             </h2>
-            <p className="text-gray-500">Log in to your account to continue</p>
+            <p className="">Log in to your account to continue</p>
           </div>
 
 
@@ -72,9 +72,9 @@ const LoginPage = () => {
 
           <form onSubmit={handleLogin} className="space-y-6">
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">Email Address</label>
+              <label className="block text-sm font-medium mb-2">Email Address</label>
               <div className="relative">
-                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-gray-400">
+                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                   <Mail size={18} />
                 </div>
                 <input 
@@ -89,9 +89,9 @@ const LoginPage = () => {
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">Password</label>
+              <label className="block text-sm font-medium mb-2">Password</label>
               <div className="relative">
-                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-gray-400">
+                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                   <Lock size={18} />
                 </div>
                 <input 
@@ -115,7 +115,7 @@ const LoginPage = () => {
             </button>
           </form>
 
-          <p className="mt-8 text-center text-sm text-gray-500">
+          <p className="mt-8 text-center text-sm">
             Don't have an account?{' '}
             <Link to="/register" className="font-semibold text-blue-600 hover:text-indigo-600 transition-colors">
               Create an account
