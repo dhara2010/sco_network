@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Outlet, Link, useLocation, useNavigate } from 'react-router-dom';
 import { LayoutDashboard, FolderKanban, FileText, Activity, LogOut, User } from 'lucide-react';
-import { API_BASE_URL } from '../utils/api';
+import { membersData } from '../data/staticData';
 
 const MemberLayout = () => {
   const location = useLocation();
@@ -9,22 +9,11 @@ const MemberLayout = () => {
   const [profile, setProfile] = useState(null);
 
   useEffect(() => {
-    const fetchProfile = async () => {
-      try {
-        const token = localStorage.getItem('memberToken');
-        if (!token) return;
-        const res = await fetch(`${API_BASE_URL}/members/me`, {
-          headers: { 'Authorization': `Bearer ${token}` }
-        });
-        if (res.ok) {
-          const data = await res.json();
-          setProfile(data);
-        }
-      } catch (err) {
-        console.error(err);
-      }
-    };
-    fetchProfile();
+    setTimeout(() => {
+      const loggedInEmail = localStorage.getItem('loggedInUserEmail');
+      const mockUser = membersData.find(m => m.email === loggedInEmail) || membersData.find(m => m.status === 'Approved') || membersData[0];
+      setProfile(mockUser);
+    }, 400);
   }, []);
 
   const handleLogout = () => {
@@ -34,9 +23,9 @@ const MemberLayout = () => {
 
   const navItems = [
     { name: 'Dashboard', path: '/member-panel/dashboard', icon: <LayoutDashboard size={20} /> },
+    { name: 'My Profile', path: '/member-panel/profile', icon: <User size={20} /> },
     { name: 'My Projects', path: '/member-panel/projects', icon: <FolderKanban size={20} /> },
     { name: 'My Reports', path: '/member-panel/reports', icon: <FileText size={20} /> },
-    { name: 'My Activities', path: '/member-panel/activities', icon: <Activity size={20} /> },
   ];
 
   return (
@@ -52,11 +41,10 @@ const MemberLayout = () => {
               <li key={item.name}>
                 <Link
                   to={item.path}
-                  className={`flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-200 ${
-                    location.pathname === item.path
+                  className={`flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-200 ${location.pathname === item.path
                       ? 'bg-blue-50 text-blue-600 font-bold shadow-sm'
                       : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900'
-                  }`}
+                    }`}
                 >
                   <span className={location.pathname === item.path ? 'text-blue-600' : 'text-gray-400'}>
                     {item.icon}

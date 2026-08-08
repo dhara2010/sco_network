@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Plus, Edit, Trash2, X, AlertCircle, Eye, XCircle } from 'lucide-react';
-import { API_BASE_URL } from '../../utils/api';
+import { projectsData } from '../../data/staticData';
 
 const MemberProjects = () => {
   const [projects, setProjects] = useState([]);
@@ -11,21 +11,12 @@ const MemberProjects = () => {
   const [error, setError] = useState('');
   const [viewRecord, setViewRecord] = useState(null);
 
-  const fetchProjects = async () => {
-    try {
-      const token = localStorage.getItem('memberToken');
-      const res = await fetch(`${API_BASE_URL}/member-dashboard/projects`, {
-        headers: { 'Authorization': `Bearer ${token}` }
-      });
-      if (res.ok) {
-        const data = await res.json();
-        setProjects(data);
-      }
-    } catch (err) {
-      console.error(err);
-    } finally {
+  const fetchProjects = () => {
+    // Just mock fetching the static projects
+    setTimeout(() => {
+      setProjects([...projectsData]);
       setLoading(false);
-    }
+    }, 400);
   };
 
   useEffect(() => {
@@ -51,37 +42,20 @@ const MemberProjects = () => {
     }
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     setError('');
-    try {
-      const token = localStorage.getItem('memberToken');
-      const url = editId 
-        ? `${API_BASE_URL}/member-dashboard/projects/${editId}`
-        : `${API_BASE_URL}/member-dashboard/projects`;
-      const method = editId ? 'PUT' : 'POST';
-
-      const res = await fetch(url, {
-        method,
-        headers: { 
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}` 
-        },
-        body: JSON.stringify(formData)
-      });
-
-      if (res.ok) {
-        setShowModal(false);
-        setFormData({ title: '', category: 'Project', description: '', location: '', featuredImage: '' });
-        setEditId(null);
-        fetchProjects();
-      } else {
-        const data = await res.json();
-        setError(data.message || 'Error saving project');
-      }
-    } catch (err) {
-      setError('Server error');
+    
+    // Mock save/edit
+    if (editId) {
+      setProjects(projects.map(p => p._id === editId ? { ...p, ...formData } : p));
+    } else {
+      setProjects([...projects, { ...formData, _id: Date.now().toString(), status: 'Pending', createdAt: new Date() }]);
     }
+    
+    setShowModal(false);
+    setFormData({ title: '', category: 'Project', description: '', location: '', featuredImage: '' });
+    setEditId(null);
   };
 
   const handleEdit = (project) => {
@@ -96,22 +70,9 @@ const MemberProjects = () => {
     setShowModal(true);
   };
 
-  const handleDelete = async (id) => {
+  const handleDelete = (id) => {
     if (window.confirm('Are you sure you want to delete this project?')) {
-      try {
-        const token = localStorage.getItem('memberToken');
-        const res = await fetch(`${API_BASE_URL}/member-dashboard/projects/${id}`, {
-          method: 'DELETE',
-          headers: { 'Authorization': `Bearer ${token}` }
-        });
-        if (res.ok) {
-          fetchProjects();
-        } else {
-          alert('Error deleting project');
-        }
-      } catch (err) {
-        alert('Server error');
-      }
+      setProjects(projects.filter(p => p._id !== id));
     }
   };
 

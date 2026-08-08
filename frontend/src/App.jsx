@@ -1,77 +1,13 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import MainLayout from './layouts/MainLayout';
-import AdminLayout from './layouts/AdminLayout';
-import ScrollToTop from './components/ScrollToTop';
-
-import HomePage from './pages/HomePage';
-import AboutUsPage from './pages/AboutUsPage';
-import ContactUsPage from './pages/ContactUsPage';
-import CommitteeMembersPage from './pages/CommitteeMembersPage';
-import VoiceOfScoPage from './pages/VoiceOfScoPage';
-import AnnualReportsPage from './pages/AnnualReportsPage';
-import ProjectsPage from './pages/ProjectsPage';
-import ProjectDetailsPage from './pages/ProjectDetailsPage';
-import ChaptersPage from './pages/ChaptersPage';
-import MemberProfilePage from './pages/MemberProfilePage';
-import LoginPage from './pages/auth/LoginPage';
-import BecomeMemberPage from './pages/BecomeMemberPage';
-
-import DashboardHome from './pages/admin/DashboardHome';
-import ManageMembers from './pages/admin/ManageMembers';
-import ManageProjects from './pages/admin/ManageProjects';
-import ManageReports from './pages/admin/ManageReports';
-import ManageActivities from './pages/admin/ManageActivities';
-import ManageChapters from './pages/admin/ManageChapters';
-import AdminSettings from './pages/admin/AdminSettings';
-
-import MemberLayout from './layouts/MemberLayout';
-import MemberDashboard from './pages/member/MemberDashboard';
-import MemberProjects from './pages/member/MemberProjects';
-import MemberReports from './pages/member/MemberReports';
-import MemberActivities from './pages/member/MemberActivities';
-
-
+import React from 'react';
+import { BrowserRouter as Router } from 'react-router-dom';
+import ScrollToTop from './components/layout/ScrollToTop';
+import AppRoutes from './routes/AppRoutes';
 
 function App() {
   return (
     <Router>
       <ScrollToTop />
-      <Routes>
-        {/* Public Routes with MainLayout */}
-        <Route path="/" element={<MainLayout />}>
-          <Route index element={<HomePage />} />
-          <Route path="about" element={<AboutUsPage />} />
-          <Route path="projects" element={<ProjectsPage />} />
-          <Route path="projects/:id" element={<ProjectDetailsPage />} />
-          <Route path="chapters" element={<ChaptersPage />} />
-          <Route path="committee" element={<CommitteeMembersPage />} />
-          <Route path="voice-of-sco" element={<VoiceOfScoPage />} />
-          <Route path="annual-reports" element={<AnnualReportsPage />} />
-          <Route path="member/:id" element={<MemberProfilePage />} />
-          <Route path="contact" element={<ContactUsPage />} />
-          <Route path="login" element={<LoginPage />} />
-          <Route path="become-member" element={<BecomeMemberPage />} />
-        </Route>
-
-        {/* Member Panel Routes */}
-        <Route path="/member-panel" element={<MemberLayout />}>
-          <Route path="dashboard" element={<MemberDashboard />} />
-          <Route path="projects" element={<MemberProjects />} />
-          <Route path="reports" element={<MemberReports />} />
-          <Route path="activities" element={<MemberActivities />} />
-        </Route>
-
-        {/* Admin Routes with AdminLayout */}
-        <Route path="/admin" element={<AdminLayout />}>
-          <Route index element={<DashboardHome />} />
-          <Route path="members" element={<ManageMembers />} />
-          <Route path="projects" element={<ManageProjects />} />
-          <Route path="reports" element={<ManageReports />} />
-          <Route path="activities" element={<ManageActivities />} />
-          <Route path="chapters" element={<ManageChapters />} />
-          <Route path="settings" element={<AdminSettings />} />
-        </Route>
-      </Routes>
+      <AppRoutes />
     </Router>
   );
 }

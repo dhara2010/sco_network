@@ -1,58 +1,40 @@
 import React, { useState, useEffect } from 'react';
-import { FolderKanban, FileText, Activity, AlertCircle, User as UserIcon } from 'lucide-react';
+import { FolderKanban, FileText, AlertCircle, User as UserIcon } from 'lucide-react';
 import { motion } from 'framer-motion';
-import { API_BASE_URL } from '../../utils/api';
+import { membersData, projectsData, reportsData, groupsData, chaptersData } from '../../data/staticData';
 
 const MemberDashboard = () => {
   const [stats, setStats] = useState({
     projects: 0,
     reports: 0,
-    activities: 0
   });
   const [profile, setProfile] = useState(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const token = localStorage.getItem('memberToken');
-        
-        // Fetch Member Profile
-        const profileRes = await fetch(`${API_BASE_URL}/members/me`, {
-          headers: { 'Authorization': `Bearer ${token}` }
-        });
-        if (profileRes.ok) {
-          const profileData = await profileRes.json();
-          setProfile(profileData);
-        }
-
-        // Fetch Stats
-        const statsRes = await fetch(`${API_BASE_URL}/member-dashboard/stats`, {
-          headers: { 'Authorization': `Bearer ${token}` }
-        });
-        if (statsRes.ok) {
-          const statsData = await statsRes.json();
-          setStats(statsData);
-        }
-      } catch (err) {
-        console.error(err);
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchData();
+    setTimeout(() => {
+      const loggedInEmail = localStorage.getItem('loggedInUserEmail');
+      const mockUser = membersData.find(m => m.email === loggedInEmail) || membersData.find(m => m.status === 'Approved') || membersData[0];
+      setProfile(mockUser);
+      
+      setStats({
+        projects: projectsData.length,
+        reports: reportsData.length,
+      });
+      setLoading(false);
+    }, 400);
   }, []);
 
   const statCards = [
     { title: 'Total Projects', count: stats.projects, icon: FolderKanban, color: "from-blue-500 to-blue-600", shadow: "shadow-blue-200" },
     { title: 'Total Reports', count: stats.reports, icon: FileText, color: "from-emerald-500 to-emerald-600", shadow: "shadow-emerald-200" },
-    { title: 'Total Activities', count: stats.activities, icon: Activity, color: "from-orange-500 to-orange-600", shadow: "shadow-orange-200" },
+    // { title: 'Total Activities', count: stats.activities, icon: Activity, color: "from-orange-500 to-orange-600", shadow: "shadow-orange-200" },
   ];
 
   return (
     <div className="space-y-6">
       <h2 className="text-2xl font-bold text-gray-900">Welcome back{profile ? `, ${profile.fullName}` : ''}!</h2>
-      
+
       {loading ? (
         <div className="text-gray-500">Loading dashboard...</div>
       ) : (
@@ -63,8 +45,8 @@ const MemberDashboard = () => {
               <div>
                 <h3 className="text-yellow-800 font-bold">Account Status: {profile.status}</h3>
                 <p className="text-yellow-700 text-sm mt-1">
-                  {profile.status === 'Pending' 
-                    ? 'Your account is currently under review by the administrator. Some features might be limited.' 
+                  {profile.status === 'Pending'
+                    ? 'Your account is currently under review by the administrator. Some features might be limited.'
                     : `Your account has been rejected. Remarks: ${profile.remarks}`}
                 </p>
               </div>
@@ -73,10 +55,10 @@ const MemberDashboard = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {statCards.map((card, idx) => (
-              <motion.div 
+              <motion.div
                 whileHover={{ y: -4, scale: 1.01 }}
                 transition={{ type: "spring", stiffness: 300 }}
-                key={idx} 
+                key={idx}
                 className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 relative overflow-hidden group"
               >
                 <div className={`absolute top-0 right-0 w-24 h-24 bg-gradient-to-br ${card.color} opacity-10 rounded-bl-full -mr-4 -mt-4 transition-transform group-hover:scale-110`}></div>
@@ -103,34 +85,96 @@ const MemberDashboard = () => {
                   </div>
                 )}
                 <div className="flex-1 grid grid-cols-1 md:grid-cols-2 gap-y-4 gap-x-8">
-                <div>
-                  <p className="text-sm text-gray-500">Full Name</p>
-                  <p className="font-medium text-gray-900">{profile.fullName}</p>
-                </div>
-                <div>
-                  <p className="text-sm text-gray-500">Email Address</p>
-                  <p className="font-medium text-gray-900">{profile.email}</p>
-                </div>
-                <div>
-                  <p className="text-sm text-gray-500">Mobile</p>
-                  <p className="font-medium text-gray-900">{profile.mobile}</p>
-                </div>
-                <div>
-                  <p className="text-sm text-gray-500">Designation</p>
-                  <p className="font-medium text-gray-900">{profile.designation}</p>
-                </div>
-                <div>
-                  <p className="text-sm text-gray-500">Company</p>
-                  <p className="font-medium text-gray-900">{profile.companyName || 'N/A'}</p>
-                </div>
-                <div>
-                  <p className="text-sm text-gray-500">City</p>
-                  <p className="font-medium text-gray-900">{profile.city || 'N/A'}</p>
-                </div>
+                  <div>
+                    <p className="text-sm text-gray-500">Full Name</p>
+                    <p className="font-medium text-gray-900">{profile.fullName}</p>
+                  </div>
+                  <div>
+                    <p className="text-sm text-gray-500">Email Address</p>
+                    <p className="font-medium text-gray-900">{profile.email}</p>
+                  </div>
+                  <div>
+                    <p className="text-sm text-gray-500">Mobile</p>
+                    <p className="font-medium text-gray-900">{profile.mobile}</p>
+                  </div>
+                  <div>
+                    <p className="text-sm text-gray-500">Designation</p>
+                    <p className="font-medium text-gray-900">{profile.designation}</p>
+                  </div>
+                  <div>
+                    <p className="text-sm text-gray-500">Company</p>
+                    <p className="font-medium text-gray-900">{profile.companyName || 'N/A'}</p>
+                  </div>
+                  <div>
+                    <p className="text-sm text-gray-500">City</p>
+                    <p className="font-medium text-gray-900">{profile.city || 'N/A'}</p>
+                  </div>
                 </div>
               </div>
             )}
           </div>
+
+          {profile && profile.status === 'Approved' && profile.groupId && profile.chapterId && (
+            <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 mt-6">
+              <h3 className="text-lg font-bold text-gray-900 mb-6 flex items-center gap-2"><UserIcon size={20} className="text-blue-600" /> My Group Information</h3>
+              
+              {(() => {
+                const chapter = chaptersData.find(c => c._id === profile.chapterId);
+                const group = groupsData.find(g => g._id === profile.groupId);
+                const groupMembers = membersData.filter(m => m.groupId === profile.groupId && m.status === 'Approved');
+                const isFull = groupMembers.length >= (group?.maxMembers || 6);
+
+                return (
+                  <div className="space-y-6">
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-y-4 gap-x-8 bg-blue-50/50 p-4 rounded-xl border border-blue-100">
+                      <div>
+                        <p className="text-sm text-gray-500">Chapter</p>
+                        <p className="font-medium text-gray-900">{chapter?.chapterName || 'Unknown Chapter'}</p>
+                      </div>
+                      <div>
+                        <p className="text-sm text-gray-500">Group Name</p>
+                        <p className="font-medium text-gray-900 flex items-center gap-2">
+                          {group?.groupName || 'Unknown Group'}
+                          <span className={`text-xs px-2 py-0.5 rounded-full font-bold ${isFull ? 'bg-red-100 text-red-700' : 'bg-green-100 text-green-700'}`}>
+                            {groupMembers.length}/{group?.maxMembers || 6} Capacity
+                          </span>
+                        </p>
+                      </div>
+                      <div>
+                        <p className="text-sm text-gray-500">My Assigned Position</p>
+                        <p className="font-medium text-gray-900">{profile.groupPosition || 'Member'}</p>
+                      </div>
+                    </div>
+
+                    <div>
+                      <h4 className="text-md font-bold text-gray-800 mb-4 border-b pb-2">Group Members</h4>
+                      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                        {groupMembers.map(member => (
+                          <div key={member._id} className="flex items-center gap-3 p-3 bg-white border border-gray-100 rounded-xl shadow-sm hover:shadow-md transition-shadow">
+                            <div className="flex-shrink-0">
+                              {member.profilePicture ? (
+                                <img src={member.profilePicture} alt={member.fullName} className="w-12 h-12 rounded-full object-cover border border-gray-200" />
+                              ) : (
+                                <div className="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 font-bold">
+                                  {member.fullName.charAt(0)}
+                                </div>
+                              )}
+                            </div>
+                            <div>
+                              <p className="font-bold text-gray-900 text-sm">{member.fullName} {member._id === profile._id ? '(You)' : ''}</p>
+                              <p className="text-xs text-blue-600 font-medium mb-1">{member.groupPosition || 'Member'}</p>
+                              <p className="text-xs text-gray-500 truncate">{member.email}</p>
+                              <p className="text-xs text-gray-500">{member.mobile}</p>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                );
+              })()}
+            </div>
+          )}
         </>
       )}
     </div>

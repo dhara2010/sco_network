@@ -1,31 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import { Plus, Edit, Trash2, X, AlertCircle, Eye, XCircle, FileText } from 'lucide-react';
-import { API_BASE_URL } from '../../utils/api';
+import { reportsData } from '../../data/staticData';
 
 const MemberReports = () => {
   const [reports, setReports] = useState([]);
   const [loading, setLoading] = useState(true);
   const [showModal, setShowModal] = useState(false);
-  const [formData, setFormData] = useState({ title: '', category: 'Report', description: '', reportYear: '', reportFile: '' });
+  const [formData, setFormData] = useState({ title: '', reportYear: new Date().getFullYear().toString(), category: 'Financial', description: '', reportFile: '' });
   const [editId, setEditId] = useState(null);
   const [error, setError] = useState('');
   const [viewRecord, setViewRecord] = useState(null);
 
-  const fetchReports = async () => {
-    try {
-      const token = localStorage.getItem('memberToken');
-      const res = await fetch(`${API_BASE_URL}/member-dashboard/reports`, {
-        headers: { 'Authorization': `Bearer ${token}` }
-      });
-      if (res.ok) {
-        const data = await res.json();
-        setReports(data);
-      }
-    } catch (err) {
-      console.error(err);
-    } finally {
+  const fetchReports = () => {
+    setTimeout(() => {
+      setReports([...reportsData]);
       setLoading(false);
-    }
+    }, 400);
   };
 
   useEffect(() => {
@@ -39,8 +29,8 @@ const MemberReports = () => {
   const handleFileChange = (e) => {
     const file = e.target.files[0];
     if (file) {
-      if (file.size > 10 * 1024 * 1024) {
-        setError('PDF must be less than 10MB');
+      if (file.size > 5 * 1024 * 1024) {
+        setError('File must be less than 5MB');
         return;
       }
       const reader = new FileReader();
@@ -51,67 +41,36 @@ const MemberReports = () => {
     }
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     setError('');
-    try {
-      const token = localStorage.getItem('memberToken');
-      const url = editId 
-        ? `${API_BASE_URL}/member-dashboard/reports/${editId}`
-        : `${API_BASE_URL}/member-dashboard/reports`;
-      const method = editId ? 'PUT' : 'POST';
-
-      const res = await fetch(url, {
-        method,
-        headers: { 
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}` 
-        },
-        body: JSON.stringify(formData)
-      });
-
-      if (res.ok) {
-        setShowModal(false);
-        setFormData({ title: '', category: 'Report', description: '', reportYear: '', reportFile: '' });
-        setEditId(null);
-        fetchReports();
-      } else {
-        const data = await res.json();
-        setError(data.message || 'Error saving report');
-      }
-    } catch (err) {
-      setError('Server error');
+    
+    if (editId) {
+      setReports(reports.map(r => r._id === editId ? { ...r, ...formData } : r));
+    } else {
+      setReports([...reports, { ...formData, _id: Date.now().toString(), status: 'Pending', createdAt: new Date() }]);
     }
+    
+    setShowModal(false);
+    setFormData({ title: '', reportYear: new Date().getFullYear().toString(), category: 'Financial', description: '', reportFile: '' });
+    setEditId(null);
   };
 
   const handleEdit = (report) => {
     setEditId(report._id);
     setFormData({
       title: report.title,
+      reportYear: report.reportYear,
       category: report.category,
       description: report.description,
-      reportYear: report.reportYear || '',
       reportFile: report.reportFile || ''
     });
     setShowModal(true);
   };
 
-  const handleDelete = async (id) => {
+  const handleDelete = (id) => {
     if (window.confirm('Are you sure you want to delete this report?')) {
-      try {
-        const token = localStorage.getItem('memberToken');
-        const res = await fetch(`${API_BASE_URL}/member-dashboard/reports/${id}`, {
-          method: 'DELETE',
-          headers: { 'Authorization': `Bearer ${token}` }
-        });
-        if (res.ok) {
-          fetchReports();
-        } else {
-          alert('Error deleting report');
-        }
-      } catch (err) {
-        alert('Server error');
-      }
+      setReports(reports.filter(r => r._id !== id));
     }
   };
 

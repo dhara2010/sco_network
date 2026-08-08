@@ -1,64 +1,44 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Mail, Lock, ArrowRight } from 'lucide-react';
-import { API_BASE_URL } from '../../utils/api';
+import { Mail, Lock, ArrowRight, ShieldCheck, User } from 'lucide-react';
+import { membersData } from '../../data/staticData';
 
 const LoginPage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
   const navigate = useNavigate();
 
-  const handleLogin = async (e) => {
+  const handleLogin = (e) => {
     e.preventDefault();
-    setError('');
     setLoading(true);
-    try {
-      // First try to log in as Admin
-      let res = await fetch(`${API_BASE_URL}/auth/login`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, password })
-      });
-      
-      let data = await res.json();
-      
-      if (!res.ok) {
-        // If Admin login fails, try Member login
-        res = await fetch(`${API_BASE_URL}/members/login`, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ email, password })
-        });
-        data = await res.json();
-        
-        if (!res.ok) {
-          throw new Error(data.message || 'Login failed');
-        }
-        
-        // Member login successful
-        localStorage.setItem('memberToken', data.token);
-        localStorage.setItem('userRole', data.role);
+    setError(null);
+
+    setTimeout(() => {
+      // Member Login
+      const member = membersData.find(m => m.email === email);
+      if (member && member.status === 'Approved') {
+        localStorage.setItem('memberToken', 'mock-member-token');
+        localStorage.setItem('userRole', 'Member');
+        localStorage.setItem('loggedInUserEmail', email);
         navigate('/member-panel/dashboard');
-        return;
-      }
-      
-      // Admin login successful
-      localStorage.setItem('adminToken', data.token); 
-      localStorage.setItem('userRole', data.role);
-      
-      if (data.role === 'Admin' || data.role === 'Super Admin') {
-        navigate('/admin');
+      } else if (member && member.status !== 'Approved') {
+        setError(`Your account is ${member.status.toLowerCase()}.`);
       } else {
-        navigate('/'); // Fallback
+        // Allow any valid-looking email to login to demo the UI for static version
+        if (email.includes('@')) {
+          localStorage.setItem('memberToken', 'mock-member-token');
+          localStorage.setItem('userRole', 'Member');
+          localStorage.setItem('loggedInUserEmail', email);
+          navigate('/member-panel/dashboard');
+        } else {
+            setError('Invalid member credentials');
+        }
       }
-    } catch (err) {
-      setError(err.message);
-    } finally {
       setLoading(false);
-    }
+    }, 600);
   };
 
   return (
@@ -76,6 +56,8 @@ const LoginPage = () => {
             </h2>
             <p className="text-gray-500">Log in to your account to continue</p>
           </div>
+
+
 
           {error && (
             <motion.div 
