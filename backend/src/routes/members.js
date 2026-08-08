@@ -128,7 +128,6 @@ router.get('/admin', protect, authorize('Super Admin', 'Admin', 'Chapter Admin')
   try {
     const { status, search } = req.query;
     let query = {};
-    
     if (status) query.status = status;
     if (search) {
       query.$or = [
