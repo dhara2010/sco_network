@@ -93,12 +93,12 @@ const ImpactSection = () => {
   }
 
   return (
-    <section className="w-full bg-[#071B4D] relative z-20 py-12 md:py-16 overflow-hidden border-t border-[#0A1435]">
-      {/* Subtle background glow */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full max-w-4xl bg-[#FFC107] opacity-[0.03] blur-3xl pointer-events-none"></div>
+    <section className="w-full bg-[#071B4D] relative z-20 py-16 md:py-20 overflow-hidden">
+      {/* Subtle background overlay to blend seamlessly */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full max-w-7xl bg-gradient-to-b from-[#071B4D] via-[#0A1D54]/50 to-[#071B4D] pointer-events-none"></div>
 
       <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12 divide-x-0 md:divide-x md:divide-white/10 text-center">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-4 divide-x-0 md:divide-x md:divide-white/5 text-center">
 
           {statItems.map((stat, index) => (
             <motion.div
@@ -107,16 +107,18 @@ const ImpactSection = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
-              className="flex flex-col items-center justify-center px-4"
+              className="flex flex-col items-center justify-center px-4 group hover:-translate-y-2 transition-transform duration-500"
             >
-              <stat.icon className="w-8 h-8 text-[#FFC107] mb-4 opacity-80" />
-              <div className="flex items-baseline gap-1 mb-2">
-                <span className="text-4xl md:text-5xl font-black text-white tracking-tighter drop-shadow-md">
+              <div className="w-16 h-16 rounded-2xl bg-[#0A1435] shadow-[inset_0_2px_4px_rgba(0,0,0,0.4)] border border-white/5 flex items-center justify-center mb-6 group-hover:bg-[#0A1D54] transition-colors duration-500">
+                <stat.icon className="w-8 h-8 text-[#FFC107]" />
+              </div>
+              <div className="flex items-baseline gap-1 mb-3">
+                <span className="text-5xl md:text-6xl font-black text-white tracking-tight drop-shadow-md">
                   <AnimatedCounter value={stat.value} />
                 </span>
-                <span className="text-2xl font-bold text-[#FFC107]">{stat.suffix}</span>
+                <span className="text-3xl font-bold text-[#FFC107]">{stat.suffix}</span>
               </div>
-              <p className="text-sm md:text-base text-white/70 font-bold uppercase tracking-widest">{stat.label}</p>
+              <p className="text-xs md:text-sm text-[#DCE6F5] font-semibold tracking-widest uppercase opacity-90">{stat.label}</p>
             </motion.div>
           ))}
 
